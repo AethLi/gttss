@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.aethli.gttss.dao.SysUserMapper">
+    <resultMap id="BaseResultMap" type="cn.aethli.gttss.domain.SysUser">
+        <id column="userId" property="userId" javaType="String" jdbcType="VARCHAR"/>
+        <result column="account" property="account" javaType="String" jdbcType="VARCHAR"/>
+        <result column="permission" property="permission" javaType="Integer" jdbcType="INT"/>
+        <result column="password" property="password" javaType="String" jdbcType="VARCHAR"/>
+        <result column="status" property="status" javaType="Integer" jdbcType="INT"/>
+    </resultMap>
+    <sql id="Base_From">
+        SysUser
+    </sql>
+    <insert id="insertWithAll" parameterType="cn.aethli.gttss.domain.SysUser">
+        INSERT INTO SysUser (`userId`, `account`, `permission`, `password`, `status`)
+         VALUES (#{userId}, #{account}, #{permission}, #{password},#{status});
+    </insert>
+</mapper>
