@@ -1,11 +1,12 @@
 package cn.aethli.gttss.domain;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Batch {
     String batchId;
     String batchName;
-    Date batchDate;
+    Timestamp batchDate;
 
     public String getBatchId() {
         return batchId;
@@ -23,11 +24,11 @@ public class Batch {
         this.batchName = batchName;
     }
 
-    public Date getBatchDate() {
+    public Timestamp getBatchDate() {
         return batchDate;
     }
 
-    public void setBatchDate(Date batchDate) {
+    public void setBatchDate(Timestamp batchDate) {
         this.batchDate = batchDate;
     }
 }

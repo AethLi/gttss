@@ -15,6 +15,6 @@
         Student
     </sql>
     <insert id="insertWithAll" parameterType="cn.aethli.gttss.domain.SysUser">
-      INSERT INTO `gttss`.`Student` (`userId`, `name`, `classCode`, `gender`, `batchCode`, `gradeName`) VALUES (#{userId}, #{name}, #{classCode}, #{gender}, #{batchCode},#{genderNam});
+      INSERT INTO Student (`userId`, `name`, `classCode`, `gender`, `batchCode`, `gradeName`) VALUES (#{userId}, #{name}, #{classCode}, #{gender}, #{batchCode},#{genderNam});
     </insert>
 </mapper>
