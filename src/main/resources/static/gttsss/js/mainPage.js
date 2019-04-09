@@ -16,6 +16,7 @@ angular.module('studentApp', ['ui.router', 'oc.lazyLoad'])
             .state("userOverview", {
                 url: "/userOverview",
                 templateUrl: './userOverview.html',
+                controller:'userOverviewCtrl',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
