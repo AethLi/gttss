@@ -69,6 +69,16 @@
             <artifactId>bootstrap</artifactId>
             <version>3.4.1</version>
         </dependency>
+      <!--  <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>antd</artifactId>
+            <version>3.9.1</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.webjars.bowergithub.sentsin</groupId>
+            <artifactId>laydate</artifactId>
+            <version>5.0.9</version>
+        </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>angularjs</artifactId>
