@@ -12,7 +12,7 @@
     <script src="/webjars/angular-ui-router/1.0.20/release/angular-ui-router.min.js"></script>
     <script src="./js/mainPage.js"></script>
 </head>
-<body ng-app="studentApp" ng-controller="mainPageCtrl">
+<body ng-app="teacherApp" ng-controller="mainPageCtrl">
 <nav class="navbar navbar-inverse" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -92,13 +92,10 @@
                         <li><a href="#">毕业设计成果提交</a></li>
                     </ul>
                 </li>
-                <li ng-class="{6:'active'}[whoIsActive]">
-                    <a href="#userOverview" ng-click="iAmActive(0)">用户中心</a>
-                </li>
             </ul>
             <ul class="nav navbar-nav" style="float: right">
                 <li class="nav-item">
-                    <a style="cursor:default;" onclick="false">班级：{{userPermission}}</a>
+                    <a style="cursor:default;" onclick="false">部门：{{userPermission}}</a>
                 </li>
                 <li class="nav-item">
                     <a style="cursor:default;" onclick="false">姓名：{{userName}}</a>

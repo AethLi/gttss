@@ -23,4 +23,13 @@ public class IndexController {
         modelAndView.setViewName("gttsss/index.html");
         return modelAndView;
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/t")
+    public Object IndexTCtrl(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("gttsst/index.html");
+        return modelAndView;
+    }
 }

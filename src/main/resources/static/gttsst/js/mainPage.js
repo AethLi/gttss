@@ -1,4 +1,4 @@
-angular.module('studentApp', ['ui.router', 'oc.lazyLoad'])
+angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
     .controller('mainPageCtrl', function ($scope) {
         $scope.userName = "";
         $scope.userPermission = "";
