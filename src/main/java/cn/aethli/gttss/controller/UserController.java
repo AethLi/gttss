@@ -20,7 +20,7 @@ public class UserController extends BaseController {
         return null;
     }
 
-    @RequestMapping(value = "/logout.do")
+    @RequestMapping(value = "/logout")
     public Object logoutCtrl(HttpServletRequest request) {
         request.getSession().invalidate();
         return null;
