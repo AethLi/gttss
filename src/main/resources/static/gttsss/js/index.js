@@ -1,8 +1,22 @@
 function login() {
-    window.location = "/gttsss/mainPage.html";
-    $.ajax()
+    $.ajax({
+        type: 'post',
+        contentType: 'application/json;charset=utf-8',
+        dataType: "json",
+        async: true,
+        url: '/user/login',
+        data: JSON.stringify({
+            "account": $("#inputAccount").val(),
+            "password": md5(md5($("#inputPassword").val()) + $("#inputAcaptcha").val().toLowerCase()),
+            "ACAPTCHA": $("#inputAcaptcha").val().toLowerCase()
+        }),
+        success: function (result) {
+            console.log(result);
+        }
+    });
+    return false
 }
 
 function changeACAPTCHA() {
-    document.getElementById("ACAPTCHAImg").src = "ACAPTCHA.do?" + Math.random();
+    document.getElementById("ACAPTCHAImg").src = "ACAPTCHA?" + Math.random();
 }

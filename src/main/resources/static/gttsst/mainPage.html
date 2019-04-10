@@ -23,12 +23,17 @@
                 <li class="active" ng-class="{1:'active'}[whoIsActive]">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                        aria-expanded="false" ng-click="iAmActive(1)">
-                        选题
+                        课题
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">自拟题目</a></li>
-                        <li><a href="#">选题</a></li>
+                        <li><a href="#">历史课题查看</a></li>
+                        <li><a href="#">教师出题</a></li>
+                        <li><a href="#">学生自拟题目审核</a></li>
+                        <li><a href="#">课题自拟审核结果查看</a></li>
+                        <li><a href="#">审核后课题修改</a></li>
+                        <li><a href="#">选题结果查看</a></li>
+                        <li><a href="#">任务书填写</a></li>
                     </ul>
                 </li>
                 <li ng-class="{2:'active'}[whoIsActive]">
@@ -38,9 +43,9 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">开题报告编写</a></li>
-                        <li><a href="#">开题答辩资格查看</a></li>
-                        <li><a href="#">指导事件和指导地点查看</a></li>
+                        <li><a href="#">开题报告审核</a></li>
+                        <li><a href="#">开题答辩分组信息查看</a></li>
+                        <li><a href="#">开题答辩</a></li>
                     </ul>
                 </li>
                 <li ng-class="{3:'active'}[whoIsActive]">
@@ -50,8 +55,8 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">校外毕业设计申请</a></li>
-                        <li><a href="#">校外实习审批信息查看</a></li>
+                        <li><a href="#">校外实习审批</a></li>
+                        <li><a href="#"></a></li>
                     </ul>
                 </li>
                 <li ng-class="{4:'active'}[whoIsActive]">
@@ -61,36 +66,44 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
+                        <li><a href="#">指导记录填写</a></li>
                         <li><a href="#">中期检查记录填写</a></li>
+                        <li><a href="#">指导地点和指导时间填报</a></li>
                     </ul>
                 </li>
                 <li ng-class="{5:'active'}[whoIsActive]">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                       aria-expanded="false" href="#!/" ng-click="iAmActive(5)">
-                        初稿上传
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">初稿上传及教师批阅信息查看</a></li>
-                    </ul>
-                </li>
-                <li ng-class="{6:'active'}[whoIsActive]">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                        aria-expanded="false" href="#!/" ng-click="iAmActive(5)">
                         答辩
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">答辩稿上传</a></li>
-                        <li><a href="#">成绩评定册预览及下载</a></li>
-                        <li><a href="#">答辩申请</a></li>
-                        <li><a href="#">答辩申请查阅及下载</a></li>
-                        <li><a href="#">答辩资格查看</a></li>
-                        <li><a href="#">交叉评阅意见</a></li>
-                        <li><a href="#">答辩分组信息查看</a></li>
-                        <li><a href="#">二次答辩分组信息</a></li>
-                        <li><a href="#">毕业设计成果提交</a></li>
+                        <li><a href="#">初稿批阅</a></li>
+                        <li><a href="#">指导教师批阅</a></li>
+                        <li><a href="#">交叉批阅</a></li>
+                        <li><a href="#">答辩申请表批阅</a></li>
+                        <li><a href="#">毕业答辩分组信息查看</a></li>
+                        <li><a href="#">毕业答辩</a></li>
+                        <li><a href="#">成绩评定</a></li>
+                        <li><a href="#">二次答辩分组信息查看</a></li>
+                        <li><a href="#">二次答辩</a></li>
+                        <li><a href="#">二次答辩成绩评定</a></li>
+                        <li><a href="#">毕业设计成果检查</a></li>
                     </ul>
+                </li>
+                <li ng-class="{6:'active'}[whoIsActive]">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                       aria-expanded="false" href="#!/" ng-click="iAmActive(5)">
+                        审核
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">课题审核</a></li>
+                        <li><a href="#">任务书审核</a></li>
+                    </ul>
+                </li>
+                <li ng-class="{6:'active'}[whoIsActive]">
+                    <a href="#userOverview" ng-click="iAmActive(0)">用户中心</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav" style="float: right">
