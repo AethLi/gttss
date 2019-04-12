@@ -1,6 +1,9 @@
 package cn.aethli.gttss.domain;
 
 public class ResponseMessage {
+    public static final int STATUS_OK=0;
+    public static final int STATUS_FAIL=1;
+    public static final int STATUS_ERROR=2;
     int status;
     String message;
     Object model;
@@ -27,6 +30,16 @@ public class ResponseMessage {
 
     public void setModel(Object model) {
         this.model = model;
+    }
+
+    public ResponseMessage(int status, Object model) {
+        this.status = status;
+        this.model = model;
+    }
+
+    public ResponseMessage(int status, String message) {
+        this.status = status;
+        this.message = message;
     }
 
     public ResponseMessage(int status, String message, Object model) {

@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.aethli.gttss.dao.StudentBatchGroupMapper">
     <resultMap id="BaseResultMap" type="cn.aethli.gttss.domain.StudentBatchGroup">
-        <result column="studentId" property="studentId" javaType="String" jdbcType="VARCHAR"/>
-        <result column="batchCode" property="batchCode" javaType="String" jdbcType="VARCHAR"/>
+        <result column="studentId" property="studentId"/>
+        <result column="batchCode" property="batchCode"/>
     </resultMap>
     <insert id="insertWithAllByList" parameterType="java.util.List">
         insert into StudentBatchGroupMapper (`studentId`,`batchCode`)values

@@ -4,11 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.aethli.gttss.dao.SysUserMapper">
     <resultMap id="BaseResultMap" type="cn.aethli.gttss.domain.SysUser">
-        <id column="userId" property="userId" javaType="String" jdbcType="VARCHAR"/>
-        <result column="account" property="account" javaType="String" jdbcType="VARCHAR"/>
-        <result column="permission" property="permission" javaType="Integer" jdbcType="INT"/>
-        <result column="password" property="password" javaType="String" jdbcType="VARCHAR"/>
-        <result column="status" property="status" javaType="Integer" jdbcType="INT"/>
+        <id column="userId" property="userId"/>
+        <result column="account" property="account"/>
+        <result column="permission" property="permission"/>
+        <result column="password" property="password"/>
+        <result column="status" property="status"/>
     </resultMap>
     <sql id="Base_From">
         SysUser
@@ -17,4 +17,9 @@
         INSERT INTO SysUser (`userId`, `account`, `permission`, `password`, `status`)
          VALUES (#{userId}, #{account}, #{permission}, #{password},#{status});
     </insert>
+    <select id="selectByAccount" resultMap="BaseResultMap" parameterType="cn.aethli.gttss.domain.SysUser">
+        select * from
+        <include refid="Base_From"/>
+        where account=#{account}
+    </select>
 </mapper>
