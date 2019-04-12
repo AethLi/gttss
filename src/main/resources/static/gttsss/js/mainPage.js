@@ -11,16 +11,16 @@ angular.module('studentApp', ['ui.router', 'oc.lazyLoad'])
         }
     })
     .config(function ($stateProvider, $urlRouterProvider) {
-        // $urlRouterProvider.when("", "");//用作默认跳转
+        $urlRouterProvider.when("", "userOverview");//用作默认跳转
         $stateProvider
             .state("userOverview", {
+                controller:"userOverviewCtrl",
                 url: "/userOverview",
-                templateUrl: './userOverview.html',
-                controller:'userOverviewCtrl',
+                templateUrl: '/gttsss/userOverview.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['../js/userOverview.js']
+                            files: ['/gttsss/js/userOverview.js','/gttsss/css/userOverview.css']
                         })
                     }]
                 }

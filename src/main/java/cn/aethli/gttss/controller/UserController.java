@@ -48,7 +48,7 @@ public class UserController extends BaseController {
         return new ResponseMessage(ResponseMessage.STATUS_ERROR, "请求错误");
     }
 
-    @RequestMapping(value = "/logout.do")
+    @RequestMapping(value = "/logout")
     public Object logoutCtrl(HttpServletRequest request) {
         request.getSession().invalidate();
         return null;
