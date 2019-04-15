@@ -31,21 +31,27 @@ public class UserController extends BaseController {
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Object login(Model model, @ModelAttribute("identifyingCode") String identifyingCode, @RequestBody Map<String, Object> params, SessionStatus sessionStatus) {
-        SysUser sysUser = new SysUser();
-        if (params.get("ACAPTCHA").equals(identifyingCode)) {
-            sysUser.setAccount((String) params.get("account"));
-            sysUser.setPassword((String) params.get("password"));
+        try {
+            SysUser sysUser = new SysUser();
+            if (params.get("ACAPTCHA").equals(identifyingCode)) {
+                sysUser.setAccount((String) params.get("account"));
+                sysUser.setPassword((String) params.get("password"));
+                try {
+                    sysUser = userService.login(sysUser, (String)params.get("ACAPTCHA"));
+                    return new ResponseMessage(ResponseMessage.STATUS_OK);
+                } catch (Exception e) {
+//                e.printStackTrace();
+                    return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
+                }
+            } else {
+                return new ResponseMessage(ResponseMessage.STATUS_FAIL, "验证码错误");
+            }
+        } catch (Exception e) {
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR, "请求错误", e.getMessage());
+        } finally {
             model.addAttribute("identifyingCode", "aethli.cn");//失效化验证码
             model.addAttribute("currentUser", null);//清空登录
-            try {
-                sysUser = userService.login(sysUser);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            return new ResponseMessage(ResponseMessage.STATUS_FAIL, "验证码错误");
         }
-        return new ResponseMessage(ResponseMessage.STATUS_ERROR, "请求错误");
     }
 
     @RequestMapping(value = "/logout")

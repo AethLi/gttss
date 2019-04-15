@@ -36,7 +36,7 @@ public class CAPTCHACtrl {
         // 创建一个随机数生成器类
         Random random = new Random();
         // 将图像填充为白色
-        gd.setColor(Color.WHITE);
+        gd.setColor(Color.black);
         gd.fillRect(0, 0, width, height);
         // 创建字体，字体的大小应该根据图片的高度来定。
         Font font = new Font("Fixedsys", Font.BOLD, fontHeight);

@@ -12,9 +12,10 @@ public class UserService {
     @Autowired
     private SysUserMapper sysUserMapper;
 
-    public SysUser login(SysUser sysUser) throws Exception {
+    public SysUser login(SysUser sysUser, String acaptcha) throws Exception {
         SysUser user = sysUserMapper.selectByAccount(sysUser);
-        if ((StringUtils.toMD5(user.getPassword())).equals(sysUser.getPassword())) {
+        if ((StringUtils.toMD5(user.getPassword() + acaptcha)).equals(sysUser.getPassword())) {
+            user.setPassword("已去除返回密码值");
             return user;
         } else throw new Exception("账号或密码错误");
     }

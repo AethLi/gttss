@@ -1,0 +1,103 @@
+<div class="col-lg-8">
+    <section>
+        <div class="well">自拟题目</div>
+        <div class="form-group">
+            <label for="topicName">课题名称</label>
+            <input type="" class="form-control" id="topicName">
+        </div>
+        <div class="form-group">
+            <label for="teacherName">教师名称</label>
+            <select type="" class="form-control" id="teacherName">
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="topicSource">课题来源</label>
+            <input type="" class="form-control" id="topicSource">
+        </div>
+        <div class="form-group">
+            <label for="topicType">课题类型</label>
+            <input type="" class="form-control" id="topicType">
+        </div>
+        <div class="form-group">
+            <label for="teacher2">助理指导老师</label>
+            <input type="" class="form-control" id="teacher2">
+        </div>
+        <div class="form-group">
+            <label for="topicProperties">课题性质</label>
+            <input type="" class="form-control" id="topicProperties">
+        </div>
+        <div class="form-group">
+            <label for="newOldCompare">新旧课题比较</label>
+            <input type="" class="form-control" id="newOldCompare">
+        </div>
+
+        <ul class="nav nav-tabs customizeTopic_contentNav">
+            <li ng-class="{0:'active'}[whoIsActive]"><a ng-click="iAmActive(0)">主要内容和基本要求</a></li>
+            <li ng-class="{1:'active'}[whoIsActive]"><a ng-click="iAmActive(1)">成果要求</a></li>
+            <li ng-class="{2:'active'}[whoIsActive]"><a ng-click="iAmActive(2)">参考文献</a></li>
+            <li ng-class="{3:'active'}[whoIsActive]"><a ng-click="iAmActive(3)">进度计划</a></li>
+            <li ng-class="{4:'active'}[whoIsActive]"><a ng-click="iAmActive(4)">选题指南</a></li>
+        </ul>
+        <div class="form-group" ng-show="whoIsActive==0">
+            <label for="content"></label>
+            <textarea type="" class="form-control" id="content" rows="10"></textarea>
+        </div>
+        <div class="form-group" ng-show="whoIsActive==1">
+            <label for="result"></label>
+            <textarea type="" class="form-control" id="result" rows="10"></textarea>
+        </div>
+        <div class="form-group" ng-show="whoIsActive==2">
+            <label for="reference"></label>
+            <textarea type="" class="form-control" id="reference" rows="10"></textarea>
+        </div>
+        <div class="form-group" ng-show="whoIsActive==3">
+            <label for="plan"></label>
+            <textarea type="" class="form-control" id="plan" rows="10"></textarea>
+        </div>
+        <div class="form-group" ng-show="whoIsActive==4">
+            <label for="guide"></label>
+            <textarea type="" class="form-control" id="guide" rows="10"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" style="width: 10%">提交</button>
+        </div>
+    </section>
+</div>
+<div class="col-lg-4">
+    <div class="well">
+        教师审核
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="statusName" class="col-sm-2 control-label">审核状态</label>
+            <div class="col-sm-10">
+                <input type="" class="form-control" id="statusName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="explanation" class="col-sm-2 control-label">审核说明</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" id="explanation" rows="10">
+                </textarea>
+            </div>
+        </div>
+    </form>
+    <div class="well">
+        管理员审核
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="adminStatusName" class="col-sm-2 control-label">审核状态</label>
+            <div class="col-sm-10">
+                <input type="" class="form-control" id="adminStatusName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="adminExplanation" class="col-sm-2 control-label">审核说明</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" id="adminExplanation" rows="10">
+                </textarea>
+            </div>
+        </div>
+    </form>
+</div>

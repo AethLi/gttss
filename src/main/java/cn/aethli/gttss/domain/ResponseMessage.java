@@ -50,4 +50,8 @@ public class ResponseMessage {
 
     public ResponseMessage() {
     }
+
+    public ResponseMessage(int status) {
+        this.status = status;
+    }
 }

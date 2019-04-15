@@ -16,11 +16,11 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
             .state("userOverview", {
                 url: "/userOverview",
                 controller:'userOverviewCtrl',
-                templateUrl: './userOverview.html',
+                templateUrl: './securitySetting.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['../js/userOverview.js']
+                            files: ['../js/securitySetting.js']
                         })
                     }]
                 }

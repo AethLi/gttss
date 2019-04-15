@@ -12,6 +12,13 @@ function login() {
         }),
         success: function (result) {
             console.log(result);
+            if (result.status === 0) {
+                window.location.href = "/gttsss/mainPage.html";
+                changeACAPTCHA();
+            } else {
+                alert(result.message);
+                changeACAPTCHA();
+            }
         }
     });
     return false

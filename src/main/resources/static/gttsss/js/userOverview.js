@@ -1,4 +1,4 @@
 angular.module('studentApp', [])
-    .controller("userOverviewCtrl", function () {
+    .controller("userOverviewCtrl", function ($scope) {
 
     });
