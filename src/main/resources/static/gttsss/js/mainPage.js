@@ -69,28 +69,88 @@ angular.module('studentApp', ['ui.router', 'oc.lazyLoad'])
                     }]
                 }
             })
-            // .state("selectTopic", {
-            //     controller: "selectTopicCtrl",
-            //     url: "/selectTopic",
-            //     templateUrl: '/gttsss/selectTopic.html',
-            //     resolve: {
-            //         loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-            //             return $ocLazyLoad.load({
-            //                 files: ['/gttsss/js/selectTopic.js', '/gttsss/css/selectTopic.css']
-            //             })
-            //         }]
-            //     }
-            // })
-            // .state("selectTopic", {
-            //     controller: "selectTopicCtrl",
-            //     url: "/selectTopic",
-            //     templateUrl: '/gttsss/selectTopic.html',
-            //     resolve: {
-            //         loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-            //             return $ocLazyLoad.load({
-            //                 files: ['/gttsss/js/selectTopic.js', '/gttsss/css/selectTopic.css']
-            //             })
-            //         }]
-            //     }
-            // })
+            .state("openingReport", {
+                controller: "openingReportCtrl",
+                url: "/openingReport",
+                templateUrl: '/gttsss/openingReport.html',
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            files: ['/gttsss/js/openingReport.js', '/gttsss/css/openingReport.css']
+                        })
+                    }]
+                }
+            })
+            .state("openingReportVerify", {
+                controller: "openingReportVerifyCtrl",
+                url: "/openingReportVerify",
+                templateUrl: '/gttsss/openingReportVerify.html',
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            files: ['/gttsss/js/openingReportVerify.js', '/gttsss/css/openingReportVerify.css']
+                        })
+                    }]
+                }
+            })
+            .state("teachPlaceAndDatetime", {
+                controller: "teachPlaceAndDatetimeCtrl",
+                url: "/teachPlaceAndDatetime",
+                templateUrl: '/gttsss/teachPlaceAndDatetime.html',
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            files: ['/gttsss/js/teachPlaceAndDatetime.js', '/gttsss/css/teachPlaceAndDatetime.css']
+                        })
+                    }]
+                }
+            })
+            .state("midTermCheck", {
+                controller: "midTermCheckCtrl",
+                url: "/midTermCheck",
+                templateUrl: '/gttsss/midTermCheck.html',
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            files: ['/gttsss/js/midTermCheck.js', '/gttsss/css/midTermCheck.css']
+                        })
+                    }]
+                }
+            })
+            .state("defenseDraftUpload", {
+                controller: "defenseDraftUploadCtrl",
+                url: "/defenseDraftUpload",
+                templateUrl: '/gttsss/defenseDraftUpload.html',
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            files: ['/gttsss/js/defenseDraftUpload.js', '/gttsss/css/defenseDraftUpload.css']
+                        })
+                    }]
+                }
+            })
+            .state("defenseApply", {
+                controller: "defenseApplyCtrl",
+                url: "/defenseApply",
+                templateUrl: '/gttsss/defenseApply.html',
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            files: ['/gttsss/js/defenseApply.js', '/gttsss/css/defenseApply.css']
+                        })
+                    }]
+                }
+            })
+        // .state("openingReportVerify", {
+        //     controller: "openingReportVerifyCtrl",
+        //     url: "/openingReportVerify",
+        //     templateUrl: '/gttsss/openingReportVerify.html',
+        //     resolve: {
+        //         loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+        //             return $ocLazyLoad.load({
+        //                 files: ['/gttsss/js/openingReportVerify.js', '/gttsss/css/openingReportVerify.css']
+        //             })
+        //         }]
+        //     }
+        // })
     });

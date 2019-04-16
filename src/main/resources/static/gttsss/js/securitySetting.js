@@ -1,4 +1,4 @@
 angular.module('studentApp', [])
-    .controller("securitySettingCtrl", function () {
+    .controller("securitySettingCtrl", function ($scope) {
 
     });

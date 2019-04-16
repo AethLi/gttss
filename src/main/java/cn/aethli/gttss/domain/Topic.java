@@ -8,7 +8,7 @@ public class Topic {
     String name;
     String teacherId;
     String teacher2Id;
-    String needStudent;
+    int needStudent;
     String source;
     String properties;
     int compare;
@@ -18,6 +18,18 @@ public class Topic {
     String planLinkKey;
     String teacherVerifyId;
     String adminVerifyId;
+
+    public static int getCompareOldTopic() {
+        return COMPARE_OLD_TOPIC;
+    }
+
+    public static int getCompareNewTopic() {
+        return COMPARE_NEW_TOPIC;
+    }
+
+    public static int getCompareOldPlusTopic() {
+        return COMPARE_OLD_PLUS_TOPIC;
+    }
 
     public String getId() {
         return id;
@@ -51,11 +63,11 @@ public class Topic {
         this.teacher2Id = teacher2Id;
     }
 
-    public String getNeedStudent() {
+    public int getNeedStudent() {
         return needStudent;
     }
 
-    public void setNeedStudent(String needStudent) {
+    public void setNeedStudent(int needStudent) {
         this.needStudent = needStudent;
     }
 

@@ -5,6 +5,11 @@
     <link href="/webjars/bootstrap/3.4.1/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="./css/mainPage.css" type="text/css" rel="stylesheet">
     <link href="/webjars/layui/2.4.5/css/layui.css" type="text/css" rel="stylesheet">
+    <link href="/common/uEditor/themes/default/css/ueditor.css" rel="stylesheet" type="text/css">
+    <script src="/common/uEditor/ueditor.config.js"></script>
+    <script src="/common/uEditor/ueditor.all.js"></script>
+    <script src="/common/uEditor/lang/zh-cn/zh-cn.js"></script>
+    <!--<script src="/webjars/"/>-->
     <script src="/webjars/jquery/3.3.1-2/jquery.min.js"></script>
     <script src="/webjars/layui/2.4.5/layui.js"></script>
     <script src="/webjars/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -131,9 +136,9 @@
         <div class="layui-colla-item">
             <h2 class="layui-colla-title">开题</h2>
             <div class="layui-colla-content">
-                <li><a href="#!/">开题报告编写</a></li>
-                <li><a href="#!/">开题答辩资格查看</a></li>
-                <li><a href="#!/">指导事件和指导地点查看</a></li>
+                <li><a href="#!/openingReport">开题报告填写</a></li>
+                <li><a href="#!/openingReportVerify">开题答辩资格查看</a></li>
+                <li><a href="#!teachPlaceAndDatetime">指导时间和指导地点查看</a></li>
             </div>
         </div>
         <div class="layui-colla-item">
@@ -146,15 +151,15 @@
         <div class="layui-colla-item">
             <h2 class="layui-colla-title">中期检查</h2>
             <div class="layui-colla-content">
-                <li><a href="#!/">中期检查记录填写</a></li>
+                <li><a href="#!/midTermCheck">中期检查记录填写</a></li>
             </div>
         </div>
         <div class="layui-colla-item">
             <h2 class="layui-colla-title">初稿上传及教师批阅信息查看</h2>
             <div class="layui-colla-content">
-                <li><a href="#!/">答辩稿上传</a></li>
+                <li><a href="#!/defenseDraftUpload">答辩稿上传</a></li>
                 <li><a href="#!/">成绩评定册预览及下载</a></li>
-                <li><a href="#!/">答辩申请</a></li>
+                <li><a href="#!/defenseApply">答辩申请</a></li>
                 <li><a href="#!/">答辩申请查阅及下载</a></li>
                 <li><a href="#!/">答辩资格查看</a></li>
                 <li><a href="#!/">交叉评阅意见</a></li>

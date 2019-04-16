@@ -7,6 +7,9 @@
         <result column="studentId" property="studentId"/>
         <result column="batchCode" property="batchCode"/>
     </resultMap>
+    <sql id="Base_From">
+        StudentBatchGroup
+    </sql>
     <insert id="insertWithAllByList" parameterType="java.util.List">
         insert into StudentBatchGroupMapper (`studentId`,`batchCode`)values
         <foreach item="item" collection="list" separator=",">
@@ -14,6 +17,8 @@
         </foreach>
     </insert>
     <insert id="insertWithAll" parameterType="cn.aethli.gttss.domain.StudentBatchGroup">
-        insert into StudentBatchGroupMapper (`studentId`,`batchCode`)values (#{studentId},#{batchCode});
+        insert into
+        <include refid="Base_From"/>
+        (`studentId`,`batchCode`)values (#{studentId},#{batchCode});
     </insert>
 </mapper>

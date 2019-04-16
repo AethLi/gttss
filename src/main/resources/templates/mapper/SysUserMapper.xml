@@ -14,8 +14,10 @@
         SysUser
     </sql>
     <insert id="insertWithAll" parameterType="cn.aethli.gttss.domain.SysUser">
-        INSERT INTO SysUser (`userId`, `account`, `permission`, `password`, `status`)
-         VALUES (#{userId}, #{account}, #{permission}, #{password},#{status});
+        INSERT INTO
+        <include refid="Base_From"/>
+        (`userId`, `account`, `permission`, `password`, `status`)
+        VALUES (#{userId}, #{account}, #{permission}, #{password},#{status});
     </insert>
     <select id="selectByAccount" resultMap="BaseResultMap" parameterType="cn.aethli.gttss.domain.SysUser">
         select * from

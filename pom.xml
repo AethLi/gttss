@@ -20,8 +20,8 @@
 
     <dependencies>
         <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-security</artifactId>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-security</artifactId>-->
         <!--</dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -58,7 +58,6 @@
             <artifactId>commons-fileupload</artifactId>
             <version>1.4</version>
         </dependency>
-
         <dependency>
             <groupId>org.webjars.bower</groupId>
             <artifactId>md5</artifactId>
@@ -70,9 +69,9 @@
             <version>3.3.1-2</version>
         </dependency>
         <!--<dependency>-->
-            <!--<groupId>org.webjars</groupId>-->
-            <!--<artifactId>bootstrap</artifactId>-->
-            <!--<version>4.3.1</version>-->
+        <!--<groupId>org.webjars</groupId>-->
+        <!--<artifactId>bootstrap</artifactId>-->
+        <!--<version>4.3.1</version>-->
         <!--</dependency>-->
         <!--不成熟暂停使用bootstrap4-->
         <dependency>
@@ -81,9 +80,9 @@
             <version>3.4.1</version>
         </dependency>
         <!--<dependency>-->
-            <!--<groupId>org.webjars.npm</groupId>-->
-            <!--<artifactId>antd</artifactId>-->
-            <!--<version>3.9.1</version>-->
+        <!--<groupId>org.webjars.npm</groupId>-->
+        <!--<artifactId>antd</artifactId>-->
+        <!--<version>3.9.1</version>-->
         <!--</dependency>-->
         <dependency>
             <groupId>org.webjars.bowergithub.sentsin</groupId>
