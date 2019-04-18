@@ -1,6 +1,9 @@
 package cn.aethli.gttss.domain;
 
 public class SysUser {
+    public static final int STATUS_NORMAL = 0;
+    public static final int STATUS_BANNED = 1;
+    public static final int STATUS_ALLOW_lOGIN_ONLY = 2;
     String userId;
     String account;
     Integer permission;

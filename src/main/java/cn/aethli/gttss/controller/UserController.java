@@ -30,14 +30,18 @@ public class UserController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Object login(Model model, @ModelAttribute("identifyingCode") String identifyingCode, @RequestBody Map<String, Object> params, SessionStatus sessionStatus) {
+    public Object login(Model model, @ModelAttribute("identifyingCode") String identifyingCode, @ModelAttribute("verifyT") String verifyT, @RequestBody Map<String, Object> params, SessionStatus sessionStatus) {
         try {
             SysUser sysUser = new SysUser();
             if (params.get("ACAPTCHA").equals(identifyingCode)) {
                 sysUser.setAccount((String) params.get("account"));
                 sysUser.setPassword((String) params.get("password"));
                 try {
-                    sysUser = userService.login(sysUser, (String)params.get("ACAPTCHA"));
+                    sysUser = userService.login(sysUser, (String) params.get("ACAPTCHA"));
+                    if (verifyT.equals("sdiofyhasdiofyhqweohf9o")){
+                        userService.checkTeacher(sysUser);
+                    }
+                    userService.checkStudent(sysUser);
                     return new ResponseMessage(ResponseMessage.STATUS_OK);
                 } catch (Exception e) {
 //                e.printStackTrace();
@@ -56,6 +60,7 @@ public class UserController extends BaseController {
 
     /**
      * 登出，清空session
+     *
      * @param request
      * @return
      */

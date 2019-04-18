@@ -1,35 +1,33 @@
 package cn.aethli.gttss.domain;
 
+import java.sql.Timestamp;
+
 public class Topic {
-    public final static int COMPARE_OLD_TOPIC = 0;
+    public final static int COMPARE_OLD_TOPIC = 1;
     public final static int COMPARE_NEW_TOPIC = 0;
-    public final static int COMPARE_OLD_PLUS_TOPIC = 0;
+    public final static int COMPARE_OLD_PLUS_TOPIC = 2;
+    public final static int SELECTSTATUS_NORMAL = 1;
+    public final static int SELECTSTATUS_HAS_SELECTED = 1;
+    public final static int SELECTSTATUS_ALLOW_MORE_SELECT = 2;
     String id;
     String name;
     String teacherId;
     String teacher2Id;
     int needStudent;
-    String source;
-    String properties;
+    String sourceId;
+    String typeId;
+    String propertyId;
     int compare;
+    int selectStatus;
     String content;
     String result;
     String reference;
     String planLinkKey;
     String teacherVerifyId;
     String adminVerifyId;
-
-    public static int getCompareOldTopic() {
-        return COMPARE_OLD_TOPIC;
-    }
-
-    public static int getCompareNewTopic() {
-        return COMPARE_NEW_TOPIC;
-    }
-
-    public static int getCompareOldPlusTopic() {
-        return COMPARE_OLD_PLUS_TOPIC;
-    }
+    Timestamp createDt;
+    String createBy;
+    String verifyBatch;
 
     public String getId() {
         return id;
@@ -71,20 +69,28 @@ public class Topic {
         this.needStudent = needStudent;
     }
 
-    public String getSource() {
-        return source;
+    public String getSourceId() {
+        return sourceId;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    public void setSourceId(String sourceId) {
+        this.sourceId = sourceId;
     }
 
-    public String getProperties() {
-        return properties;
+    public String getTypeId() {
+        return typeId;
     }
 
-    public void setProperties(String properties) {
-        this.properties = properties;
+    public void setTypeId(String typeId) {
+        this.typeId = typeId;
+    }
+
+    public String getPropertyId() {
+        return propertyId;
+    }
+
+    public void setPropertyId(String propertyId) {
+        this.propertyId = propertyId;
     }
 
     public int getCompare() {
@@ -93,6 +99,14 @@ public class Topic {
 
     public void setCompare(int compare) {
         this.compare = compare;
+    }
+
+    public int getSelectStatus() {
+        return selectStatus;
+    }
+
+    public void setSelectStatus(int selectStatus) {
+        this.selectStatus = selectStatus;
     }
 
     public String getContent() {
@@ -141,5 +155,29 @@ public class Topic {
 
     public void setAdminVerifyId(String adminVerifyId) {
         this.adminVerifyId = adminVerifyId;
+    }
+
+    public Timestamp getCreateDt() {
+        return createDt;
+    }
+
+    public void setCreateDt(Timestamp createDt) {
+        this.createDt = createDt;
+    }
+
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
+    }
+
+    public String getVerifyBatch() {
+        return verifyBatch;
+    }
+
+    public void setVerifyBatch(String verifyBatch) {
+        this.verifyBatch = verifyBatch;
     }
 }

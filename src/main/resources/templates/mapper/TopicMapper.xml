@@ -9,8 +9,9 @@
         <result column="teacherId" property="teacherId"/>
         <result column="teacher2Id" property="teacher2Id"/>
         <result column="needStudent" property="needStudent"/>
-        <result column="source" property="source"/>
-        <result column="properties" property="properties"/>
+        <result column="sourceId" property="source"/>
+        <result column="typeId" property="typeId"/>
+        <result column="propertyId" property="propertyId"/>
         <result column="compare" property="compare"/>
         <result column="content" property="content"/>
         <result column="result" property="result"/>
@@ -18,14 +19,23 @@
         <result column="planLinkKey" property="planLinkKey"/>
         <result column="teacherVerifyId" property="teacherVerifyId"/>
         <result column="adminVerifyId" property="adminVerifyId"/>
+        <result column="createDt" property="createDt"/>
+        <result column="createBy" property="createBy"/>
+        <result column="validityBatch" property="validityBatch"/>
+        <result column="selectStatus" property="selectStatus"/>
     </resultMap>
     <sql id="Base_From">
-        SysUser
+        Topic
     </sql>
     <insert id="insertWithAll" parameterType="cn.aethli.gttss.domain.Topic">
         INSERT INTO
         <include refid="Base_From"/>
-        (`userId`, `account`, `permission`, `password`, `status`)
-        VALUES (#{userId}, #{account}, #{permission}, #{password},#{status});
+        (`id`, `name`, `teacherId`, `selectStatus`, `needStudent`, `sourceId`, `typeId`, `teacher2Id`, `propertyId`,
+        `compare`, `content`, `result`, `reference`, `planLinkKey`, `teacherVerifyId`, `adminVerifyId`, `createDt`,
+        `createBy`, `validityBatch`)
+        VALUES
+        (#{id},#{name},#{teacherId},#{selectStatus},#{needStudent},#{sourceId},#{typeId},#{teacher2Id},#{propertyId},
+        #{compare},#{content},#{result},#{reference},#{planLinkKey},#{teacherVerifyId},#{adminVerifyId},#{createDt},#{createBy},
+        #{validityBatch});
     </insert>
 </mapper>

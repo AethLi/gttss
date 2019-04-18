@@ -10,12 +10,20 @@
         <result column="gender" property="gender"/>
         <result column="batchCode" property="batchCode"/>
         <result column="gradeName" property="classCode"/>
+        <result column="status" property="status"/>
     </resultMap>
     <sql id="Base_From">
         Student
     </sql>
     <insert id="insertWithAll" parameterType="cn.aethli.gttss.domain.SysUser">
-      INSERT INTO <include refid="Base_From" /> (`userId`, `name`, `classCode`, `gender`, `batchCode`, `gradeName`)
-        VALUES (#{userId}, #{name}, #{classCode}, #{gender}, #{batchCode},#{genderNam});
+        INSERT INTO
+        <include refid="Base_From"/>
+        (`userId`, `name`, `classCode`, `gender`, `batchCode`, `gradeName`,`status`)
+        VALUES (#{userId}, #{name}, #{classCode}, #{gender}, #{batchCode},#{genderNam},#{status});
     </insert>
+    <select id="selectById" parameterType="cn.aethli.gttss.domain.Student" resultMap="BaseResultMap">
+        select * from
+        <include refid="Base_From"/>
+        where userId=#{userId};
+    </select>
 </mapper>
