@@ -1,0 +1,11 @@
+.customizeTopic_contentNav {
+    cursor: pointer;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+    color: black;
+    cursor: default;
+    background-color: #e2e2e2;
+    border: 1px solid #787878;
+    border-bottom-color: transparent;
+}

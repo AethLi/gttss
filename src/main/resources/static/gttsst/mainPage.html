@@ -1,10 +1,17 @@
 <html>
 <head>
     <title>毕业设计系统</title>
+    <title>毕业设计系统</title>
     <meta charset="UTF-8">
     <link href="/webjars/bootstrap/3.4.1/css/bootstrap.min.css" type="text/css" rel="stylesheet">
-    <link href="./css/mainPage.css">
+    <link href="./css/mainPage.css" type="text/css" rel="stylesheet">
+    <link href="/webjars/layui/2.4.5/css/layui.css" type="text/css" rel="stylesheet">
+    <link href="../common/uEditor/themes/default/css/ueditor.css" rel="stylesheet" type="text/css">
+    <script src="../common/uEditor/ueditor.config.js"></script>
+    <script src="../common/uEditor/ueditor.all.js"></script>
+    <script src="../common/uEditor/lang/zh-cn/zh-cn.js"></script>
     <script src="/webjars/jquery/3.3.1-2/jquery.min.js"></script>
+    <script src="/webjars/layui/2.4.5/layui.js"></script>
     <script src="/webjars/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="/webjars/angular/1.7.5/angular.min.js"></script>
     <script src="/webjars/ocLazyLoad/1.1.0/dist/ocLazyLoad.min.js"></script>
@@ -19,7 +26,7 @@
             <a class="navbar-brand" style="cursor:pointer;">数计学院党务管理系统</a>
         </div>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
+            <!--<ul class="nav navbar-nav">
                 <li class="active" ng-class="{1:'active'}[whoIsActive]">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                        aria-expanded="false" ng-click="iAmActive(1)">
@@ -105,7 +112,7 @@
                 <li ng-class="{6:'active'}[whoIsActive]">
                     <a href="#userOverview" ng-click="iAmActive(0)">用户中心</a>
                 </li>
-            </ul>
+            </ul>-->
             <ul class="nav navbar-nav" style="float: right">
                 <li class="nav-item">
                     <a style="cursor:default;" onclick="false">部门：{{userPermission}}</a>
@@ -120,7 +127,70 @@
         </div>
     </div>
 </nav>
+<div class="col-lg-2">
+    <div class="layui-collapse" lay-accordion="">
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">用户</h2>
+            <div class="layui-colla-content layui-show">
+                <li><a href="#!/securitySetting">安全设置</a></li>
+                <li><a href="#!/userOverview">个人信息设置</a></li>
+            </div>
+        </div>
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">选题</h2>
+            <div class="layui-colla-content">
+                <li><a href="#!/historyTopic">历史课题查看</a></li>
+                <li><a href="#!/customizeTopic">教师出题</a></li>
+                <li><a href="#!/customizeTopicVerify">学生自拟题目审核</a></li>
+                <li><a href="#!/customizeTopicCheck">课题自拟审核结果查看</a></li>
+                <li><a href="#!/">审核后课题修改</a></li>
+                <li><a href="#!/">选题结果查看</a></li>
+                <li><a href="#!/topicBook">任务书填写</a></li>
+            </div>
+        </div>
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">开题</h2>
+            <div class="layui-colla-content">
+                <li><a href="#!/openingReportVerify">开题报告审核</a></li>
+                <li><a href="#!/openingReportGroup">开题答辩分组信息查看</a></li>
+                <li><a href="#!/">开题答辩</a></li>
+            </div>
+        </div>
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">校外事项</h2>
+            <div class="layui-colla-content">
+                <li><a href="#!/">校外实习审批</a></li>
+            </div>
+        </div>
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">中期检查</h2>
+            <div class="layui-colla-content">
+                <li><a href="#!/guideRecord">指导记录填写</a></li>
+                <li><a href="#!/midTermCheck">中期检查记录填写</a></li>
+                <li><a href="#!/">指导地点和指导时间填报</a></li>
+            </div>
+        </div>
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">初稿上传及教师批阅信息查看</h2>
+            <div class="layui-colla-content">
+                <li><a href="#!/defenseDraftVerify">初稿批阅</a></li>
+                <li><a href="#!/">指导教师批阅</a></li>
+                <li><a href="#!/">交叉批阅</a></li>
+                <li><a href="#!/defenseVerify">答辩申请表批阅</a></li>
+                <li><a href="#!/">毕业答辩分组信息查看</a></li>
+                <li><a href="#!/">毕业答辩</a></li>
+                <li><a href="#!/">成绩评定</a></li>
+                <li><a href="#!/">二次答辩分组信息查看</a></li>
+                <li><a href="#!/">二次答辩</a></li>
+                <li><a href="#!/">二次答辩成绩评定</a></li>
+                <li><a href="#!/">毕业设计成果检查</a></li>
+            </div>
+        </div>
 
-<!--<ui-view></ui-view>-->
+    </div>
+</div>
+<div class="col-lg-10">
+    <ui-view></ui-view>
+</div>
 </body>
 </html>

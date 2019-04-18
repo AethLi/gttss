@@ -1,0 +1,55 @@
+<div class="col-lg-8">
+    <section>
+        <div class="well">学生自拟题目审核</div>
+        <div>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="teacher">姓名</label>
+                    <input type="text" class="form-control" id="teacher" placeholder="输入学生姓名查看">
+                </div>
+                <button type="button" class="btn btn-default">搜索</button>
+            </form>
+        </div>
+        <table class="table table-bordered table-hover" style="margin-top: 2%">
+            <thead>
+            <tr>
+                <td style="width: 5%">序号</td>
+                <td style="width: 45%">论文名称</td>
+                <td style="width: 10%">学生姓名</td>
+                <td style="width: 10%">联系电话</td>
+                <td style="width: 10%">时间</td>
+                <td style="width: 10%">审核状态</td>
+                <td style="width: 10%">查看详情</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="x in topics">
+                <td>
+                    {{ $index + 1 }}
+                </td>
+                <td>
+                    {{x.title }}
+                </td>
+                <td>
+                    {{ x.studentName }}
+                </td>
+                <td>
+                    {{x.connectionNum }}
+                </td>
+                <td>
+                    {{x.topicDate }}
+                </td>
+                <td>
+                    {{x.statusName }}
+                </td>
+                <td>
+                    <button class="btn">查看详情</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+<div class="col-lg-4">
+
+</div>

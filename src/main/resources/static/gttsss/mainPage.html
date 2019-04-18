@@ -5,11 +5,10 @@
     <link href="/webjars/bootstrap/3.4.1/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="./css/mainPage.css" type="text/css" rel="stylesheet">
     <link href="/webjars/layui/2.4.5/css/layui.css" type="text/css" rel="stylesheet">
-    <link href="/common/uEditor/themes/default/css/ueditor.css" rel="stylesheet" type="text/css">
-    <script src="/common/uEditor/ueditor.config.js"></script>
-    <script src="/common/uEditor/ueditor.all.js"></script>
-    <script src="/common/uEditor/lang/zh-cn/zh-cn.js"></script>
-    <!--<script src="/webjars/"/>-->
+    <link href="../common/uEditor/themes/default/css/ueditor.css" rel="stylesheet" type="text/css">
+    <script src="../common/uEditor/ueditor.config.js"></script>
+    <script src="../common/uEditor/ueditor.all.js"></script>
+    <script src="../common/uEditor/lang/zh-cn/zh-cn.js"></script>
     <script src="/webjars/jquery/3.3.1-2/jquery.min.js"></script>
     <script src="/webjars/layui/2.4.5/layui.js"></script>
     <script src="/webjars/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -26,8 +25,8 @@
             <a class="navbar-brand" style="cursor:pointer;">数计学院党务管理系统</a>
         </div>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <!--<li class="active" ng-class="{1:'active'}[whoIsActive]">
+            <!--<ul class="nav navbar-nav">
+                <li class="active" ng-class="{1:'active'}[whoIsActive]">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                        aria-expanded="false" ng-click="iAmActive(1)">
                         选题
@@ -101,8 +100,8 @@
                 </li>
                 <li ng-class="{6:'active'}[whoIsActive]">
                     <a href="#userOverview" ng-click="iAmActive(0)">用户中心</a>
-                </li>-->
-            </ul>
+                </li>
+            </ul>-->
             <ul class="nav navbar-nav" style="float: right">
                 <li class="nav-item">
                     <a style="cursor:default;" onclick="false">班级：{{userPermission}}</a>
@@ -158,7 +157,7 @@
             <h2 class="layui-colla-title">初稿上传及教师批阅信息查看</h2>
             <div class="layui-colla-content">
                 <li><a href="#!/defenseDraftUpload">答辩稿上传</a></li>
-                <li><a href="#!/">成绩评定册预览及下载</a></li>
+                <!--<li><a href="#!/">成绩评定册预览及下载</a></li>--><!--归到答辩稿上传-->
                 <li><a href="#!/defenseApply">答辩申请</a></li>
                 <li><a href="#!/">答辩申请查阅及下载</a></li>
                 <li><a href="#!/">答辩资格查看</a></li>

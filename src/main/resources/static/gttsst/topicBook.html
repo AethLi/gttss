@@ -1,0 +1,27 @@
+<div class="col-lg-8">
+    <section>
+        <div class="well">任务书填写</div>
+        <ul class="nav nav-tabs customizeTopic_contentNav">
+            <li ng-class="{0:'active'}[whoIsActive]"><a ng-click="iAmActive(0)">立题依据</a></li>
+            <li ng-class="{1:'active'}[whoIsActive]"><a ng-click="iAmActive(1)">本课题预期目标</a></li>
+            <li ng-class="{2:'active'}[whoIsActive]"><a ng-click="iAmActive(2)">外部条件</a></li>
+            <li ng-class="{3:'active'}[whoIsActive]"><a ng-click="iAmActive(3)">参考资料</a></li>
+        </ul>
+        <div class="form-group" ng-show="whoIsActive==0">
+            <label for="Basis"></label>
+            <textarea type="" class="form-control" id="Basis" rows="10"></textarea>
+        </div>
+        <div class="form-group" ng-show="whoIsActive==1">
+            <label for="destination"></label>
+            <textarea type="" class="form-control" id="destination" rows="10"></textarea>
+        </div>
+        <div class="form-group" ng-show="whoIsActive==2">
+            <label for="condition"></label>
+            <textarea type="" class="form-control" id="condition" rows="10"></textarea>
+        </div>
+        <div class="form-group" ng-show="whoIsActive==3">
+            <label for="reference"></label>
+            <textarea type="" class="form-control" id="reference" rows="10"></textarea>
+        </div>
+    </section>
+</div>

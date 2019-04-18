@@ -54,6 +54,11 @@ public class UserController extends BaseController {
         }
     }
 
+    /**
+     * 登出，清空session
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/logout")
     public Object logoutCtrl(HttpServletRequest request) {
         request.getSession().invalidate();
