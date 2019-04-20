@@ -70,11 +70,11 @@
                <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
             <!--<property name="useActualColumnNames" value="true"/>-->
         <!--</table>-->
-        <table tableName="student" domainObjectName="Student" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
+        <!--<table tableName="student" domainObjectName="Student" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<property name="useActualColumnNames" value="true"/>-->
+        <!--</table>-->
         <!--<table tableName="studentbatchgroup" domainObjectName="StudentBatchGroup" enableCountByExample="false"-->
                <!--enableUpdateByExample="false" enableDeleteByExample="false"-->
                <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
@@ -90,7 +90,12 @@
                <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
             <!--<property name="useActualColumnNames" value="true"/>-->
         <!--</table>-->
-        <!--<table tableName="topic" domainObjectName="Topic" enableCountByExample="false" enableUpdateByExample="false"-->
+        <table tableName="topic" domainObjectName="Topic" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <!--<table tableName="topicStudentGroup" domainObjectName="TopicStudentGroup" enableCountByExample="false" enableUpdateByExample="false"-->
                <!--enableDeleteByExample="false"-->
                <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
             <!--<property name="useActualColumnNames" value="true"/>-->

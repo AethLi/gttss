@@ -15,9 +15,9 @@
             <tr>
                 <td style="width: 5%">序号</td>
                 <td style="width: 10%">教师名字</td>
-                <td style="width: 45%">论文名称</td>
+                <td style="width: 35%">论文名称</td>
                 <td style="width: 20%">联系电话</td>
-                <td style="width: 10%">选取状态</td>
+                <td style="width: 20%">选取状态</td>
                 <td style="width: 10%">查看详情</td>
             </tr>
             </thead>
@@ -66,49 +66,49 @@
         <div class="well">选题查看</div>
         <div class="form-group">
             <label for="title">标题</label>
-            <input class="form-control" id="title">
+            <input class="form-control" id="title" ng-model="oneTopic.name">
         </div>
         <div class="form-group">
             <label for="teacherName">指导教师</label>
-            <input class="form-control" id="teacherName">
+            <input class="form-control" id="teacherName" ng-model="oneTopic.teacherName">
         </div>
         <div class="form-group">
             <label for="connectionNum">联系电话</label>
-            <input class="form-control" id="connectionNum">
+            <input class="form-control" id="connectionNum" ng-model="oneTopic.connectionNum">
         </div>
         <div class="form-group">
             <label for="teacher2Name">指导助教</label>
-            <input class="form-control" id="teacher2Name">
+            <input class="form-control" id="teacher2Name" ng-model="oneTopic.teacher2Name">
         </div>
         <div class="form-group">
             <label for="connection2Num">联系电话</label>
-            <input class="form-control" id="connection2Num">
+            <input class="form-control" id="connection2Num" ng-model="oneTopic.connection2Num">
         </div>
         <div class="form-group">
             <label for="type">类型</label>
-            <input class="form-control" id="type">
+            <input class="form-control" id="type" ng-model="oneTopic.type">
         </div>
         <div class="form-group">
             <label for="origin">来源</label>
-            <input class="form-control" id="origin">
+            <input class="form-control" id="origin" ng-model="oneTopic.origin">
         </div>
         <div class="form-group">
             <label for="property">性质</label>
-            <input class="form-control" id="property">
+            <input class="form-control" id="property" ng-model="oneTopic.property">
         </div>
         <div class="form-group">
             <label for="content">内容</label>
-            <textarea class="form-control" id="content" rows="3">
+            <textarea class="form-control" id="content" rows="3" ng-model="oneTopic.content">
             </textarea>
         </div>
         <div class="form-group">
             <label for="result">结果</label>
-            <textarea class="form-control" id="result" rows="3">
+            <textarea class="form-control" id="result" rows="3" ng-model="oneTopic.result">
             </textarea>
         </div>
         <div class="form-group">
             <label for="plan">计划</label>
-            <textarea class="form-control" id="plan" rows="3">
+            <textarea class="form-control" id="plan" rows="3" ng-model="oneTopic.plan">
             </textarea>
         </div>
         <button type="button" class="btn btn-default">提交</button>
@@ -117,12 +117,12 @@
         </div>
         <div class="form-group">
             <label for="selectAble">可选人数</label>
-            <input class="form-control" id="selectAble">
+            <input class="form-control" id="selectAble" ng-model="oneTopic.needStudent">
         </div>
         <div class="form-group">
             <label for="selected">已选人数</label>
-            <input class="form-control" id="selected">
+            <input class="form-control" id="selected" ng-model="oneTopic.selectedCount">
         </div>
-        <button type="button" class="btn btn-default">选题</button>
+        <button type="button" class="btn btn-default" ng-click="giveMeThisTopic()">选题</button>
     </div>
 </div>

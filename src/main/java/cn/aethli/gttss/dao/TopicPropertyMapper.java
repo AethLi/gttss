@@ -1,5 +1,6 @@
 package cn.aethli.gttss.dao;
 
+import cn.aethli.gttss.domain.Topic;
 import cn.aethli.gttss.domain.TopicProperty;
 import org.springframework.stereotype.Component;
 
@@ -20,4 +21,6 @@ public interface TopicPropertyMapper {
      * @mbg.generated Sat Apr 20 09:20:33 CST 2019
      */
     int insertSelective(TopicProperty record);
+
+    TopicProperty selectById(TopicProperty topicProperty);
 }
