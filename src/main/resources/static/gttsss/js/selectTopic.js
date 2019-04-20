@@ -41,7 +41,7 @@ angular.module('studentApp', [])
         };
 
         $scope.giveMeThisTopic = function () {
-            if ($scope.oneTopic == undefined || $scope.oneTopic.Id == undefined) {
+            if ($scope.oneTopic == undefined || $scope.oneTopic.id == undefined) {
                 alert("参数错误");
                 return;
             } else {
@@ -49,7 +49,7 @@ angular.module('studentApp', [])
                     url: "/topic/selectTopic",
                     method: "POST",
                     data: {
-                        id: $scope.oneTopic.Id
+                        id: $scope.oneTopic.id
                     }
                 }).then(function s(result) {
                     if (result.data.status === 0) {

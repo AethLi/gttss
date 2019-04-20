@@ -1,8 +1,9 @@
 package cn.aethli.gttss.dao;
 
-import cn.aethli.gttss.domain.Topic;
 import cn.aethli.gttss.domain.TopicProperty;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public interface TopicPropertyMapper {
@@ -23,4 +24,6 @@ public interface TopicPropertyMapper {
     int insertSelective(TopicProperty record);
 
     TopicProperty selectById(TopicProperty topicProperty);
+
+    List<TopicProperty> selectAll();
 }

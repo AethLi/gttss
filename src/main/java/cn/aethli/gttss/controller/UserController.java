@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @SessionAttributes(value = {"identifyingCode", "currentUser"}, types = {String.class, SysUser.class})
+//@SessionAttributes(value = {"currentUser"}, types = {SysUser.class})
 @RestController
 @RequestMapping(value = "/user")
 public class UserController extends BaseController {

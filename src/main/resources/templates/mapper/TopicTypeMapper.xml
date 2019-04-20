@@ -53,6 +53,9 @@
         </trim>
     </insert>
     <select id="selectById" parameterType="cn.aethli.gttss.domain.TopicType" resultMap="BaseResultMap">
-    select * from  TopicType where `id`=#{id};
+    select * from TopicType where `id`=#{id};
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+    select * from TopicType;
   </select>
 </mapper>

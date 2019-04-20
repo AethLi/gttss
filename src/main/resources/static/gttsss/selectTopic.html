@@ -52,13 +52,13 @@
         <p>每人限选一题，点击查看详情即可选题</p>
     </div>
     <div ng-show="hasSelect">
-        <div class="well" ng-show="hasSelect">
-            已选题目:
-            {{selectedTopic}}
-        </div>
-        <button class="btn btn-primary" type="button">
-            操作
-        </button><!--todo 采用内联表单-->
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="selectedTopic">已选题目</label>
+                <input type="text" class="form-control" id="selectedTopic" ng-model="selectedTopic">
+            </div>
+            <button type="button" class="btn btn-default">查看 </button>
+        </form>
     </div>
 </div>
 <div class="modal fade sewDetail" id="topicDetail" tabindex="-1" role="dialog" aria-labelledby="topicDetailLabel">

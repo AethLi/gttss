@@ -42,8 +42,9 @@ public class TopicCtrl extends BaseController {
             return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
         }
     }
+
     @RequestMapping(value = "cancelTopic")
-    public Object cancelTopic(@RequestBody Map<String,Object> params,Model model){
+    public Object cancelTopic(@RequestBody Map<String, Object> params, Model model) {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.cancelTopic((String) params.get("id"), getSysUser(model)));
         } catch (Exception e) {
@@ -51,14 +52,24 @@ public class TopicCtrl extends BaseController {
             return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
         }
     }
+
     @RequestMapping(value = "getMyTopic")
-    public Object getMytopic(Model model){
+    public Object getMytopic(Model model) {
         try {
-            return new ResponseMessage(ResponseMessage.STATUS_OK,topicService.getMytopic(getSysUser(model)));
-        }catch (Exception e) {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getMyTopic(getSysUser(model)));
+        } catch (Exception e) {
             e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
         }
     }
 
+    @RequestMapping(value = "getAllSelectForCustomize")
+    public Object getAllSelectForCustomize() {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getAllSelectForCustomize());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
+        }
+    }
 }

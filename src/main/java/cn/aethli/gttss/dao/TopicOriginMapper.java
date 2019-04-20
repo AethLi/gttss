@@ -1,8 +1,9 @@
 package cn.aethli.gttss.dao;
 
-import cn.aethli.gttss.domain.Topic;
 import cn.aethli.gttss.domain.TopicOrigin;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public interface TopicOriginMapper {
@@ -23,4 +24,6 @@ public interface TopicOriginMapper {
     int insertSelective(TopicOrigin record);
 
     TopicOrigin selectById(TopicOrigin topicOrigin);
+
+    List<TopicOrigin> selectAll();
 }

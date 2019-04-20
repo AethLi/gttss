@@ -28,6 +28,7 @@ public class TopicService extends BaseService {
     @Autowired
     TopicTypeMapper topicTypeMapper;
 
+
     public List<Map<String, Object>> queryCurrentTopic(Batch currentBatch) {
         Map<String, Object> result = null;
         List<Map<String, Object>> results = new ArrayList<>();
@@ -144,6 +145,10 @@ public class TopicService extends BaseService {
     }
 
     public String selectTopic(String id, SysUser sysUser) throws Exception {
+        Map<String, Object> myTopic = (Map<String, Object>) getMyTopic(sysUser);
+        if ((boolean) myTopic.get("hasSelect")) {
+            throw new Exception("有未退选的课题");
+        }
         Topic desTopic = new Topic();
         desTopic.setId(id);
         desTopic.setValidityBatch(getCurrentBatch().getBatchId());
@@ -201,9 +206,10 @@ public class TopicService extends BaseService {
         return "退选成功";
     }
 
-    public Object getMytopic(SysUser sysUser) throws Exception {
+    public Object getMyTopic(SysUser sysUser) throws Exception {
         Map<String, Object> result = new HashMap<>();
         result.put("hasSelect", false);
+        result.put("topic", null);
         TopicStudentGroup topicStudentGroup = new TopicStudentGroup();
         topicStudentGroup.setStudentId(sysUser.getUserId());
         topicStudentGroup = topicStudentGroupMapper.selectByStudentId(topicStudentGroup);
@@ -217,6 +223,14 @@ public class TopicService extends BaseService {
             result.put("hasSelect", true);
             result.put("topic", topic);
         }
+        return result;
+    }
+
+    public Map<String, Object> getAllSelectForCustomize() {
+        Map<String, Object> result = new HashMap<>();
+        result.put("topicTypes", topicTypeMapper.selectAll());
+        result.put("topicOrigins", topicOriginMapper.selectAll());
+        result.put("topicPropertis", topicPropertyMapper.selectAll());
         return result;
     }
 }

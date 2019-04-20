@@ -6,8 +6,9 @@ import cn.aethli.gttss.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-
+@SessionAttributes(value = {"currentUser"}, types = {SysUser.class})
 @RestController(value = "/")
 public class BaseController {
 
