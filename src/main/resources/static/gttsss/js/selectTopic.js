@@ -1,5 +1,13 @@
 angular.module('studentApp', [])
-    .controller("selectTopicCtrl", function ($scope) {
+    .controller("selectTopicCtrl", function ($scope, $http) {
+        $http({
+            url: "/topic/queryCurrentTopic",
+            method: "GET"
+        }).then(function s() {
+
+        }, function e() {
+
+        });
         $scope.hasSelect = false;
         $scope.selectedTopic;
         $scope.topics = [
