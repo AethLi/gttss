@@ -39,7 +39,7 @@
                     {{x.statusName }}
                 </td>
                 <td>
-                    <button class="btn">查看详情</button>
+                    <button class="btn" ng-click="topicDetail(x.id)">查看详情</button>
                 </td>
             </tr>
             </tbody>
@@ -59,5 +59,70 @@
         <button class="btn btn-primary" type="button">
             操作
         </button><!--todo 采用内联表单-->
+    </div>
+</div>
+<div class="modal fade sewDetail" id="topicDetail" tabindex="-1" role="dialog" aria-labelledby="topicDetailLabel">
+    <div style="background-color: rgb(255,255,255);;width: 80%;height: 80%;position: fixed;left: 10%;top: 10%;overflow: auto;padding: 10px">
+        <div class="well">选题查看</div>
+        <div class="form-group">
+            <label for="title">标题</label>
+            <input class="form-control" id="title">
+        </div>
+        <div class="form-group">
+            <label for="teacherName">指导教师</label>
+            <input class="form-control" id="teacherName">
+        </div>
+        <div class="form-group">
+            <label for="connectionNum">联系电话</label>
+            <input class="form-control" id="connectionNum">
+        </div>
+        <div class="form-group">
+            <label for="teacher2Name">指导助教</label>
+            <input class="form-control" id="teacher2Name">
+        </div>
+        <div class="form-group">
+            <label for="connection2Num">联系电话</label>
+            <input class="form-control" id="connection2Num">
+        </div>
+        <div class="form-group">
+            <label for="type">类型</label>
+            <input class="form-control" id="type">
+        </div>
+        <div class="form-group">
+            <label for="origin">来源</label>
+            <input class="form-control" id="origin">
+        </div>
+        <div class="form-group">
+            <label for="property">性质</label>
+            <input class="form-control" id="property">
+        </div>
+        <div class="form-group">
+            <label for="content">内容</label>
+            <textarea class="form-control" id="content" rows="3">
+            </textarea>
+        </div>
+        <div class="form-group">
+            <label for="result">结果</label>
+            <textarea class="form-control" id="result" rows="3">
+            </textarea>
+        </div>
+        <div class="form-group">
+            <label for="plan">计划</label>
+            <textarea class="form-control" id="plan" rows="3">
+            </textarea>
+        </div>
+        <button type="button" class="btn btn-default">提交</button>
+        <div class="well">
+            选取状态
+        </div>
+        <div class="form-group">
+            <label for="selectAble">可选人数</label>
+            <input class="form-control" id="selectAble">
+        </div>
+        <div class="form-group">
+            <label for="selected">已选人数</label>
+            <input class="form-control" id="selected">
+        </div>
+        <button type="button" class="btn btn-default">选题</button>
     </div>
 </div>

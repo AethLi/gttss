@@ -33,6 +33,7 @@ public class TopicService {
         topics = topicMapper.selectWithBatchId(queryMap);
         for (Topic t : topics) {
             result = new HashMap<>();
+            result.put("id", t.getId());
             result.put("title", t.getName());
             result.put("statusName", t.getSelectStatus() == 0 ? "未被选取"
                     : t.getSelectStatus() == 1 ? "已被选择，未达人数要求，仍可选择"
@@ -42,13 +43,22 @@ public class TopicService {
                 teacher.setUserId(t.getTeacherId());
                 teacher = teacherMapper.selectById(teacher);
                 result.put("teacherName", teacher.getName());
+            } catch (Exception e) {
+                result.put("teacherName", "-");
+                System.err.println("教师表-教师信息不正确");
+//                e.printStackTrace();
+            }
+            try {
                 SysUser sysUser = new SysUser();
                 sysUser.setUserId(t.getTeacherId());
                 sysUser = sysUserMapper.selectById(sysUser);
                 result.put("connectionNum", sysUser.getPhoneNum());
             } catch (Exception e) {
-                e.printStackTrace();
+                result.put("connectionNum", "-");
+                System.err.println("用户表-教师信息不正确");
+//                e.printStackTrace();
             }
+            results.add(result);
         }
         return results;
     }

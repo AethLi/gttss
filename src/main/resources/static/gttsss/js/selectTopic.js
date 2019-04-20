@@ -1,141 +1,24 @@
 angular.module('studentApp', [])
     .controller("selectTopicCtrl", function ($scope, $http) {
+        $scope.allTopic;
+        $scope.topics;
         $http({
             url: "/topic/queryCurrentTopic",
             method: "GET"
-        }).then(function s() {
-
-        }, function e() {
+        }).then(function s(result) {
+            if (result.data.status == 0) {
+                $scope.allTopic = result.data.model;
+                $scope.topics = $scope.allTopic;
+            } else {
+                alert(result.data.message);
+            }
+        }, function e(result) {
 
         });
         $scope.hasSelect = false;
         $scope.selectedTopic;
-        $scope.topics = [
-            {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }, {
-                teacherName: "蔡超",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选"
-            }
-        ]
+        $scope.topicDetail = function (id) {
+            // $http({});
+            $('#topicDetail').modal();
+        }
     });
