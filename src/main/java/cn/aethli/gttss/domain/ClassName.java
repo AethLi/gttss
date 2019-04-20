@@ -1,15 +1,16 @@
 package cn.aethli.gttss.domain;
 
 public class ClassName {
-    String code;
+    String id;
     String name;
+    int repeatIndex;
 
-    public String getCode() {
-        return code;
+    public String getId() {
+        return id;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -18,5 +19,13 @@ public class ClassName {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getRepeatIndex() {
+        return repeatIndex;
+    }
+
+    public void setRepeatIndex(int repeatIndex) {
+        this.repeatIndex = repeatIndex;
     }
 }

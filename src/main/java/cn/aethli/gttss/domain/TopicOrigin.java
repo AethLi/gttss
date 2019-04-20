@@ -1,6 +1,6 @@
 package cn.aethli.gttss.domain;
 
-public class Origin {
+public class TopicOrigin {
     String id;
     String name;
 

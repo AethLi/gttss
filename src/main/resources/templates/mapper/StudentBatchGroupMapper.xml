@@ -5,20 +5,20 @@
 <mapper namespace="cn.aethli.gttss.dao.StudentBatchGroupMapper">
     <resultMap id="BaseResultMap" type="cn.aethli.gttss.domain.StudentBatchGroup">
         <result column="studentId" property="studentId"/>
-        <result column="batchCode" property="batchCode"/>
+        <result column="batchId" property="batchId"/>
     </resultMap>
     <sql id="Base_From">
         StudentBatchGroup
     </sql>
     <insert id="insertWithAllByList" parameterType="java.util.List">
-        insert into StudentBatchGroupMapper (`studentId`,`batchCode`)values
+        insert into StudentBatchGroupMapper (`studentId`,`batchId`)values
         <foreach item="item" collection="list" separator=",">
-            (#{item.studentId}, #{item.batchCode})
+            (#{item.studentId}, #{item.batchId})
         </foreach>
     </insert>
     <insert id="insertWithAll" parameterType="cn.aethli.gttss.domain.StudentBatchGroup">
         insert into
         <include refid="Base_From"/>
-        (`studentId`,`batchCode`)values (#{studentId},#{batchCode});
+        (`studentId`,`batchId`)values (#{studentId},#{batchId});
     </insert>
 </mapper>

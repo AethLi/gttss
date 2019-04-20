@@ -2,7 +2,7 @@ package cn.aethli.gttss.domain;
 
 public class StudentBatchGroup {
     String studentId;
-    String batchCode;
+    String batchId;
 
     public String getStudentId() {
         return studentId;
@@ -12,11 +12,11 @@ public class StudentBatchGroup {
         this.studentId = studentId;
     }
 
-    public String getBatchCode() {
-        return batchCode;
+    public String getBatchId() {
+        return batchId;
     }
 
-    public void setBatchCode(String batchCode) {
-        this.batchCode = batchCode;
+    public void setBatchId(String batchId) {
+        this.batchId = batchId;
     }
 }

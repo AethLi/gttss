@@ -6,11 +6,13 @@
     <resultMap id="BaseResultMap" type="cn.aethli.gttss.domain.Student">
         <id column="userId" property="userId"/>
         <result column="name" property="name"/>
-        <result column="classCode" property="classCode"/>
+        <result column="classId" property="classId"/>
         <result column="gender" property="gender"/>
-        <result column="batchCode" property="batchCode"/>
-        <result column="gradeName" property="classCode"/>
+        <result column="batchId" property="batchId"/>
+        <result column="gradeName" property="gradeName"/>
         <result column="status" property="status"/>
+        <result column="majorId" property="majorId"/>
+        <result column="facultyId" property="facultyId"/>
     </resultMap>
     <sql id="Base_From">
         Student
@@ -18,12 +20,17 @@
     <insert id="insertWithAll" parameterType="cn.aethli.gttss.domain.SysUser">
         INSERT INTO
         <include refid="Base_From"/>
-        (`userId`, `name`, `classCode`, `gender`, `batchCode`, `gradeName`,`status`)
-        VALUES (#{userId}, #{name}, #{classCode}, #{gender}, #{batchCode},#{genderNam},#{status});
+        (`userId`, `name`, `classId`, `gender`, `batchId`, `gradeName`,`status`,`majorId`,`facultyId`)
+        VALUES (#{userId}, #{name}, #{classId}, #{gender}, #{batchId},#{genderNam},#{status},#{majorId},#{facultyId});
     </insert>
     <select id="selectById" parameterType="cn.aethli.gttss.domain.Student" resultMap="BaseResultMap">
         select * from
         <include refid="Base_From"/>
         where userId=#{userId};
     </select>
+    <update id="updateWithNameById" parameterType="cn.aethli.gttss.domain.Student">
+        update
+        <include refid="Base_From"/>
+        set `name`=#{name} where `userId`=#{userId};
+    </update>
 </mapper>

@@ -6,13 +6,11 @@ import cn.aethli.gttss.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @SessionAttributes(value = {"identifyingCode", "currentUser"}, types = {String.class, SysUser.class})
-
 @RestController
 @RequestMapping(value = "/user")
 public class UserController extends BaseController {
@@ -26,11 +24,12 @@ public class UserController extends BaseController {
      * @param model           添加currentUser进session
      * @param identifyingCode 验证码
      * @param params          前台参数需要：account,password,ACAPTCHA
-     * @param sessionStatus
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Object login(Model model, @ModelAttribute("identifyingCode") String identifyingCode, @ModelAttribute("verifyT") String verifyT, @RequestBody Map<String, Object> params, SessionStatus sessionStatus) {
+    public Object login(Model model, @ModelAttribute("identifyingCode") String identifyingCode,
+                        @ModelAttribute("verifyT") String verifyT, @RequestBody Map<String, Object> params) {
+        model.addAttribute("currentUser", null);//清空登录
         try {
             SysUser sysUser = new SysUser();
             if (params.get("ACAPTCHA").equals(identifyingCode)) {
@@ -38,13 +37,15 @@ public class UserController extends BaseController {
                 sysUser.setPassword((String) params.get("password"));
                 try {
                     sysUser = userService.login(sysUser, (String) params.get("ACAPTCHA"));
-                    if (verifyT.equals("sdiofyhasdiofyhqweohf9o")){
+                    if (verifyT.equals("sdiofyhasdiofyhqweohf9o")) {
                         userService.checkTeacher(sysUser);
                     }
                     userService.checkStudent(sysUser);
+                    model.addAttribute("currentUser", sysUser);
+                    model.addAttribute("identifyingCode", "aethli.cn");//失效化验证码
                     return new ResponseMessage(ResponseMessage.STATUS_OK);
                 } catch (Exception e) {
-//                e.printStackTrace();
+                    e.printStackTrace();
                     return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
                 }
             } else {
@@ -53,8 +54,6 @@ public class UserController extends BaseController {
         } catch (Exception e) {
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, "请求错误", e.getMessage());
         } finally {
-            model.addAttribute("identifyingCode", "aethli.cn");//失效化验证码
-            model.addAttribute("currentUser", null);//清空登录
         }
     }
 
@@ -67,6 +66,48 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/logout")
     public Object logoutCtrl(HttpServletRequest request) {
         request.getSession().invalidate();
-        return null;
+        return new ResponseMessage(ResponseMessage.STATUS_OK);
+    }
+
+    @RequestMapping(value = "getMyself")
+    public Object getMyself(HttpServletRequest request, Model model, @ModelAttribute("verifyT") String verifyT) {
+        try {
+            if (verifyT.equals("sdiofyhasdiofyhqweohf9o")) {
+                return new ResponseMessage(ResponseMessage.STATUS_OK, userService.getMyselfT(getSysUser(model)));
+            } else {
+                return new ResponseMessage(ResponseMessage.STATUS_OK, userService.getMyself(getSysUser(model)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "getMyOverview")
+    public Object getMyOverview(Model model, @ModelAttribute("verifyT") String verifyT) {
+        try {
+            if (verifyT.equals("sdiofyhasdiofyhqweohf9o")) {
+                return new ResponseMessage(ResponseMessage.STATUS_OK, userService.getMyOverviewT(getSysUser(model)));
+            } else {
+                return new ResponseMessage(ResponseMessage.STATUS_OK, userService.getMyOverview(getSysUser(model)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "saveMyOverview")
+    public Object saveMyOverview(Model model, @RequestBody Map<String, Object> params, @ModelAttribute("verifyT") String verifyT) {
+        try {
+            if (verifyT.equals("sdiofyhasdiofyhqweohf9o")) {
+                return new ResponseMessage(ResponseMessage.STATUS_OK, userService.saveMyOverviewT(getSysUser(model), params));
+            } else {
+                return new ResponseMessage(ResponseMessage.STATUS_OK, userService.saveMyOverview(getSysUser(model), params));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR);
+        }
     }
 }

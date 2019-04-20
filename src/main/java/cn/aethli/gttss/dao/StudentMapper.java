@@ -5,7 +5,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface StudentMapper {
-    public void insertWithAll(Student student);
+    void insertWithAll(Student student);
 
     Student selectById(Student student);
+
+    void updateWithNameById(Student student);
 }

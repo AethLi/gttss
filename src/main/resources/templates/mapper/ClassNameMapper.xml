@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.aethli.gttss.dao.ClassNameMapper">
+    <resultMap id="BaseResultMap" type="cn.aethli.gttss.domain.ClassName">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="repeatIndex" property="repeatIndex"/>
+    </resultMap>
+    <sql id="Base_From">
+        ClassName
+    </sql>
+    <insert id="insertWithAll" parameterType="cn.aethli.gttss.domain.ClassName">
+        INSERT INTO
+        <include refid="Base_From"/>
+        (`id`, `name`,`repeatIndex`)
+        VALUES (#{id}, #{name},#{repeatIndex});
+    </insert>
+    <select id="selectById" parameterType="cn.aethli.gttss.domain.ClassName" resultMap="BaseResultMap">
+        select * from
+        <include refid="Base_From"/>
+        where id=#{id};
+    </select>
+</mapper>

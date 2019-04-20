@@ -9,6 +9,7 @@
         <result column="permission" property="permission"/>
         <result column="password" property="password"/>
         <result column="status" property="status"/>
+        <result column="phoneNum" property="phoneNum"/>
     </resultMap>
     <sql id="Base_From">
         SysUser
@@ -16,8 +17,8 @@
     <insert id="insertWithAll" parameterType="cn.aethli.gttss.domain.SysUser">
         INSERT INTO
         <include refid="Base_From"/>
-        (`userId`, `account`, `permission`, `password`, `status`)
-        VALUES (#{userId}, #{account}, #{permission}, #{password},#{status});
+        (`userId`, `account`, `permission`, `password`, `status`,`phoneNum`)
+        VALUES (#{userId}, #{account}, #{permission}, #{password},#{status},#{phoneNum});
     </insert>
     <select id="selectByAccount" resultMap="BaseResultMap" parameterType="cn.aethli.gttss.domain.SysUser">
         select * from

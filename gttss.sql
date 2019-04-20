@@ -35,10 +35,10 @@ CREATE TABLE `batch` (
 -- ----------------------------
 DROP TABLE IF EXISTS `classname`;
 CREATE TABLE `classname` (
-  `code` varchar(36) NOT NULL,
+  `id` varchar(36) NOT NULL,
   `name` varchar(50) DEFAULT NULL,
   `repeatIndex` int(2) DEFAULT NULL,
-  PRIMARY KEY (`code`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -68,9 +68,9 @@ DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
   `userId` varchar(36) NOT NULL,
   `name` varchar(20) DEFAULT NULL,
-  `classCode` varchar(36) DEFAULT NULL,
+  `classId` varchar(36) DEFAULT NULL,
   `gender` int(1) DEFAULT NULL,
-  `batchCode` varchar(36) DEFAULT NULL,
+  `batchId` varchar(36) DEFAULT NULL,
   `gradeName` varchar(20) DEFAULT NULL,
   `studentNum` varchar(36) DEFAULT NULL,
   PRIMARY KEY (`userId`)
@@ -87,7 +87,7 @@ INSERT INTO `student` VALUES ('8dc6cc3e-5c66-11e9-b206-80fa5b585ee4', '杨仁杰
 DROP TABLE IF EXISTS `studentbatchgroup`;
 CREATE TABLE `studentbatchgroup` (
   `studentId` varchar(36) NOT NULL,
-  `batchCode` varchar(36) NOT NULL
+  `batchId` varchar(36) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------

@@ -9,6 +9,7 @@ public class SysUser {
     Integer permission;
     String password;
     Integer status;
+    String phoneNum;
 
     public String getUserId() {
         return userId;
@@ -48,5 +49,13 @@ public class SysUser {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 }

@@ -6,11 +6,14 @@ public class Student {
     public static final int STATUS_ALLOW_lOGIN_ONLY = 2;
     String userId;
     String name;
-    String classCode;
+    String classId;
     String gradeName;
     Integer gender;
     String batchCode;
     String status;
+    String studentNum;
+    String majorId;
+    String facultyId;
 
     public String getUserId() {
         return userId;
@@ -28,12 +31,12 @@ public class Student {
         this.name = name;
     }
 
-    public String getClassCode() {
-        return classCode;
+    public String getClassId() {
+        return classId;
     }
 
-    public void setClassCode(String classCode) {
-        this.classCode = classCode;
+    public void setClassId(String classId) {
+        this.classId = classId;
     }
 
     public String getGradeName() {
@@ -66,5 +69,29 @@ public class Student {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getStudentNum() {
+        return studentNum;
+    }
+
+    public void setStudentNum(String studentNum) {
+        this.studentNum = studentNum;
+    }
+
+    public String getMajorId() {
+        return majorId;
+    }
+
+    public void setMajorId(String majorId) {
+        this.majorId = majorId;
+    }
+
+    public String getFacultyId() {
+        return facultyId;
+    }
+
+    public void setFacultyId(String facultyId) {
+        this.facultyId = facultyId;
     }
 }
