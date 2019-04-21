@@ -85,9 +85,12 @@
     select * from TopicStudentGroup where `topicId`=#{topicId};
     </select>
     <delete id="deleteByTopicId_studentId" parameterType="java.util.Map">
-     delete TopicStudentGroup where `topicId`=#{topicId} and `studentId`=#{studentId};
+     delete from TopicStudentGroup where `topicId`=#{topicId} and `studentId`=#{studentId};
     </delete>
     <select id="selectByStudentId" parameterType="java.util.Map" resultMap="BaseResultMap">
     select * from TopicStudentGroup where `studentId`=#{studentId};
     </select>
+    <select id="selectByStudentId_BatchId" parameterType="java.util.Map" resultMap="BaseResultMap">
+      select * from TopicStudentGroup where `studentId`=#{studentId} and `batchId`=#{batchId};
+  </select>
 </mapper>

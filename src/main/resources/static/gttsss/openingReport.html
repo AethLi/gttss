@@ -7,21 +7,9 @@
             <li ng-class="{2:'active'}[whoIsActive]"><a ng-click="iAmActive(2)">研究思路及方案</a></li>
             <li ng-class="{3:'active'}[whoIsActive]"><a ng-click="iAmActive(3)">进度计划</a></li>
         </ul>
-        <div type="text/plain" id="statusAndTrends"
+        <div type="text/plain" id="openingReportEditor"
              style="width:100%;height:300px">
         </div>
-        <!-- <div type="text/plain" ng-style="{0:'display:inline'}[whoIsActive]" id="statusAndTrends"
-              style="width:100%;height:300px;display: none">
-         </div>
-         <div type="text/plain" ng-style="{1:'display:inline'}[whoIsActive]" id="mainDestination"
-              style="width:100%;height:300px;display: none">
-         </div>
-         <div type="text/plain" ng-style="{2:'display:inline'}[whoIsActive]" id="ideasAndSolutions"
-              style="width:100%;height:300px;display: none">
-         </div>
-         <div type="text/plain" ng-style="{3:'display:inline'}[whoIsActive]" id="plan"
-              style="width:100%;height:300px;display: none">
-         </div>-->
         <button type="button" class="btn btn-default">提交</button>
         <button type="button" class="btn btn-primary">通知教师</button>
     </section>
@@ -33,37 +21,41 @@
     <form>
         <div class="form-group">
             <label for="topicName">论文名称</label>
-            <input type="" class="form-control" id="topicName">
+            <input class="form-control" id="topicName" ng-model="topicName">
         </div>
         <div class="form-group">
             <label for="teacherName">指导教师</label>
-            <input type="" class="form-control" id="teacherName">
+            <input class="form-control" id="teacherName" ng-model="teacherName">
         </div>
         <div class="form-group">
             <label for="connectionNum">联系电话</label>
-            <input type="" class="form-control" id="connectionNum">
+            <input class="form-control" id="connectionNum" ng-model="connectionNum">
         </div>
         <div class="form-group">
             <label for="statusName">审核结果</label>
-            <input type="" class="form-control" id="statusName">
+            <input class="form-control" id="statusName" ng-model="statusName">
         </div>
         <div class="form-group">
             <label for="opinion">审批意见</label>
-            <textarea type="" class="form-control" rows="5" id="opinion"></textarea>
+            <div type="text/plain" id="opinion"
+                 style="width:100%;height:300px">
+            </div>
         </div>
         <div class="well">
             答辩意见
         </div>
         <div class="form-group">
             <label for="opinion2">答辩意见</label>
-            <textarea type="" class="form-control" rows="5" id="opinion2"></textarea>
+            <div type="text/plain" id="opinion2"
+                 style="width:100%;height:300px">
+            </div>
         </div>
         <div class="well">
             分组信息
         </div>
         <div class="form-group">
             <label for="groupingInfo">分组信息</label>
-            <textarea type="" class="form-control" rows="5" id="groupingInfo"></textarea>
+            <textarea class="form-control" rows="5" id="groupingInfo"></textarea>
         </div>
     </form>
 </div>

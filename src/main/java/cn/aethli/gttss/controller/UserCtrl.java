@@ -14,7 +14,7 @@ import java.util.Map;
 //@SessionAttributes(value = {"currentUser"}, types = {SysUser.class})
 @RestController
 @RequestMapping(value = "/user")
-public class UserController extends BaseController {
+public class UserCtrl extends BaseCtrl {
 
     @Autowired
     private UserService userService;
@@ -37,22 +37,28 @@ public class UserController extends BaseController {
                 sysUser.setAccount((String) params.get("account"));
                 sysUser.setPassword((String) params.get("password"));
                 try {
-                    sysUser = userService.login(sysUser, (String) params.get("ACAPTCHA"));
+                    if (verifyT.equals("sdiofyhasdiofyhqweohf9o")) {
+                        sysUser = userService.loginT(sysUser, (String) params.get("ACAPTCHA"));
+                    } else {
+                        sysUser = userService.login(sysUser, (String) params.get("ACAPTCHA"));
+                    }
                     if (verifyT.equals("sdiofyhasdiofyhqweohf9o")) {
                         userService.checkTeacher(sysUser);
+                    } else {
+                        userService.checkStudent(sysUser);
                     }
-                    userService.checkStudent(sysUser);
                     model.addAttribute("currentUser", sysUser);
                     model.addAttribute("identifyingCode", "aethli.cn");//失效化验证码
                     return new ResponseMessage(ResponseMessage.STATUS_OK);
                 } catch (Exception e) {
-                    e.printStackTrace();
+//                    e.printStackTrace();
                     return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
                 }
             } else {
                 return new ResponseMessage(ResponseMessage.STATUS_FAIL, "验证码错误");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, "请求错误", e.getMessage());
         } finally {
         }

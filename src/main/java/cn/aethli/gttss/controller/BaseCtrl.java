@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 @SessionAttributes(value = {"currentUser"}, types = {SysUser.class})
 @RestController(value = "/")
-public class BaseController {
+public class BaseCtrl {
 
     @Autowired
     BaseService baseService;

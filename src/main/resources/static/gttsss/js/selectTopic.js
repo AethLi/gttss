@@ -6,7 +6,7 @@ angular.module('studentApp', [])
         $scope.hasSelect = false;
         $scope.selectedTopic;
         $http({
-            url: "/topic/queryCurrentTopic",
+            url: "/topic/querySelectAbleTopic",
             method: "GET"
         }).then(function s(result) {
             if (result.data.status == 0) {

@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/topic")
-public class TopicCtrl extends BaseController {
+public class TopicCtrl extends BaseCtrl {
     @Autowired
     TopicService topicService;
 
@@ -23,7 +23,14 @@ public class TopicCtrl extends BaseController {
         return new ResponseMessage(ResponseMessage.STATUS_OK, topics);
     }
 
-    @RequestMapping(value = "getTopicById")
+
+    @RequestMapping(value = "/querySelectAbleTopic")
+    public Object querySelectAbleTopic() {
+        List<Map<String, Object>> topics = topicService.querySelectAbleTopic(getCurrentBatch());
+        return new ResponseMessage(ResponseMessage.STATUS_OK, topics);
+    }
+
+    @RequestMapping(value = " /getTopicById")
     public Object getTopicById(@RequestBody Map<String, Object> params) {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getTopicById((String) params.get("id")));
@@ -33,7 +40,7 @@ public class TopicCtrl extends BaseController {
         }
     }
 
-    @RequestMapping(value = "selectTopic")
+    @RequestMapping(value = "/selectTopic")
     public Object selectTopic(@RequestBody Map<String, Object> params, Model model) {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.selectTopic((String) params.get("id"), getSysUser(model)));
@@ -43,7 +50,7 @@ public class TopicCtrl extends BaseController {
         }
     }
 
-    @RequestMapping(value = "cancelTopic")
+    @RequestMapping(value = "/cancelTopic")
     public Object cancelTopic(@RequestBody Map<String, Object> params, Model model) {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.cancelTopic((String) params.get("id"), getSysUser(model)));
@@ -53,7 +60,7 @@ public class TopicCtrl extends BaseController {
         }
     }
 
-    @RequestMapping(value = "getMyTopic")
+    @RequestMapping(value = "/getMyTopic")
     public Object getMytopic(Model model) {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getMyTopic(getSysUser(model)));
@@ -63,10 +70,20 @@ public class TopicCtrl extends BaseController {
         }
     }
 
-    @RequestMapping(value = "getAllSelectForCustomize")
+    @RequestMapping(value = "/getAllSelectForCustomize")
     public Object getAllSelectForCustomize() {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getAllSelectForCustomize());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/saveCustomizeTopic")
+    public Object saveCustomizeTopic(@RequestBody Map<String, Object> params, Model model) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.saveCustomizeTopic(getSysUser(model), params));
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());

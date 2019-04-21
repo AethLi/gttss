@@ -20,4 +20,6 @@ public interface VerifyMapper {
      * @mbg.generated Sat Apr 20 09:20:33 CST 2019
      */
     int insertSelective(Verify record);
+
+    Verify selectById(Verify verify);
 }

@@ -32,4 +32,8 @@ public interface TopicMapper {
     Topic selectById_BatchId(Topic topic);
 
     void updateWithSelectStatusById(Topic desTopic);
+
+    void deleteById(Topic topic);
+
+    List<Topic> selectByBatchIdWithSql(Map<String, Object> queryMap);
 }
