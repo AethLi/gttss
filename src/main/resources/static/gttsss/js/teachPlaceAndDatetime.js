@@ -1,4 +1,4 @@
 angular.module('studentApp', [])
-    .controller("teachPlaceAndDatetimeCtrl", function ($scope) {
+    .controller("teachPlaceAndDatetimeCtrl", function ($scope,$http) {
 
     });

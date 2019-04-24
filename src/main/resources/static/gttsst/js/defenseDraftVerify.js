@@ -1,5 +1,5 @@
 angular.module('teacherApp', [])
-    .controller("defenseDraftVerifyCtrl", function ($scope) {
+    .controller("defenseDraftVerifyCtrl", function ($scope,$http) {
         $scope.topics = [
             {
                 studentName: "杨仁杰",

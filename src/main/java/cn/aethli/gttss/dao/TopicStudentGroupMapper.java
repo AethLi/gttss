@@ -32,7 +32,7 @@ public interface TopicStudentGroupMapper {
 
     void deleteByTopicId_studentId(TopicStudentGroup topicStudentGroup);
 
-    TopicStudentGroup selectByStudentId(TopicStudentGroup topicStudentGroup);
+    List<TopicStudentGroup> selectByStudentId(TopicStudentGroup topicStudentGroup);
 
     TopicStudentGroup selectByStudentId_BatchId(TopicStudentGroup topicStudentGroup);
 }

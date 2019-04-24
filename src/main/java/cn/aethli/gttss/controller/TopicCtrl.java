@@ -30,7 +30,7 @@ public class TopicCtrl extends BaseCtrl {
         return new ResponseMessage(ResponseMessage.STATUS_OK, topics);
     }
 
-    @RequestMapping(value = " /getTopicById")
+    @RequestMapping(value = "/getTopicById")
     public Object getTopicById(@RequestBody Map<String, Object> params) {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getTopicById((String) params.get("id")));
@@ -61,11 +61,11 @@ public class TopicCtrl extends BaseCtrl {
     }
 
     @RequestMapping(value = "/getMyTopic")
-    public Object getMytopic(Model model) {
+    public Object getMyTopic(Model model) {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getMyTopic(getSysUser(model)));
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
         }
     }
@@ -84,6 +84,16 @@ public class TopicCtrl extends BaseCtrl {
     public Object saveCustomizeTopic(@RequestBody Map<String, Object> params, Model model) {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.saveCustomizeTopic(getSysUser(model), params));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "getTeacherHistoryTopic")
+    public Object getTeacherHistoryTopic(Model model) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getTeacherHistoryTopic(getSysUser(model)));
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());

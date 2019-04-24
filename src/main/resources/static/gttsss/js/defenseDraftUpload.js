@@ -1,4 +1,4 @@
 angular.module('studentApp', [])
-    .controller("defenseDraftUploadCtrl", function ($scope) {
+    .controller("defenseDraftUploadCtrl", function ($scope,$http) {
 
     });

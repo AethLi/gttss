@@ -223,4 +223,10 @@
     <select id="selectByBatchIdWithSql" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
         select * from Topic where `validityBatch`=#{batchId} ${status};
   </select>
+    <select id="selectByTeacherId_BatchId" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+                select * from Topic where `validityBatch`=#{batchId} and `teacherId`=#[teacherId];
+    </select>
+    <select id="selectByTeacherId" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+                select * from Topic where `validityBatch`=#{validityBatch};
+    </select>
 </mapper>

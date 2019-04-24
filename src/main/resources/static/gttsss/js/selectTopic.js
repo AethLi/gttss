@@ -1,5 +1,6 @@
 angular.module('studentApp', [])
     .controller("selectTopicCtrl", function ($scope, $http) {
+        let content = UM.getEditor("content");
         $scope.allTopic;
         $scope.topics;
         $scope.oneTopic;

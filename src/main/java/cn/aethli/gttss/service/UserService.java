@@ -1,13 +1,7 @@
 package cn.aethli.gttss.service;
 
-import cn.aethli.gttss.dao.ClassNameMapper;
-import cn.aethli.gttss.dao.StudentMapper;
-import cn.aethli.gttss.dao.SysUserMapper;
-import cn.aethli.gttss.dao.TeacherMapper;
-import cn.aethli.gttss.domain.ClassName;
-import cn.aethli.gttss.domain.Student;
-import cn.aethli.gttss.domain.SysUser;
-import cn.aethli.gttss.domain.Teacher;
+import cn.aethli.gttss.dao.*;
+import cn.aethli.gttss.domain.*;
 import cn.aethli.gttss.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +20,8 @@ public class UserService {
     SysUserMapper sysUserMapper;
     @Autowired
     ClassNameMapper classNameMapper;
+    @Autowired
+    UnitMapper unitMapper;
 
     public SysUser login(SysUser sysUser, String acaptcha) throws Exception {
         SysUser user = sysUserMapper.selectByAccount(sysUser);
@@ -81,12 +77,24 @@ public class UserService {
         return result;
     }
 
-    public Object getMyselfT(SysUser sysUser) {
-        return null;
+    public Object getMyselfT(SysUser sysUser) throws Exception {
+        Teacher teacher = new Teacher();
+        teacher.setUserId(sysUser.getUserId());
+        Teacher t = teacherMapper.selectById(teacher);
+        if (t == null) {
+            throw new Exception("用户身份信息错误");
+        }
+        Map<String, Object> result = new HashMap<>();
+        result.put("userName", t.getName());
+        Unit unit = new Unit();
+        unit.setId(t.getUnitId());
+        Unit u = unitMapper.selectById(unit);
+        result.put("unitName", u.getName());
+        return result;
     }
 
-    public Object getMyOverviewT(SysUser sysUser) {
-        return null;
+    public Object getMyOverviewT(SysUser sysUser) throws Exception {
+        return getMyselfT(sysUser);
     }
 
     public Object getMyOverview(SysUser sysUser) {

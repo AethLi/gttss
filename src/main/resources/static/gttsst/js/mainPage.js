@@ -1,5 +1,5 @@
 angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
-    .controller('mainPageCtrl', function ($scope) {
+    .controller('mainPageCtrl', function ($scope, $http) {
         layui.use(['element', 'layer'], function () {
             var element = layui.element;
             var layer = layui.layer;
@@ -11,8 +11,34 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
         $scope.userName = "";
         $scope.userPermission = "";
         $scope.logout = function () {
-
-        }
+            $http({
+                url: "/user/logout",
+                method: "GET"
+            }).then(function success(result) {
+                if (result.data.status === 0) {
+                    window.location.href = "/t";
+                } else {
+                    alert(result.data.message);
+                    window.location.href = "/t";
+                }
+            }, function error(result) {
+                alert(result.data.message);
+                window.location.href = "/t";
+            });
+        };
+        $http({
+            url: "/user/getMyself",
+            method: "POST"
+        }).then(function success(result) {
+            if (result.data.status === 0) {
+                $scope.userName = result.data.model.userName;
+                $scope.unitName = result.data.model.unitName;
+            } else {
+                alert(result.data.message);
+            }
+        }, function error(result) {
+            alert(result.data.message);
+        });
     })
     .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.when("", "userOverview");//用作默认跳转
@@ -161,18 +187,18 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
                     }]
                 }
             })
-        .state("defenseVerify", {
-            controller: "defenseVerifyCtrl",
-            url: "/defenseVerify",
-            templateUrl: '/gttsst/defenseVerify.html',
-            resolve: {
-                loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        files: ['/gttsst/js/defenseVerify.js', '/gttsst/css/defenseVerify.css']
-                    })
-                }]
-            }
-        })
+            .state("defenseVerify", {
+                controller: "defenseVerifyCtrl",
+                url: "/defenseVerify",
+                templateUrl: '/gttsst/defenseVerify.html',
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            files: ['/gttsst/js/defenseVerify.js', '/gttsst/css/defenseVerify.css']
+                        })
+                    }]
+                }
+            })
         // .state("guideRecord", {
         //     controller: "guideRecordCtrl",
         //     url: "/guideRecord",

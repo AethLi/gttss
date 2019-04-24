@@ -6,6 +6,7 @@ import cn.aethli.gttss.util.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -26,6 +27,7 @@ public class TopicService extends BaseService {
     TopicTypeMapper topicTypeMapper;
 
 
+    @SuppressWarnings("Duplicates")
     public List<Map<String, Object>> queryCurrentTopic(Batch currentBatch) {
         Map<String, Object> result = null;
         List<Map<String, Object>> results = new ArrayList<>();
@@ -210,12 +212,13 @@ public class TopicService extends BaseService {
         TopicStudentGroup topicStudentGroup = new TopicStudentGroup();
         try {
             topicStudentGroup.setStudentId(sysUser.getUserId());
+            topicStudentGroup.setBatchId(getCurrentBatch().getBatchId());
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception("未登录");
         }
         ;
-        topicStudentGroup = topicStudentGroupMapper.selectByStudentId(topicStudentGroup);
+        topicStudentGroup = topicStudentGroupMapper.selectByStudentId_BatchId(topicStudentGroup);
         if (topicStudentGroup == null) {
             return result;
         }
@@ -252,10 +255,10 @@ public class TopicService extends BaseService {
                     s = sysUserMapper.selectById(s);
                     result.put("phone2Num", s.getPhoneNum());
                 } catch (Exception e) {
-                    e.printStackTrace();
+//                    e.printStackTrace();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             }
         }
         return result;
@@ -274,7 +277,8 @@ public class TopicService extends BaseService {
         //判断是否已经自拟题目
         TopicStudentGroup t = new TopicStudentGroup();
         t.setStudentId(sysUser.getUserId());
-        t = topicStudentGroupMapper.selectByStudentId(t);
+        t.setBatchId(getCurrentBatch().getBatchId());
+        t = topicStudentGroupMapper.selectByStudentId_BatchId(t);
         if (t != null) {
             Topic to = new Topic();
             to.setId(t.getTopicId());
@@ -312,6 +316,7 @@ public class TopicService extends BaseService {
         return "保存成功";
     }
 
+    @SuppressWarnings("Duplicates")
     public List<Map<String, Object>> querySelectAbleTopic(Batch currentBatch) {
         Map<String, Object> result = null;
         List<Map<String, Object>> results = new ArrayList<>();
@@ -347,6 +352,27 @@ public class TopicService extends BaseService {
                 System.err.println("用户表-教师信息不正确");
 //                e.printStackTrace();
             }
+            results.add(result);
+        }
+        return results;
+    }
+
+    public Object getTeacherHistoryTopic(SysUser sysUser) {
+        List<Map<String, Object>> results = new ArrayList<>();
+        Map<String, Object> result;
+        TopicWithBLOBs topic = new TopicWithBLOBs();
+        topic.setTeacherId(sysUser.getUserId());
+        topic.setValidityBatch(getCurrentBatch().getBatchId());
+        List<TopicWithBLOBs> topics = topicMapper.selectByTeacherId(topic);
+        for (TopicWithBLOBs t : topics) {
+            result = new HashMap<>();
+            result.put("name", t.getName());
+            result.put("date", new SimpleDateFormat("yyyy-MM-dd").format(t.getCreateDt()));
+            result.put("topicId", t.getId());
+            Map<String, Object> queryMap = new HashMap<>();
+            queryMap.put("topicId", t.getId());
+            List<TopicStudentGroup> topicStudentGroups = topicStudentGroupMapper.selectByTopicId(queryMap);
+            result.put("selectedCount", topicStudentGroups.size());
             results.add(result);
         }
         return results;

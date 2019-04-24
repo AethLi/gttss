@@ -1,4 +1,4 @@
 angular.module('teacherApp', [])
-    .controller("securitySettingCtrl", function ($scope) {
+    .controller("securitySettingCtrl", function ($scope,$http) {
 
     });

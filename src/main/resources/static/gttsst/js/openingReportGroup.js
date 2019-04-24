@@ -1,5 +1,5 @@
 angular.module('teacherApp', [])
-    .controller("openingReportGroupCtrl", function ($scope) {
+    .controller("openingReportGroupCtrl", function ($scope,$http) {
         $scope.topics = [
             {
                 studentName: "杨仁杰",

@@ -91,15 +91,22 @@
         <!--<property name="useActualColumnNames" value="true"/>-->
         <!--</table>-->
         <!--<table tableName="topic" domainObjectName="Topic" enableCountByExample="false" enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--<property name="useActualColumnNames" value="true"/>-->
         <!--</table>-->
-        <table tableName="openingreport" domainObjectName="OpeningReport" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="unit" domainObjectName="Unit" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true"/>
         </table>
+        <!--<table tableName="openingreport" domainObjectName="OpeningReport" enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<property name="useActualColumnNames" value="true"/>-->
+        <!--</table>-->
         <!--<table tableName="topicStudentGroup" domainObjectName="TopicStudentGroup" enableCountByExample="false" enableUpdateByExample="false"-->
         <!--enableDeleteByExample="false"-->
         <!--enableSelectByExample="false" selectByExampleQueryId="false">-->

@@ -1,4 +1,4 @@
 angular.module('teacherApp', [])
-    .controller("guideRecordCtrl", function ($scope) {
+    .controller("guideRecordCtrl", function ($scope,$http) {
 
     });

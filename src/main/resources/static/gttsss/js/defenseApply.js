@@ -1,4 +1,4 @@
 angular.module('studentApp', [])
-    .controller("defenseApplyCtrl", function ($scope) {
+    .controller("defenseApplyCtrl", function ($scope,$http) {
 
     });

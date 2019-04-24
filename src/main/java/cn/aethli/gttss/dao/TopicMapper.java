@@ -36,4 +36,8 @@ public interface TopicMapper {
     void deleteById(Topic topic);
 
     List<Topic> selectByBatchIdWithSql(Map<String, Object> queryMap);
+
+    List<TopicWithBLOBs> selectByTeacherId_BatchId(TopicWithBLOBs topic);
+
+    List<TopicWithBLOBs> selectByTeacherId(TopicWithBLOBs topic);
 }
