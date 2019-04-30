@@ -21,9 +21,11 @@ angular.module('studentApp', ['ui.router', 'oc.lazyLoad'])
                 $scope.classGrade = result.data.model.classGrade;
             } else {
                 alert(result.data.message);
+                $scope.logout();
             }
         }, function error(result) {
             alert(result.data.message);
+            $scope.logout();
         });
 
         $scope.iAmActive = function (who) {

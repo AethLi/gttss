@@ -1,17 +1,17 @@
 package cn.aethli.gttss.service;
 
 import cn.aethli.gttss.dao.OpeningReportMapper;
+import cn.aethli.gttss.dao.TopicMapper;
 import cn.aethli.gttss.dao.TopicStudentGroupMapper;
 import cn.aethli.gttss.dao.VerifyMapper;
-import cn.aethli.gttss.domain.OpeningReport;
-import cn.aethli.gttss.domain.SysUser;
-import cn.aethli.gttss.domain.TopicStudentGroup;
-import cn.aethli.gttss.domain.Verify;
+import cn.aethli.gttss.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 public class VerifyService extends BaseService {
@@ -21,6 +21,8 @@ public class VerifyService extends BaseService {
     OpeningReportMapper openingReportMapper;
     @Autowired
     VerifyMapper verifyMapper;
+    @Autowired
+    TopicMapper topicMapper;
 
     public Object getOpeningReportVerify(SysUser sysUser) throws Exception {
         Map<String, Object> result = new HashMap<>();
@@ -28,7 +30,7 @@ public class VerifyService extends BaseService {
         topicStudentGroup.setStudentId(sysUser.getUserId());
         topicStudentGroup.setBatchId(getCurrentBatch().getBatchId());
         topicStudentGroup = topicStudentGroupMapper.selectByStudentId_BatchId(topicStudentGroup);
-        OpeningReport openingReport = new OpeningReport();
+        OpeningReportWithBLOBs openingReport = new OpeningReportWithBLOBs();
         openingReport.setTopicId(topicStudentGroup.getTopicId());
         openingReport = openingReportMapper.selectByTopicId(openingReport);
         try {
@@ -48,5 +50,32 @@ public class VerifyService extends BaseService {
             throw e;
         }
         return result;
+    }
+
+    public String customizeTopicTeacherVerify(SysUser sysUser, Map<String, Object> params) throws Exception {
+        TopicWithBLOBs topic = new TopicWithBLOBs();
+        topic.setId((String) params.get("topicId"));
+        topic = topicMapper.selectById(topic);
+        if (topic.getStatus() == 3) {
+            topic.setStatus(Integer.valueOf((String) params.get("status")) == 0 ? 5 : 3);
+            if (topic.getTeacherVerifyId() != null) {
+                Verify v = new Verify();
+                v.setId(topic.getTeacherVerifyId());
+                verifyMapper.deleteById(v);
+            }
+            Verify verify = new Verify();
+            verify.setId(UUID.randomUUID().toString());
+            verify.setCreateBy(sysUser.getUserId());
+            verify.setCreateDt(new Date());
+            verify.setExplanation((String) params.get("explanation"));
+            verify.setType(0);
+            verify.setStatus(Integer.valueOf((String) params.get("status")));
+            verifyMapper.insertSelective(verify);
+            topic.setTeacherVerifyId(verify.getId());
+            topicMapper.updateWithStatusTeacherVerifyIdById(topic);
+        } else {
+            return "该题不是可审核状态";
+        }
+        return "保存成功";
     }
 }

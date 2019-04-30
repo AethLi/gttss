@@ -25,6 +25,9 @@ public class UserService {
 
     public SysUser login(SysUser sysUser, String acaptcha) throws Exception {
         SysUser user = sysUserMapper.selectByAccount(sysUser);
+        if (user == null) {
+            throw new Exception("密码或账号错误");
+        }
         if ((StringUtils.toMD5(user.getPassword() + acaptcha)).equals(sysUser.getPassword())) {
             user.setPassword("已去除返回密码值");
             if (user.getPermission() != 0) {
@@ -36,6 +39,9 @@ public class UserService {
 
     public SysUser loginT(SysUser sysUser, String acaptcha) throws Exception {
         SysUser user = sysUserMapper.selectByAccount(sysUser);
+        if (user == null) {
+            throw new Exception("密码或账号错误");
+        }
         if (sysUser.getPassword().equals(user.getPassword())) {
             user.setPassword("已去除返回密码值");
             if (user.getPermission() != 1) {

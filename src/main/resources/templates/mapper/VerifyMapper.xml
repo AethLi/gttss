@@ -93,4 +93,7 @@
     <select id="selectById" parameterType="java.util.Map" resultMap="BaseResultMap">
     select * from Verify where `id`=#{id};
   </select>
+    <delete id="deleteById" parameterType="java.util.Map">
+        delete from Verify where `id`=#{id};
+    </delete>
 </mapper>

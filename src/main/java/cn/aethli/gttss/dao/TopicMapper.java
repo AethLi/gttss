@@ -27,9 +27,9 @@ public interface TopicMapper {
 
     List<Topic> selectByBatchId(Map<String, Object> queryMap);
 
-    Topic selectById(Topic topic);
+    TopicWithBLOBs selectById(Topic topic);
 
-    Topic selectById_BatchId(Topic topic);
+    TopicWithBLOBs selectById_BatchId(Topic topic);
 
     void updateWithSelectStatusById(Topic desTopic);
 
@@ -40,4 +40,10 @@ public interface TopicMapper {
     List<TopicWithBLOBs> selectByTeacherId_BatchId(TopicWithBLOBs topic);
 
     List<TopicWithBLOBs> selectByTeacherId(TopicWithBLOBs topic);
+
+    List<TopicWithBLOBs> selectByTeacherId_BatchId_Status(TopicWithBLOBs topic);
+
+    void updateWithStatusById(Topic topic);
+
+    void updateWithStatusTeacherVerifyIdById(TopicWithBLOBs topic);
 }

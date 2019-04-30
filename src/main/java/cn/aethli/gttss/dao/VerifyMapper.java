@@ -22,4 +22,6 @@ public interface VerifyMapper {
     int insertSelective(Verify record);
 
     Verify selectById(Verify verify);
+
+    void deleteById(Verify v);
 }

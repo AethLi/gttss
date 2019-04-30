@@ -64,35 +64,23 @@ angular.module('studentApp', [])
                             return;
                         }
                         if (result.data.model.topic.status === 3 || result.data.model.topic.status === 4) {
-                            $scope.topicType = result.data.model.topic.typeId;
-                            $scope.topicOrigin = result.data.model.topic.originId;
-                            $scope.topicProperty = result.data.model.topic.propertyId;
-                            $scope.topicName = result.data.model.topic.name;
-                            $scope.compare = result.data.model.topic.compare.toString();
-                            $scope.content = result.data.model.topic.content;
-                            $scope.result = result.data.model.topic.result;
-                            $scope.reference = result.data.model.topic.reference;
-                            $scope.plan = result.data.model.topic.plan;
-                            $scope.guide = result.data.model.topic.guide;
-                            customizeTopicEditor.setContent($scope.content);
                             $scope.newTopic = 1;
-                            $scope.teacherName = result.data.model.teacher.name;
                         } else {
                             alert("非自拟题目，无法更改");
-                            $scope.topicType = result.data.model.topic.typeId;
-                            $scope.topicOrigin = result.data.model.topic.originId;
-                            $scope.topicProperty = result.data.model.topic.propertyId;
-                            $scope.topicName = result.data.model.topic.name;
-                            $scope.compare = result.data.model.topic.compare.toString();
-                            $scope.content = result.data.model.topic.content;
-                            $scope.result = result.data.model.topic.result;
-                            $scope.reference = result.data.model.topic.reference;
-                            $scope.plan = result.data.model.topic.plan;
-                            $scope.guide = result.data.model.topic.guide;
-                            customizeTopicEditor.setContent($scope.content);
                             $scope.newTopic = 3;
-                            $scope.teacherName = result.data.model.teacher.name;
                         }
+                        $scope.topicType = result.data.model.topic.typeId;
+                        $scope.topicOrigin = result.data.model.topic.originId;
+                        $scope.topicProperty = result.data.model.topic.propertyId;
+                        $scope.topicName = result.data.model.topic.name;
+                        $scope.compare = result.data.model.topic.compare.toString();
+                        $scope.content = result.data.model.topic.content;
+                        $scope.result = result.data.model.topic.result;
+                        $scope.reference = result.data.model.topic.reference;
+                        $scope.plan = result.data.model.topic.plan;
+                        $scope.guide = result.data.model.topic.guide;
+                        customizeTopicEditor.setContent($scope.content);
+                        $scope.teacherName = result.data.model.teacher.name;
                     } else {
                         alert(result.data.message);
                     }

@@ -12,7 +12,8 @@ public class GraduationThesisTopicSelectSystemApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GraduationThesisTopicSelectSystemApplication.class, args);
-        autoOpenBrowser();
+        autoOpenBrowser_Student();
+        autoOpenBrowser_Teacher();
     }
 
     @Bean(name = "multipartResolver")
@@ -26,16 +27,32 @@ public class GraduationThesisTopicSelectSystemApplication {
     }
 
     /**
-     * 自动打开浏览器 仅在Apollo生效
+     * 自动打开浏览器学生端 仅在Apollo生效
      */
-    private static void autoOpenBrowser() {
+    private static void autoOpenBrowser_Student() {
         String cmd = "C:\\Users\\93162\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe http://localhost";
+//        String cmd = "C:\\Program Files (x86)\\Microsoft\\Edge Dev\\Application\\msedge.exe http://localhost";
         Runtime run = Runtime.getRuntime();
         try {
             run.exec(cmd);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return;
+    }
+
+    /**
+     * 自动打开浏览器教师端 仅在Apollo生效
+     */
+    private static void autoOpenBrowser_Teacher() {
+        String cmd = "C:\\Program Files (x86)\\Microsoft\\Edge Dev\\Application\\msedge.exe http://localhost/t";
+        Runtime run = Runtime.getRuntime();
+        try {
+            run.exec(cmd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return;
     }
 
 

@@ -1,3 +1,8 @@
 body {
     background: #b3d5d9
 }
+
+p {
+    margin-top: 5%;
+    color: black !important;
+}

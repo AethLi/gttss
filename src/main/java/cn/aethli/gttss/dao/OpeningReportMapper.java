@@ -4,6 +4,8 @@ import cn.aethli.gttss.domain.OpeningReport;
 import cn.aethli.gttss.domain.OpeningReportWithBLOBs;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 @Component
 public interface OpeningReportMapper {
     /**
@@ -22,5 +24,9 @@ public interface OpeningReportMapper {
      */
     int insertSelective(OpeningReportWithBLOBs record);
 
-    OpeningReport selectByTopicId(OpeningReport openingReport);
+    OpeningReportWithBLOBs selectByTopicId(OpeningReportWithBLOBs openingReport);
+
+    OpeningReportWithBLOBs selectByStudentId(Map<String, Object> queryMap);
+
+    void deleteByTopicId(OpeningReportWithBLOBs openingReport);
 }

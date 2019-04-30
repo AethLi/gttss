@@ -1,16 +1,19 @@
 package cn.aethli.gttss.controller;
 
 import cn.aethli.gttss.domain.ResponseMessage;
+import cn.aethli.gttss.domain.SysUser;
 import cn.aethli.gttss.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.List;
 import java.util.Map;
 
+@SessionAttributes(value = {"identifyingCode", "currentUser", "verifyT"}, types = {String.class, SysUser.class, String.class})
 @RestController
 @RequestMapping(value = "/topic")
 public class TopicCtrl extends BaseCtrl {
@@ -71,9 +74,9 @@ public class TopicCtrl extends BaseCtrl {
     }
 
     @RequestMapping(value = "/getAllSelectForCustomize")
-    public Object getAllSelectForCustomize() {
+    public Object getAllSelectForCustomize(Model model) {
         try {
-            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getAllSelectForCustomize());
+            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getAllSelectForCustomize(getSysUser(model)));
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
@@ -90,7 +93,7 @@ public class TopicCtrl extends BaseCtrl {
         }
     }
 
-    @RequestMapping(value = "getTeacherHistoryTopic")
+    @RequestMapping(value = "/getTeacherHistoryTopic")
     public Object getTeacherHistoryTopic(Model model) {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getTeacherHistoryTopic(getSysUser(model)));
@@ -99,4 +102,14 @@ public class TopicCtrl extends BaseCtrl {
             return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
         }
     }
+    @RequestMapping(value = "/getTeacherVerifyTopic")
+    public Object getTeacherVerifyTopic(Model model) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getTeacherVerifyTopic(getSysUser(model)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
+        }
+    }
+
 }

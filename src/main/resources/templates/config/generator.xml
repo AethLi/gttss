@@ -95,7 +95,13 @@
         <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
         <!--<property name="useActualColumnNames" value="true"/>-->
         <!--</table>-->
-        <table tableName="unit" domainObjectName="Unit" enableCountByExample="false"
+        <!--<table tableName="unit" domainObjectName="Unit" enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<property name="useActualColumnNames" value="true"/>-->
+        <!--</table>-->
+        <table tableName="defensedraft" domainObjectName="DefenseDraft" enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">

@@ -25,6 +25,8 @@ public class TopicService extends BaseService {
     TopicPropertyMapper topicPropertyMapper;
     @Autowired
     TopicTypeMapper topicTypeMapper;
+    @Autowired
+    StudentMapper studentMapper;
 
 
     @SuppressWarnings("Duplicates")
@@ -264,8 +266,14 @@ public class TopicService extends BaseService {
         return result;
     }
 
-    public Map<String, Object> getAllSelectForCustomize() {
+    public Map<String, Object> getAllSelectForCustomize(SysUser currentUser) {
         Map<String, Object> result = new HashMap<>();
+        if (currentUser.getPermission() == 1) {
+            Teacher teacher = new Teacher();
+            teacher.setUserId(currentUser.getUserId());
+            teacher = teacherMapper.selectById(teacher);
+            result.put("teacherName", teacher.getName());
+        }
         result.put("topicTypes", topicTypeMapper.selectAll());
         result.put("topicOrigins", topicOriginMapper.selectAll());
         result.put("topicPropertis", topicPropertyMapper.selectAll());
@@ -291,6 +299,9 @@ public class TopicService extends BaseService {
         topic.setSelectStatus(2);
         topic.setNeedStudent(1);
         topic.setStatus(sysUser.getPermission() == 0 ? 3 : 4);
+        if (topic.getStatus() == 4) {
+            topic.setTeacherVerifyId("教师自评");
+        }
         topic.setValidityBatch(getCurrentBatch().getBatchId());
         topic.setCompare(Integer.valueOf((String) params.get("compare")));
         topic.setCreateBy(sysUser.getUserId());
@@ -373,6 +384,55 @@ public class TopicService extends BaseService {
             queryMap.put("topicId", t.getId());
             List<TopicStudentGroup> topicStudentGroups = topicStudentGroupMapper.selectByTopicId(queryMap);
             result.put("selectedCount", topicStudentGroups.size());
+            results.add(result);
+        }
+        return results;
+    }
+
+    public Object getTeacherVerifyTopic(SysUser sysUser) {
+        List<Map<String, Object>> results = new ArrayList<>();
+        Map<String, Object> result;
+        TopicWithBLOBs topic = new TopicWithBLOBs();
+        topic.setTeacherId(sysUser.getUserId());
+        topic.setValidityBatch(getCurrentBatch().getBatchId());
+        topic.setStatus(3);
+        List<TopicWithBLOBs> topics = topicMapper.selectByTeacherId_BatchId_Status(topic);
+        topic.setStatus(5);
+        topics.addAll(topicMapper.selectByTeacherId_BatchId_Status(topic));
+        topic.setStatus(6);
+        topics.addAll(topicMapper.selectByTeacherId_BatchId_Status(topic));
+        for (TopicWithBLOBs t : topics) {
+            result = new HashMap<>();
+            result.put("name", t.getName());
+            result.put("date", new SimpleDateFormat("yyyy-MM-dd").format(t.getCreateDt()));
+            result.put("topicId", t.getId());
+            result.put("verifyStatus", t.getStatus() == 3 ?
+                    "未审核" : t.getStatus() == 5 ?
+                    "已通过教师审核" : t.getStatus() == 6 ?
+                    "已通过管理员审核" : "状态有错误，请联系管理员");
+            Map<String, Object> queryMap = new HashMap<>();
+            queryMap.put("topicId", t.getId());
+            List<TopicStudentGroup> topicStudentGroups = topicStudentGroupMapper.selectByTopicId(queryMap);
+            if (topicStudentGroups.size() == 0) {
+                continue;
+            } else {
+                Student student = new Student();
+                student.setUserId(topicStudentGroups.get(0).getStudentId());
+                student = studentMapper.selectById(student);
+                if (student == null) {
+                    continue;
+                } else {
+                    result.put("studentName", student.getName());
+                }
+                SysUser user = new SysUser();
+                user.setUserId(topicStudentGroups.get(0).getStudentId());
+                user = sysUserMapper.selectById(user);
+                if (user == null) {
+                    continue;
+                } else {
+                    result.put("connectionNum", user.getPhoneNum());
+                }
+            }
             results.add(result);
         }
         return results;

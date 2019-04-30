@@ -1,0 +1,61 @@
+<head>
+    <title>毕业设计系统</title>
+    <title>毕业设计系统</title>
+    <meta charset="UTF-8">
+    <link href="/webjars/bootstrap/3.4.1/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="../common/uEditor/themes/default/css/ueditor.css" rel="stylesheet" type="text/css">
+    <link href="../common/uEditor-mini/themes/default/css/umeditor.min.css" rel="stylesheet" type="text/css">
+    <script src="/webjars/jquery/3.3.1-2/jquery.min.js"></script>
+    <script src="../common/uEditor-mini/umeditor.config.js"></script>
+    <script src="../common/uEditor-mini/umeditor.min.js"></script>
+    <script src="../common/uEditor-mini/lang/zh-cn/zh-cn.js"></script>
+    <script src="../common/uEditor/ueditor.config.js"></script>
+    <script src="../common/uEditor/ueditor.all.js"></script>
+    <script src="../common/uEditor/lang/zh-cn/zh-cn.js"></script>
+    <script src="/webjars/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="./js/customizeTopicVerify.js"></script>
+</head>
+<body>
+<div class="well">选题查看</div>
+<div class="form-group">
+    <label for="title">标题</label>
+    <input class="form-control" id="title" ng-model="oneTopic.name">
+</div>
+<div class="form-group">
+    <label for="type">类型</label>
+    <input class="form-control" id="type" ng-model="oneTopic.type">
+</div>
+<div class="form-group">
+    <label for="origin">来源</label>
+    <input class="form-control" id="origin" ng-model="oneTopic.origin">
+</div>
+<div class="form-group">
+    <label for="property">性质</label>
+    <input class="form-control" id="property" ng-model="oneTopic.property">
+</div>
+<div class="form-group">
+    <label for="content">主要内容和基本要求</label>
+    <div style="height: 200px" type="text/plain" id="content">
+    </div>
+</div>
+<div class="form-group">
+    <label for="result">成果要求</label>
+    <div style="height: 200px" type="text/plain" id="result">
+    </div>
+</div>
+<div class="form-group">
+    <label for="reference">参考文献</label>
+    <div style="height: 200px" type="text/plain" id="reference">
+    </div>
+</div>
+<div class="form-group">
+    <label for="plan">进度计划</label>
+    <div style="height: 200px" type="text/plain" id="plan">
+    </div>
+</div>
+<div class="form-group">
+    <label for="guide">选题指南</label>
+    <div style="height: 200px" type="text/plain" id="guide">
+    </div>
+</div>
+</body>

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-@SessionAttributes(value = {"identifyingCode", "currentUser"}, types = {String.class, SysUser.class})
+@SessionAttributes(value = {"identifyingCode", "currentUser", "verifyT"}, types = {String.class, SysUser.class, String.class})
 //@SessionAttributes(value = {"currentUser"}, types = {SysUser.class})
 @RestController
 @RequestMapping(value = "/user")
@@ -51,7 +51,7 @@ public class UserCtrl extends BaseCtrl {
                     model.addAttribute("identifyingCode", "aethli.cn");//失效化验证码
                     return new ResponseMessage(ResponseMessage.STATUS_OK);
                 } catch (Exception e) {
-//                    e.printStackTrace();
+                    e.printStackTrace();
                     return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
                 }
             } else {

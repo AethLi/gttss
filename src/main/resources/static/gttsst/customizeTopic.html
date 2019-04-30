@@ -3,32 +3,37 @@
         <div class="well">自拟题目</div>
         <div class="form-group">
             <label for="topicName">课题名称</label>
-            <input type="" class="form-control" id="topicName">
+            <input class="form-control" id="topicName" ng-model="topicName">
         </div>
         <div class="form-group">
             <label for="teacherName">教师名称</label>
-            <select type="" class="form-control" id="teacherName">
+            <input class="form-control" id="teacherName" ng-model="teacherName">
+        </div>
+        <div class="form-group">
+            <label for="topicOrigin">课题来源</label>
+            <select class="form-control" id="topicOrigin" ng-model="topicOrigin">
+                <option ng-repeat="x in topicOrigins" value="{{x.id}}">{{x.name}}</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="topicSource">课题来源</label>
-            <input type="" class="form-control" id="topicSource">
-        </div>
-        <div class="form-group">
             <label for="topicType">课题类型</label>
-            <input type="" class="form-control" id="topicType">
+            <select class="form-control" id="topicType" ng-model="topicType">
+                <option ng-repeat="x in topicTypes" value="{{x.id}}">{{x.name}}</option>
+            </select>
         </div>
         <div class="form-group">
-            <label for="teacher2">助理指导老师</label>
-            <input type="" class="form-control" id="teacher2">
-        </div>
-        <div class="form-group">
-            <label for="topicProperties">课题性质</label>
-            <input type="" class="form-control" id="topicProperties">
+            <label for="topicProperty">课题性质</label>
+            <select class="form-control" id="topicProperty" ng-model="topicProperty">
+                <option ng-repeat="x in topicPropertis" value="{{x.id}}">{{x.name}}</option>
+            </select>
         </div>
         <div class="form-group">
             <label for="newOldCompare">新旧课题比较</label>
-            <input type="" class="form-control" id="newOldCompare">
+            <select class="form-control" id="newOldCompare" ng-model="compare">
+                <option value="0" selected>新课题</option>
+                <option value="1">旧课题</option>
+                <option value="2">旧课题改进</option>
+            </select>
         </div>
 
         <ul class="nav nav-tabs customizeTopic_contentNav">
@@ -38,28 +43,13 @@
             <li ng-class="{3:'active'}[whoIsActive]"><a ng-click="iAmActive(3)">进度计划</a></li>
             <li ng-class="{4:'active'}[whoIsActive]"><a ng-click="iAmActive(4)">选题指南</a></li>
         </ul>
-        <div class="form-group" ng-show="whoIsActive==0">
-            <label for="content"></label>
-            <textarea type="" class="form-control" id="content" rows="10"></textarea>
-        </div>
-        <div class="form-group" ng-show="whoIsActive==1">
-            <label for="result"></label>
-            <textarea type="" class="form-control" id="result" rows="10"></textarea>
-        </div>
-        <div class="form-group" ng-show="whoIsActive==2">
-            <label for="reference"></label>
-            <textarea type="" class="form-control" id="reference" rows="10"></textarea>
-        </div>
-        <div class="form-group" ng-show="whoIsActive==3">
-            <label for="plan"></label>
-            <textarea type="" class="form-control" id="plan" rows="10"></textarea>
-        </div>
-        <div class="form-group" ng-show="whoIsActive==4">
-            <label for="guide"></label>
-            <textarea type="" class="form-control" id="guide" rows="10"></textarea>
+        <div type="text/plain" id="customizeTopicEditor"
+             style="width:100%;height:300px">
         </div>
         <div class="form-group">
-            <button type="button" class="btn btn-primary" style="width: 10%">提交</button>
+            <button type="button" class="btn btn-primary" ng-click="saveTopic()" style="width: 10%">
+                提交
+            </button>
         </div>
     </section>
 </div>
@@ -71,14 +61,15 @@
         <div class="form-group">
             <label for="adminStatusName" class="col-sm-2 control-label">审核状态</label>
             <div class="col-sm-10">
-                <input type="" class="form-control" id="adminStatusName">
+                <input class="form-control" id="adminStatusName" ng-model="adminStatusName">
             </div>
         </div>
         <div class="form-group">
             <label for="adminExplanation" class="col-sm-2 control-label">审核说明</label>
             <div class="col-sm-10">
-                <textarea class="form-control" id="adminExplanation" rows="10">
-                </textarea>
+                <div type="text/plain" id="adminExplanation"
+                     style="width:100%;height:300px">
+                </div>
             </div>
         </div>
     </form>
