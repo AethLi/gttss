@@ -105,7 +105,7 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
             })
             .state("customizeTopicCheck", {
                 controller: "customizeTopicCheckCtrl",
-                url: "/userOverview",
+                url: "/customizeTopicCheck",
                 templateUrl: '/gttsst/customizeTopicCheck.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {

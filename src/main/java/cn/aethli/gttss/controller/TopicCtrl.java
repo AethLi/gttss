@@ -102,6 +102,7 @@ public class TopicCtrl extends BaseCtrl {
             return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
         }
     }
+
     @RequestMapping(value = "/getTeacherVerifyTopic")
     public Object getTeacherVerifyTopic(Model model) {
         try {
@@ -112,4 +113,33 @@ public class TopicCtrl extends BaseCtrl {
         }
     }
 
+    @RequestMapping(value = "/getCustomizeTopicVerify")
+    public Object getCustomizeTopicVerify(Model model) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getCustomizeTopicVerify(getSysUser(model)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/teacherGetTopicVerifyCheck")
+    public Object teacherGetTopicVerifyCheck(Model model) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.teacherGetTopicVerifyCheck(getSysUser(model)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/getMyTopicT")
+    public Object getMyTopicStudent(Model model) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getMyTopicT(getSysUser(model)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
+        }
+    }
 }

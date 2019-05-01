@@ -63,10 +63,10 @@ angular.module('studentApp', [])
                             $scope.newTopic = 0;
                             return;
                         }
-                        if (result.data.model.topic.status === 3 || result.data.model.topic.status === 4) {
+                        if (result.data.model.topic.status === 3) {
                             $scope.newTopic = 1;
                         } else {
-                            alert("非自拟题目，无法更改");
+                            alert("非自拟题目或已通过，无法更改");
                             $scope.newTopic = 3;
                         }
                         $scope.topicType = result.data.model.topic.typeId;
@@ -89,6 +89,31 @@ angular.module('studentApp', [])
                 });
             } else {
                 alert(result.data.message);
+            }
+        }, function e(result) {
+            alert("网络错误");
+        });
+        $http({
+            url: "/topic/getCustomizeTopicVerify",
+            method: "POST"
+        }).then(function s(result) {
+            if (result.data.status == 0) {
+                if (result.data.model.teacher !== undefined) {
+                    explanation.setContent(result.data.model.teacher.explanation);
+                    if (result.data.model.teacher.status === 0) {
+                        $scope.statusName = "通过";
+                        $scope.adminStatusName = "";
+                    } else {
+                        $scope.statusName = "未通过";
+                    }
+                } else if (result.data.model.admin !== undefined) {
+                    adminExplanation.setContent(result.data.model.admin.explanation);
+                    if (result.data.model.admin.status === 0) {
+                        $scope.adminStatusName = "通过";
+                    } else {
+                        $scope.adminStatusName = "未通过";
+                    }
+                }
             }
         }, function e(result) {
             alert("网络错误");

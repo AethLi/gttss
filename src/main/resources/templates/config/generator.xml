@@ -96,22 +96,28 @@
         <!--<property name="useActualColumnNames" value="true"/>-->
         <!--</table>-->
         <!--<table tableName="unit" domainObjectName="Unit" enableCountByExample="false"-->
-               <!--enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--<property name="useActualColumnNames" value="true"/>-->
         <!--</table>-->
-        <table tableName="defensedraft" domainObjectName="DefenseDraft" enableCountByExample="false"
+        <table tableName="topicBook" domainObjectName="TopicBook" enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true"/>
         </table>
+        <!--<table tableName="defensedraft" domainObjectName="DefenseDraft" enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--<property name="useActualColumnNames" value="true"/>-->
+        <!--</table>-->
         <!--<table tableName="openingreport" domainObjectName="OpeningReport" enableCountByExample="false"-->
-               <!--enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--<property name="useActualColumnNames" value="true"/>-->
         <!--</table>-->
         <!--<table tableName="topicStudentGroup" domainObjectName="TopicStudentGroup" enableCountByExample="false" enableUpdateByExample="false"-->
         <!--enableDeleteByExample="false"-->

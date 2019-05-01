@@ -12,8 +12,8 @@ public class GraduationThesisTopicSelectSystemApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GraduationThesisTopicSelectSystemApplication.class, args);
-        autoOpenBrowser_Student();
-        autoOpenBrowser_Teacher();
+//        autoOpenBrowser_Student();
+//        autoOpenBrowser_Teacher();
     }
 
     @Bean(name = "multipartResolver")

@@ -51,14 +51,14 @@ public class UserCtrl extends BaseCtrl {
                     model.addAttribute("identifyingCode", "aethli.cn");//失效化验证码
                     return new ResponseMessage(ResponseMessage.STATUS_OK);
                 } catch (Exception e) {
-                    e.printStackTrace();
+//                    e.printStackTrace();
                     return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
                 }
             } else {
                 return new ResponseMessage(ResponseMessage.STATUS_FAIL, "验证码错误");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, "请求错误", e.getMessage());
         } finally {
         }

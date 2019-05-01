@@ -1,27 +1,137 @@
+<!--<div class="col-lg-8">-->
+<!--<section>-->
+<!--<div class="well">任务书填写</div>-->
+<!--<ul class="nav nav-tabs customizeTopic_contentNav">-->
+<!--<li ng-class="{0:'active'}[whoIsActive]"><a ng-click="iAmActive(0)">立题依据</a></li>-->
+<!--<li ng-class="{1:'active'}[whoIsActive]"><a ng-click="iAmActive(1)">本课题预期目标</a></li>-->
+<!--<li ng-class="{2:'active'}[whoIsActive]"><a ng-click="iAmActive(2)">外部条件</a></li>-->
+<!--<li ng-class="{3:'active'}[whoIsActive]"><a ng-click="iAmActive(3)">参考资料</a></li>-->
+<!--</ul>-->
+<!--<div type="text/plain" id="topicBookEditor"-->
+<!--style="width:100%;height:300px">-->
+<!--</div>-->
+<!--<button class="btn btn-primary">提交</button>-->
+<!--</section>-->
+<!--</div>-->
 <div class="col-lg-8">
     <section>
         <div class="well">任务书填写</div>
-        <ul class="nav nav-tabs customizeTopic_contentNav">
-            <li ng-class="{0:'active'}[whoIsActive]"><a ng-click="iAmActive(0)">立题依据</a></li>
-            <li ng-class="{1:'active'}[whoIsActive]"><a ng-click="iAmActive(1)">本课题预期目标</a></li>
-            <li ng-class="{2:'active'}[whoIsActive]"><a ng-click="iAmActive(2)">外部条件</a></li>
-            <li ng-class="{3:'active'}[whoIsActive]"><a ng-click="iAmActive(3)">参考资料</a></li>
-        </ul>
-        <div class="form-group" ng-show="whoIsActive==0">
-            <label for="Basis"></label>
-            <textarea type="" class="form-control" id="Basis" rows="10"></textarea>
+        <div>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="teacher">标题</label>
+                    <input type="text" class="form-control" id="teacher" placeholder="输入论文标题查看">
+                </div>
+                <button type="button" class="btn btn-default">搜索</button>
+            </form>
         </div>
-        <div class="form-group" ng-show="whoIsActive==1">
-            <label for="destination"></label>
-            <textarea type="" class="form-control" id="destination" rows="10"></textarea>
-        </div>
-        <div class="form-group" ng-show="whoIsActive==2">
-            <label for="condition"></label>
-            <textarea type="" class="form-control" id="condition" rows="10"></textarea>
-        </div>
-        <div class="form-group" ng-show="whoIsActive==3">
-            <label for="reference"></label>
-            <textarea type="" class="form-control" id="reference" rows="10"></textarea>
-        </div>
+        <table class="table table-bordered table-hover" style="margin-top: 2%">
+            <thead>
+            <tr>
+                <td style="width: 5%">序号</td>
+                <td style="width: 45%">论文名称</td>
+                <td style="width: 10%">已选人数</td>
+                <td style="width: 10%">出题时间</td>
+                <td style="width: 10%">查看详情</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="x in topics">
+                <td>
+                    {{ $index + 1 }}
+                </td>
+                <td>
+                    {{x.name }}
+                </td>
+                <td>
+                    {{ x.selectedCount }}
+                </td>
+                <td>
+                    {{x.date }}
+                </td>
+                <td>
+                    <button class="btn btn-primary" ng-click="topicDetail(x.topicId)">查看详情</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </section>
+</div>
+<div class="col-lg-4">
+
+</div>
+<div class="modal fade sewDetail" id="topicDetail" tabindex="-1" role="dialog" aria-labelledby="topicDetailLabel">
+    <div style="background-color: rgb(255,255,255);;width: 80%;height: 80%;position: fixed;left: 10%;top: 10%;overflow: auto;padding: 10px">
+        <div class="well">选题查看</div>
+        <div class="form-group">
+            <label for="title">标题</label>
+            <input class="form-control" id="title" ng-model="oneTopic.name">
+        </div>
+        <div class="form-group">
+            <label for="teacher2Name">指导助教</label>
+            <input class="form-control" id="teacher2Name" ng-model="oneTopic.teacher2Name">
+        </div>
+        <div class="form-group">
+            <label for="connection2Num">联系电话</label>
+            <input class="form-control" id="connection2Num" ng-model="oneTopic.connection2Num">
+        </div>
+        <div>
+            <label for="contentEditor">主要内容和基本要求</label>
+            <div type="text/plain" id="contentEditor"
+                 style="width:100%;height:300px">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="resultEditor">成果要求</label>
+            <div type="text/plain" id="resultEditor"
+                 style="width:100%;height:300px">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="referenceEditor">参考文献</label>
+            <div type="text/plain" id="referenceEditor"
+                 style="width:100%;height:300px">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="planEditor">进度计划</label>
+            <div type="text/plain" id="planEditor"
+                 style="width:100%;height:300px">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="guideEditor">选题指南</label>
+            <div type="text/plain" id="guideEditor"
+                 style="width:100%;height:300px">
+            </div>
+        </div>
+        <div class="well">
+            任务书填写
+        </div>
+        <div class="form-group">
+            <label for="topicBasisEditor">立题依据</label>
+            <div type="text/plain" id="topicBasisEditor"
+                 style="width:100%;height:300px">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="topicGoalEditor">本课题预期目标</label>
+            <div type="text/plain" id="topicGoalEditor"
+                 style="width:100%;height:300px">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="externalConditionEditor">外部条件</label>
+            <div type="text/plain" id="externalConditionEditor"
+                 style="width:100%;height:300px">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="reference2Editor">参考资料</label>
+            <div type="text/plain" id="reference2Editor"
+                 style="width:100%;height:300px">
+            </div>
+        </div>
+        <button type="button" class="btn btn-default" ng-click="saveTopicBook()">提交任务书</button>
+    </div>
 </div>

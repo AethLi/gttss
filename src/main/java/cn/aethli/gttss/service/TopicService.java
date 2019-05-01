@@ -27,6 +27,8 @@ public class TopicService extends BaseService {
     TopicTypeMapper topicTypeMapper;
     @Autowired
     StudentMapper studentMapper;
+    @Autowired
+    VerifyMapper verifyMapper;
 
 
     @SuppressWarnings("Duplicates")
@@ -219,7 +221,6 @@ public class TopicService extends BaseService {
             e.printStackTrace();
             throw new Exception("未登录");
         }
-        ;
         topicStudentGroup = topicStudentGroupMapper.selectByStudentId_BatchId(topicStudentGroup);
         if (topicStudentGroup == null) {
             return result;
@@ -329,9 +330,9 @@ public class TopicService extends BaseService {
 
     @SuppressWarnings("Duplicates")
     public List<Map<String, Object>> querySelectAbleTopic(Batch currentBatch) {
-        Map<String, Object> result = null;
+        Map<String, Object> result ;
         List<Map<String, Object>> results = new ArrayList<>();
-        List<Topic> topics = null;
+        List<Topic> topics ;
         Map<String, Object> queryMap = new HashMap<>();
         queryMap.put("batchId", currentBatch.getBatchId());
         queryMap.put("status", "and status not in (3,4,5)");
@@ -368,6 +369,7 @@ public class TopicService extends BaseService {
         return results;
     }
 
+    @SuppressWarnings("Duplicates")
     public Object getTeacherHistoryTopic(SysUser sysUser) {
         List<Map<String, Object>> results = new ArrayList<>();
         Map<String, Object> result;
@@ -389,6 +391,7 @@ public class TopicService extends BaseService {
         return results;
     }
 
+    @SuppressWarnings("Duplicates")
     public Object getTeacherVerifyTopic(SysUser sysUser) {
         List<Map<String, Object>> results = new ArrayList<>();
         Map<String, Object> result;
@@ -433,6 +436,120 @@ public class TopicService extends BaseService {
                     result.put("connectionNum", user.getPhoneNum());
                 }
             }
+            results.add(result);
+        }
+        return results;
+    }
+
+    public Object getCustomizeTopicVerify(SysUser sysUser) throws Exception {
+        TopicStudentGroup topicStudentGroup = new TopicStudentGroup();
+        topicStudentGroup.setStudentId(sysUser.getUserId());
+        topicStudentGroup.setBatchId(getCurrentBatch().getBatchId());
+        topicStudentGroup = topicStudentGroupMapper.selectByStudentId_BatchId(topicStudentGroup);
+        if (topicStudentGroup == null) {
+            throw new Exception("未选题");
+        }
+        Topic topic = new Topic();
+        topic.setId(topicStudentGroup.getTopicId());
+        topic = topicMapper.selectById(topic);
+        if (topic == null) {
+            throw new Exception("选题异常");
+        }
+        if (topic.getStatus() == 3 || topic.getStatus() == 4 || topic.getStatus() == 5) {
+            Map<String, Object> result = new HashMap<>();
+            Verify verify = new Verify();
+            verify.setId(topic.getTeacherVerifyId());
+            verify = verifyMapper.selectById(verify);
+            if (verify != null) {
+                result.put("teacher", verify);
+                verify = new Verify();
+                verify.setId(topic.getAdminVerifyId());
+                verify = verifyMapper.selectById(verify);
+                if (verify != null) {
+                    result.put("admin", verify);
+                }
+            }
+            return result;
+        } else {
+            throw new Exception("非自拟题目");
+        }
+    }
+
+    @SuppressWarnings("Duplicates")
+    public Object teacherGetTopicVerifyCheck(SysUser sysUser) {
+        List<Map<String, Object>> results = new ArrayList<>();
+        Map<String, Object> result;
+        TopicWithBLOBs topic = new TopicWithBLOBs();
+        topic.setTeacherId(sysUser.getUserId());
+        topic.setValidityBatch(getCurrentBatch().getBatchId());
+        topic.setStatus(3);
+        List<TopicWithBLOBs> topics = topicMapper.selectByTeacherId_BatchId_Status(topic);
+        topic.setStatus(4);
+        topics.addAll(topicMapper.selectByTeacherId_BatchId_Status(topic));
+        topic.setStatus(5);
+        topics.addAll(topicMapper.selectByTeacherId_BatchId_Status(topic));
+        topic.setStatus(6);
+        topics.addAll(topicMapper.selectByTeacherId_BatchId_Status(topic));
+        for (TopicWithBLOBs t : topics) {
+            result = new HashMap<>();
+            result.put("name", t.getName());
+            result.put("date", new SimpleDateFormat("yyyy-MM-dd").format(t.getCreateDt()));
+            result.put("topicId", t.getId());
+            result.put("verifyStatus", t.getStatus() == 3 ?
+                    "未审核" : t.getStatus() == 4 ?
+                    "未审核" : t.getStatus() == 5 ?
+                    "已通过教师审核" : t.getStatus() == 6 ?
+                    "已通过管理员审核" : "状态有错误，请联系管理员");
+            Map<String, Object> queryMap = new HashMap<>();
+            queryMap.put("topicId", t.getId());
+            List<TopicStudentGroup> topicStudentGroups = topicStudentGroupMapper.selectByTopicId(queryMap);
+            if (topicStudentGroups.size() == 0) {
+                continue;
+            } else {
+                Student student = new Student();
+                student.setUserId(topicStudentGroups.get(0).getStudentId());
+                student = studentMapper.selectById(student);
+                if (student == null) {
+                    continue;
+                } else {
+                    result.put("studentName", student.getName());
+                }
+                SysUser user = new SysUser();
+                user.setUserId(topicStudentGroups.get(0).getStudentId());
+                user = sysUserMapper.selectById(user);
+                if (user == null) {
+                    continue;
+                } else {
+                    result.put("connectionNum", user.getPhoneNum());
+                }
+            }
+            results.add(result);
+        }
+        return results;
+    }
+
+    @SuppressWarnings("Duplicates")
+    public Object getMyTopicT(SysUser sysUser) {
+        List<Map<String, Object>> results = new ArrayList<>();
+        Map<String, Object> result;
+        TopicWithBLOBs topic = new TopicWithBLOBs();
+        topic.setTeacherId(sysUser.getUserId());
+        topic.setValidityBatch(getCurrentBatch().getBatchId());
+        topic.setStatus(0);
+        List<TopicWithBLOBs> topics = topicMapper.selectByTeacherId_BatchId_Status(topic);
+        topic.setStatus(2);
+        topics.addAll(topicMapper.selectByTeacherId_BatchId_Status(topic));
+        topic.setStatus(6);
+        topics.addAll(topicMapper.selectByTeacherId_BatchId_Status(topic));
+        for (TopicWithBLOBs t : topics) {
+            result = new HashMap<>();
+            result.put("name", t.getName());
+            result.put("date", new SimpleDateFormat("yyyy-MM-dd").format(t.getCreateDt()));
+            result.put("topicId", t.getId());
+            Map<String, Object> queryMap = new HashMap<>();
+            queryMap.put("topicId", t.getId());
+            List<TopicStudentGroup> topicStudentGroups = topicStudentGroupMapper.selectByTopicId(queryMap);
+            result.put("selectedCount", topicStudentGroups.size());
             results.add(result);
         }
         return results;
