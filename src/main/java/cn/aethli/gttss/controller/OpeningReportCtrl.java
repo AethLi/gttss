@@ -37,4 +37,14 @@ public class OpeningReportCtrl extends BaseCtrl {
         }
 
     }
+    @RequestMapping("/getOpeningReportById")
+    public Object getOpeningReportById( @RequestBody Map<String, Object> params) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, openingReportService.getOpeningReportById( params));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
+        }
+
+    }
 }

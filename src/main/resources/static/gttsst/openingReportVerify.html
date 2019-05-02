@@ -17,7 +17,6 @@
                 <td style="width: 55%">论文名称</td>
                 <td style="width: 10%">选取人</td>
                 <td style="width: 10%">联系电话</td>
-                <td style="width: 10%">审核状态</td>
                 <td style="width: 10%">查看详情</td>
             </tr>
             </thead>
@@ -27,22 +26,71 @@
                     {{ $index + 1 }}
                 </td>
                 <td>
-                    {{x.title }}
+                    {{x.name }}
                 </td>
                 <td>
-                    {{ x.studentName }}
+                    {{ x.student.name }}
                 </td>
                 <td>
-                    {{x.connectionNum }}
+                    {{x.user.phoneNum }}
                 </td>
                 <td>
-                    {{x.statusName }}
-                </td>
-                <td>
-                    <button class="btn">查看详情</button>
+                    <button class="btn btn-primary" ng-click="topicDetail(x.id)">查看详情</button>
                 </td>
             </tr>
             </tbody>
         </table>
     </section>
+</div>
+<div class="modal fade sewDetail" id="topicDetail" tabindex="-1" role="dialog" aria-labelledby="topicDetailLabel">
+    <div style="background-color: rgb(255,255,255);width: 80%;height: 80%;position: fixed;left: 10%;top: 10%;overflow: auto;padding: 10px">
+        <div class="well">选题查看</div>
+        <div class="form-group">
+            <label for="title">标题</label>
+            <input class="form-control" id="title" ng-model="oneTopic.name">
+        </div>
+        <div class="well">
+            开题报告查看
+        </div>
+        <div class="form-group">
+            <label for="statusAndTrendsEditor">意义现状及趋势</label>
+            <div type="text/plain" id="statusAndTrendsEditor"
+                 style="width:100%;height:300px">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="mainDestinationEditor">主要研究内容</label>
+            <div type="text/plain" id="mainDestinationEditor"
+                 style="width:100%;height:300px">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ideasAndSolutionsEditor">研究思路及方案</label>
+            <div type="text/plain" id="ideasAndSolutionsEditor"
+                 style="width:100%;height:300px">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="planEditor">进度计划</label>
+            <div type="text/plain" id="planEditor"
+                 style="width:100%;height:300px">
+            </div>
+        </div>
+        <div class="well">
+            开题报告查看
+        </div>
+        <div class="form-group">
+            <label for="verifyStatus">审核结果</label>
+            <select class="form-control" id="verifyStatus" ng-model="verifyStatus">
+                <option value="0">通过</option>
+                <option value="1">不通过</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="explanationEditor">审核意见</label>
+            <div style="height: 200px" type="text/plain" id="explanationEditor">
+            </div>
+        </div>
+        <button class="btn btn-primary" ng-click="saveOpeningReportVerify()">保存</button>
+    </div>
 </div>

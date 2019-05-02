@@ -29,4 +29,6 @@ public interface OpeningReportMapper {
     OpeningReportWithBLOBs selectByStudentId(Map<String, Object> queryMap);
 
     void deleteByTopicId(OpeningReportWithBLOBs openingReport);
+
+    void updateWithTeacherVerifyIdByTopicId(OpeningReportWithBLOBs openingReport);
 }

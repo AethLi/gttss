@@ -136,4 +136,7 @@
     <delete id="deleteByTopicId" parameterType="java.util.Map">
         delete from OpeningReport where `topicId`=#{topicId};
     </delete>
+    <update id="updateWithTeacherVerifyIdByTopicId" parameterType="java.util.Map">
+        update OpeningReport set `teacherVerifyId`=#{teacherVerifyId} where `topicId`=#{topicId};
+    </update>
 </mapper>

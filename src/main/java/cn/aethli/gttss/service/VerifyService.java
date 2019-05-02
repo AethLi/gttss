@@ -78,4 +78,42 @@ public class VerifyService extends BaseService {
         }
         return "保存成功";
     }
+
+    public String saveOpeningReportVerify(SysUser sysUser, Map<String, Object> params) {
+        OpeningReportWithBLOBs openingReport = new OpeningReportWithBLOBs();
+        openingReport.setTopicId((String) params.get("id"));
+        openingReport = openingReportMapper.selectByTopicId(openingReport);
+        if (openingReport.getTeacherVerifyId() != null) {
+            Verify verify = new Verify();
+            verify.setId(openingReport.getTeacherVerifyId());
+            verifyMapper.deleteById(verify);
+        }
+        Verify verify = new Verify();
+        verify.setId(UUID.randomUUID().toString());
+        verify.setCreateBy(sysUser.getUserId());
+        verify.setCreateDt(new Date());
+        verify.setStatus(Integer.valueOf((String) params.get("status")));
+        verify.setType(0);
+        verify.setExplanation((String) params.get("explanation"));
+        verifyMapper.insertSelective(verify);
+        openingReport.setTeacherVerifyId(verify.getId());
+        openingReportMapper.updateWithTeacherVerifyIdByTopicId(openingReport);
+        return "保存成功";
+    }
+
+    public Object getOpeningReportVerifyById(Map<String, Object> params) throws Exception {
+        OpeningReportWithBLOBs openingReport = new OpeningReportWithBLOBs();
+        openingReport.setTopicId((String) params.get("id"));
+        openingReport = openingReportMapper.selectByTopicId(openingReport);
+        if (openingReport.getTeacherVerifyId() == null) {
+            throw new Exception("未审核");
+        }
+        Verify verify = new Verify();
+        verify.setId(openingReport.getTeacherVerifyId());
+        verify = verifyMapper.selectById(verify);
+        if (verify == null) {
+            throw new Exception("未审核");
+        }
+        return verify;
+    }
 }

@@ -330,9 +330,9 @@ public class TopicService extends BaseService {
 
     @SuppressWarnings("Duplicates")
     public List<Map<String, Object>> querySelectAbleTopic(Batch currentBatch) {
-        Map<String, Object> result ;
+        Map<String, Object> result;
         List<Map<String, Object>> results = new ArrayList<>();
-        List<Topic> topics ;
+        List<Topic> topics;
         Map<String, Object> queryMap = new HashMap<>();
         queryMap.put("batchId", currentBatch.getBatchId());
         queryMap.put("status", "and status not in (3,4,5)");
@@ -551,6 +551,55 @@ public class TopicService extends BaseService {
             List<TopicStudentGroup> topicStudentGroups = topicStudentGroupMapper.selectByTopicId(queryMap);
             result.put("selectedCount", topicStudentGroups.size());
             results.add(result);
+        }
+        return results;
+    }
+
+    public Object getMyTopicStudentT(SysUser sysUser) {
+        List<Map<String, Object>> results = new ArrayList<>();
+        Map<String, Object> result;
+        TopicWithBLOBs topic = new TopicWithBLOBs();
+        topic.setTeacherId(sysUser.getUserId());
+        topic.setValidityBatch(getCurrentBatch().getBatchId());
+        topic.setStatus(0);
+        List<TopicWithBLOBs> topics = topicMapper.selectByTeacherId_BatchId_Status(topic);
+        topic.setStatus(6);
+        topics.addAll(topicMapper.selectByTeacherId_BatchId_Status(topic));
+        topic.setStatus(7);
+        topics.addAll(topicMapper.selectByTeacherId_BatchId_Status(topic));
+        for (TopicWithBLOBs t : topics) {
+            try {
+                result = ObjectUtils.convertBean(t);
+                result.put("topicId", t.getId());
+                List<TopicStudentGroup> topicStudentGroups = topicStudentGroupMapper.selectByTopicId(result);
+                for (TopicStudentGroup topicStudentGroup : topicStudentGroups) {
+                    Student student = new Student();
+                    try {
+                        result = ObjectUtils.convertBean(t);
+                        student.setUserId(topicStudentGroup.getStudentId());
+                        student = studentMapper.selectById(student);
+                        HashMap<String, Object> studentResult = new HashMap<>();
+                        studentResult.putAll(ObjectUtils.convertBean(student));
+                        result.put("student", studentResult);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        SysUser user = new SysUser();
+                        user.setUserId(student.getUserId());
+                        user = sysUserMapper.selectById(user);
+                        user.setPassword("已去除密码");
+                        Map<String, Object> userResult = new HashMap<>();
+                        userResult.putAll(ObjectUtils.convertBean(user));
+                        result.put("user", userResult);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    results.add(result);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return results;
     }
