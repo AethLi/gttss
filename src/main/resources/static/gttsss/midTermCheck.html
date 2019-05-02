@@ -2,10 +2,11 @@
     <section>
         <div class="well">中期检查记录填写</div>
         <div class="form-group">
-            <label for="condition">指导情况</label>
-            <select class="form-control" id="condition">
-                <option>指导教师坚持每周指导，认真负责，要求严格</option>
-                <option>指导教师指导不够，要求欠严格</option>
+            <label for="comment">指导情况</label>
+            <select class="form-control" id="comment" ng-model="comment">
+                <option selected value="12131">未填写</option>
+                <option value="0">指导教师坚持每周指导，认真负责，要求严格</option>
+                <option value="1">指导教师指导不够，要求欠严格</option>
             </select>
         </div>
         <div class="form-group">
@@ -14,6 +15,7 @@
                  style="width:100%;height:300px">
             </div>
         </div>
+        <button class="btn btn-primary" ng-click="saveMediumTermRecord()">保存</button>
     </section>
 </div>
 <div class="col-lg-4">
@@ -23,15 +25,15 @@
     <form>
         <div class="form-group">
             <label for="topicName">论文名称</label>
-            <input type="" class="form-control" id="topicName">
+            <input class="form-control" id="topicName" ng-model="topicName">
         </div>
         <div class="form-group">
             <label for="teacherName">指导教师</label>
-            <input type="" class="form-control" id="teacherName">
+            <input class="form-control" id="teacherName" ng-model="teacherName">
         </div>
         <div class="form-group">
             <label for="connectionNum">联系电话</label>
-            <input type="" class="form-control" id="connectionNum">
+            <input class="form-control" id="connectionNum" ng-model="connectionNum">
         </div>
     </form>
 </div>

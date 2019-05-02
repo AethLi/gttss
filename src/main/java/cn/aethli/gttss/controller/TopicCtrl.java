@@ -118,7 +118,7 @@ public class TopicCtrl extends BaseCtrl {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getCustomizeTopicVerify(getSysUser(model)));
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
         }
     }

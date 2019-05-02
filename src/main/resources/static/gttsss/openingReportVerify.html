@@ -26,41 +26,25 @@
             <tbody>
             <tr>
                 <td>
-                    1
+                    4
                 </td>
                 <td>
-                    学生签名
+                    选题
                 </td>
                 <td>
-                    是否上传
+                    任务书是否符合学校要求
                 </td>
                 <td>
-                    {{studentSignatureStatus}}
+                    <i class="fa fa-check" aria-hidden="true" ng-show="openingAble.topic"></i>
+                    <i class="fa fa-times" aria-hidden="true" ng-hide="openingAble.topic"></i>
                 </td>
                 <td>
-                    上传清晰的签名图片
+                    联系管理员
                 </td>
             </tr>
             <tr>
                 <td>
                     2
-                </td>
-                <td>
-                    教师签名
-                </td>
-                <td>
-                    是否上传
-                </td>
-                <td>
-                    {{teacherSignatureStatus}}
-                </td>
-                <td>
-                    联系指导教师
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    3
                 </td>
                 <td>
                     任务书填写
@@ -69,7 +53,27 @@
                     教师任务书是否填写完整
                 </td>
                 <td>
-                    {{topicBookStatus}}
+                    <i class="fa fa-check" aria-hidden="true" ng-show="openingAble.topicBook"></i>
+                    <i class="fa fa-times" aria-hidden="true" ng-hide="openingAble.topicBook"></i>
+                </td>
+                <td>
+                    联系指导教师
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    3
+                </td>
+                <td>
+                    任务书审核
+                </td>
+                <td>
+                    任务书是否通过审核
+                </td>
+                <td>
+                    <i class="fa fa-check" aria-hidden="true" ng-show="openingAble.topicBookVerify"></i>
+                    <i class="fa fa-times" aria-hidden="true" ng-hide="openingAble.topicBookVerify"></i>
                 </td>
                 <td>
                     联系指导教师
@@ -80,47 +84,14 @@
                     4
                 </td>
                 <td>
-                    任务进度计划填写
-                </td>
-                <td>
-                    任务书是否符合学校要求
-                </td>
-                <td>
-                    {{topicPlanStatus}}
-                </td>
-                <td>
-                    联系指导教师
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    5
-                </td>
-                <td>
-                    选题指南填写
-                </td>
-                <td>
-                    选题指南是否填写
-                </td>
-                <td>
-                    {{guildStatus}}
-                </td>
-                <td>
-                    联系指导教师
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    6
-                </td>
-                <td>
                     开题报告填写
                 </td>
                 <td>
                     开题报告是否填写
                 </td>
                 <td>
-                    {{openingReportStatus}}
+                    <i class="fa fa-check" aria-hidden="true" ng-show="openingAble.openingReport"></i>
+                    <i class="fa fa-times" aria-hidden="true" ng-hide="openingAble.openingReport"></i>
                 </td>
                 <td>
                     填写开题报告
@@ -128,24 +99,7 @@
             </tr>
             <tr>
                 <td>
-                    7
-                </td>
-                <td>
-                    开题报告进度计划
-                </td>
-                <td>
-                    开题报告进度计划是否符合学校要求
-                </td>
-                <td>
-                    {{openingPlanStatus}}
-                </td>
-                <td>
-                    按要求修改自己的开题计划
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    8
+                   5
                 </td>
                 <td>
                     开题报告审核
@@ -154,27 +108,11 @@
                     是否通过
                 </td>
                 <td>
-                    {{openingReporVerifytStatus}}
+                    <i class="fa fa-check" aria-hidden="true" ng-show="openingAble.openingReportVerify"></i>
+                    <i class="fa fa-times" aria-hidden="true" ng-hide="openingAble.openingReportVerify"></i>
                 </td>
                 <td>
                     联系指导教师或按照意见修改开题报告
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    9
-                </td>
-                <td>
-                    任务书审核
-                </td>
-                <td>
-                    是否通过
-                </td>
-                <td>
-                    {{topicBookVerifyStatus}}
-                </td>
-                <td>
-                    上传清晰的签名图片
                 </td>
             </tr>
             </tbody>

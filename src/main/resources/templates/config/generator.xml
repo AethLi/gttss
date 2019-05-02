@@ -101,7 +101,13 @@
         <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
         <!--<property name="useActualColumnNames" value="true"/>-->
         <!--</table>-->
-        <table tableName="topicBook" domainObjectName="TopicBook" enableCountByExample="false"
+        <!--<table tableName="topicbook" domainObjectName="TopicBook" enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<property name="useActualColumnNames" value="true"/>-->
+        <!--</table>-->
+        <table tableName="mediumtermrecord" domainObjectName="MediumTermRecord" enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">

@@ -1,9 +1,6 @@
 package cn.aethli.gttss.service;
 
-import cn.aethli.gttss.dao.OpeningReportMapper;
-import cn.aethli.gttss.dao.TopicMapper;
-import cn.aethli.gttss.dao.TopicStudentGroupMapper;
-import cn.aethli.gttss.dao.VerifyMapper;
+import cn.aethli.gttss.dao.*;
 import cn.aethli.gttss.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +20,8 @@ public class OpeningReportService extends BaseService {
     TopicMapper topicMapper;
     @Autowired
     VerifyMapper verifyMapper;
+    @Autowired
+    TopicBookMapper topicBookMapper;
 
 
     public Object getMyOpeningReport(SysUser sysUser) throws Exception {
@@ -124,7 +123,24 @@ public class OpeningReportService extends BaseService {
                 }
             }
         }
-        TopicBook topicBook = new TopicBook();
+        TopicBookWithBLOBs topicBook = new TopicBookWithBLOBs();
+        topicBook.setId(topic.getId());
+        topicBook = topicBookMapper.selectById(topicBook);
+        if (topicBook != null) {
+            result.put("topicBook", true);
+            if (topicBook.getAdminVerifyId() != null) {
+                Verify verify = new Verify();
+                verify.setId(topicBook.getAdminVerifyId());
+                verify = verifyMapper.selectById(verify);
+                if (verify != null && verify.getStatus() == 0) {
+                    result.put("topicBookVerify", true);
+                }
+            }
+        }
         return result;
+    }
+
+    public Object getMyOpenAble(SysUser sysUser) {
+        return checkUserOpenAble(sysUser);
     }
 }
