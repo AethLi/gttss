@@ -3,8 +3,8 @@
         <div class="well">答辩稿上传</div>
         <div class="form-group">
             <label for="file">文件选择</label>
-            <input type="file" class="form-control" id="file">
-            <button class="btn btn-primary">上传</button>
+            <input type="file" class="form-control" id="file" name="file">
+            <button class="btn btn-primary" ng-click="defenseDraftUpload()">上传</button>
         </div>
         <table class="table table-bordered table-hover">
             <thead>
@@ -16,13 +16,26 @@
                     上传时间
                 </td>
                 <td>
-                    预览
-                </td>
-                <td>
                     下载
                 </td>
             </tr>
             </thead>
+            <tbody>
+            <tr ng-repeat=" x in files">
+                <td>
+                    {{x.realName}}
+                </td>
+                <td>
+                    {{x.createDt}}
+                </td>
+                <td>
+                    <!--<a ng-click="download(x.id)">-->
+                    <button class="btn" href="/file/downloadById?id={{x.id}}">
+                        下载
+                    </button>
+                </td>
+            </tr>
+            </tbody>
         </table>
     </section>
 </div>
@@ -33,15 +46,15 @@
     <form>
         <div class="form-group">
             <label for="topicName">论文名称</label>
-            <input type="" class="form-control" id="topicName">
+            <input class="form-control" id="topicName" ng-model="topicName">
         </div>
         <div class="form-group">
             <label for="teacherName">指导教师</label>
-            <input type="" class="form-control" id="teacherName">
+            <input class="form-control" id="teacherName" ng-model="teacherName">
         </div>
         <div class="form-group">
             <label for="connectionNum">联系电话</label>
-            <input type="" class="form-control" id="connectionNum">
+            <input class="form-control" id="connectionNum" ng-model="connectionNum">
         </div>
     </form>
 </div>
