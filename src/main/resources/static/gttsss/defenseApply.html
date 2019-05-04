@@ -3,23 +3,23 @@
         <div class="well">用户信息</div>
         <div class="form-group">
             <label for="name">姓名</label>
-            <input class="form-control" id="name">
+            <input class="form-control" id="name" ng-model="name">
         </div>
         <div class="form-group">
             <label for="account">学号</label>
-            <input class="form-control" id="account">
+            <input class="form-control" id="account" ng-model="studentNum">
         </div>
         <div class="form-group">
             <label for="faculty">学院</label>
-            <input class="form-control" id="faculty">
+            <input class="form-control" id="faculty" ng-model="faculty">
         </div>
         <div class="form-group">
             <label for="major">专业</label>
-            <input class="form-control" id="major">
+            <input class="form-control" id="major" ng-model="major">
         </div>
         <div class="form-group">
             <label for="topicName">设计（论文）题目</label>
-            <input class="form-control" id="topicName">
+            <input class="form-control" id="topicName" ng-model="topicName">
         </div>
         <div class="form-group">
             <label for="applyReason">申请理由</label>
@@ -27,36 +27,23 @@
                  style="width:100%;height:300px">
             </div>
         </div>
+        <button class="btn btn-primary" ng-click="saveDefenseApply()">保存</button>
     </section>
 </div>
 <div class="col-lg-4">
-    <div class="well">
-        <div class="form-group">
-            <label for="applyReason">指导教师意见</label>
-            <select>
-                <option>同意申请</option>
-                <option>不同意</option>
-            </select>
-            <textarea class="form-control" id="teacherOpinion" rows="5">
-            </textarea>
+    <div class="well">审核结果</div>
+    <div class="form-group">
+        <label for="teacherVerifyEditor">指导教师意见</label>
+        <input disabled ng-model="teacherVerifyStatusName">
+        <div type="text/plain" id="teacherVerifyEditor"
+             style="width:100%;height:300px">
         </div>
-        <div class="form-group">
-            <label for="teachingAndResearchSectionOpinion">教研室意见</label>
-            <select>
-                <option>同意申请</option>
-                <option>不同意</option>
-            </select>
-            <textarea class="form-control" id="teachingAndResearchSectionOpinion" rows="5">
-            </textarea>
-        </div>
-        <div class="form-group">
-            <label for="departmentOpinion">院系分管人意见</label>
-            <select>
-                <option>同意申请</option>
-                <option>不同意</option>
-            </select>
-            <textarea class="form-control" id="departmentOpinion" rows="5">
-            </textarea>
+    </div>
+    <div class="form-group">
+        <label for="adminVerifyEditor">管理员意见</label>
+        <input disabled ng-model="adminVerifyStatusName">
+        <div type="text/plain" id="adminVerifyEditor"
+             style="width:100%;height:300px">
         </div>
     </div>
 </div>

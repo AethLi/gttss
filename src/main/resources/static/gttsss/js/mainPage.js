@@ -172,16 +172,16 @@ angular.module('studentApp', ['ui.router', 'oc.lazyLoad'])
                     }]
                 }
             })
-        // .state("openingReportVerify", {
-        //     controller: "openingReportVerifyCtrl",
-        //     url: "/openingReportVerify",
-        //     templateUrl: '/gttsss/openingReportVerify.html',
-        //     resolve: {
-        //         loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-        //             return $ocLazyLoad.load({
-        //                 files: ['/gttsss/js/openingReportVerify.js', '/gttsss/css/openingReportVerify.css']
-        //             })
-        //         }]
-        //     }
-        // })
+            .state("resultSubmit", {
+                controller: "resultSubmitCtrl",
+                url: "/resultSubmit",
+                templateUrl: '/gttsss/resultSubmit.html',
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            files: ['/gttsss/js/resultSubmit.js', '/gttsss/css/resultSubmit.css']
+                        })
+                    }]
+                }
+            })
     });

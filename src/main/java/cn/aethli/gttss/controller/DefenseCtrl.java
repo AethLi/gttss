@@ -20,13 +20,23 @@ public class DefenseCtrl extends BaseCtrl {
     @Autowired
     DefenseService defenseService;
 
-    @RequestMapping("/saveDefenceApply")
-    public Object saveDefenceApply(Model model, @RequestBody Map<String, Object> params) {
+    @RequestMapping("/saveDefenseApply")
+    public Object saveDefenseApply(Model model, @RequestBody Map<String, Object> params) {
         try {
-            return new ResponseMessage(ResponseMessage.STATUS_OK, defenseService.saveDefenceApply(getSysUser(model), params));
+            return new ResponseMessage(ResponseMessage.STATUS_OK, defenseService.saveDefenseApply(getSysUser(model), params));
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
         }
     }
+    @RequestMapping("/getMyDefenseApply")
+    public Object getMyDefenseApply(Model model) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, defenseService.getMyDefenseApply(getSysUser(model)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
+        }
+    }
+
 }

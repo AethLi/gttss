@@ -3,9 +3,13 @@ package cn.aethli.gttss.controller;
 import cn.aethli.gttss.domain.ResponseMessage;
 import cn.aethli.gttss.domain.SysUser;
 import cn.aethli.gttss.service.DefenseService;
+import cn.aethli.gttss.service.ResultSubmitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,11 +23,23 @@ public class FileCtrl extends BaseCtrl {
 
     @Autowired
     DefenseService defenseService;
+    @Autowired
+    ResultSubmitService resultSubmitService;
 
     @RequestMapping("/defenseDraftUpload")
     public Object defenseDraftUpload(@RequestParam(value = "file", required = true) MultipartFile file, Model model) {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, defenseService.defenseDraftUpload(file, getSysUser(model)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
+        }
+    }
+
+    @RequestMapping("/resultSubmitUpload")
+    public Object resultSubmitUpload(@RequestParam(value = "file", required = true) MultipartFile file, Model model) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, resultSubmitService.resultSubmitUpload(file, getSysUser(model)));
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());

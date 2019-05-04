@@ -21,4 +21,8 @@ public interface DefenseApplyMapper {
      * @mbg.generated Sat May 04 01:58:52 CST 2019
      */
     int insertSelective(DefenseApply record);
+
+    DefenseApply selectById(DefenseApply defenseApply);
+
+    void updateWithReasonById(DefenseApply defenseApply);
 }
