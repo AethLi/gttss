@@ -8,7 +8,7 @@ angular.module('studentApp', [])
             form.append("file", $('#file')[0].files[0]);
             $http({
                 method: 'POST',
-                url: '/file/defenseDraftUpload',
+                url: '/file/resultSubmitUpload',
                 data: form,
                 headers: {'Content-Type': undefined},
                 transformRequest: angular.identity
@@ -19,7 +19,7 @@ angular.module('studentApp', [])
             })
         };
         $http({
-            url: "/file/getMyDefenseDraft",
+            url: "/file/getMyResultSubmit",
             method: "POST",
         }).then(function s(result) {
             if (result.data.status === 0) {

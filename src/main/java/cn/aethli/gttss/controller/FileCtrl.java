@@ -4,6 +4,7 @@ import cn.aethli.gttss.domain.ResponseMessage;
 import cn.aethli.gttss.domain.SysUser;
 import cn.aethli.gttss.service.DefenseService;
 import cn.aethli.gttss.service.ResultSubmitService;
+import cn.aethli.gttss.service.SysFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,8 @@ public class FileCtrl extends BaseCtrl {
     DefenseService defenseService;
     @Autowired
     ResultSubmitService resultSubmitService;
+    @Autowired
+    SysFileService sysFileService;
 
     @RequestMapping("/defenseDraftUpload")
     public Object defenseDraftUpload(@RequestParam(value = "file", required = true) MultipartFile file, Model model) {
@@ -56,10 +59,21 @@ public class FileCtrl extends BaseCtrl {
         }
     }
 
+
+    @RequestMapping("/getMyResultSubmit")
+    public Object getMyResultSubmit(Model model) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, resultSubmitService.getMyResultSubmit(getSysUser(model)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
+        }
+    }
+
     @RequestMapping("/downloadById")
     public Object downloadById(HttpServletRequest request, HttpServletResponse response) {
         try {
-            defenseService.downloadById(request, response);
+            sysFileService.downloadById(request, response);
             return null;
         } catch (Exception e) {
             e.printStackTrace();

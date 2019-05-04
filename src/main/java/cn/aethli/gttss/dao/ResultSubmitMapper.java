@@ -20,4 +20,8 @@ public interface ResultSubmitMapper {
      * @mbg.generated Sat May 04 17:56:19 CST 2019
      */
     int insertSelective(ResultSubmit record);
+
+    ResultSubmit selectById(ResultSubmit resultSubmit);
+
+    void updateWithFileIdById(ResultSubmit resultSubmit);
 }
