@@ -131,4 +131,32 @@ public class UserService {
         studentMapper.updateWithNameById(student);
         return null;
     }
+
+    public Object loginA(Map<String, Object> params) throws Exception {
+        SysUser sysUser = new SysUser();
+        sysUser.setAccount((String) params.get("account"));
+        sysUser = sysUserMapper.selectByAccount(sysUser);
+        if (sysUser == null) {
+            throw new Exception("账号或密码错误");
+        }
+        if (sysUser.getPermission() != 2) {
+            throw new Exception("用户身份不正确");
+        }
+        sysUser.setPassword("已去除密码返回值");
+        return sysUser;
+    }
+
+    public String changePassword(SysUser sysUser, Map<String, Object> params) throws Exception {
+        sysUser = sysUserMapper.selectById(sysUser);
+        if (sysUser.getPassword().equals(StringUtils.toMD5((String) params.get("old")))) {
+            sysUser.setPassword(StringUtils.toMD5((String) params.get("new")));
+            try {
+                sysUserMapper.updateWithPasswordById(sysUser);
+            } catch (Exception e) {
+                throw new Exception("修改失败");
+            }
+            return "修改成功";
+        }
+        return "原密码输入错误";
+    }
 }

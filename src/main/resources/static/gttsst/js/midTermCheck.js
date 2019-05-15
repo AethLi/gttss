@@ -1,83 +1,55 @@
 angular.module('studentApp', [])
-    .controller("midTermCheckCtrl", function ($scope,$http) {
-        $scope.topics = [
-            {
-                studentName: "杨仁杰",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选",
-                topicDate: "2019-04-18"
-            }, {
-                studentName: "杨仁杰",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选",
-                topicDate: "2019-04-18"
-            }, {
-                studentName: "杨仁杰",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选",
-                topicDate: "2019-04-18"
-            }, {
-                studentName: "杨仁杰",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选",
-                topicDate: "2019-04-18"
-            }, {
-                studentName: "杨仁杰",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选",
-                topicDate: "2019-04-18"
-            }, {
-                studentName: "杨仁杰",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选",
-                topicDate: "2019-04-18"
-            }, {
-                studentName: "杨仁杰",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选",
-                topicDate: "2019-04-18"
-            }, {
-                studentName: "杨仁杰",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选",
-                topicDate: "2019-04-18"
-            }, {
-                studentName: "杨仁杰",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选",
-                topicDate: "2019-04-18"
-            }, {
-                studentName: "杨仁杰",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选",
-                topicDate: "2019-04-18"
-            }, {
-                studentName: "杨仁杰",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选",
-                topicDate: "2019-04-18"
-            }, {
-                studentName: "杨仁杰",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选",
-                topicDate: "2019-04-18"
-            }, {
-                studentName: "杨仁杰",
-                connectionNum: "18980287516",
-                title: "基于VTK的医学影像面绘制设计与实现",
-                statusName: "已被选",
-                topicDate: "2019-04-18"
-            }]
+    .controller("midTermCheckCtrl", function ($scope, $http) {
+        $scope.topics = [];
+        let summaryEditor = UM.getEditor('summaryEditor');
+
+        $scope.comment = "12131";
+        $scope.oneTopic;
+
+        $http({
+            url: "/topic/getMyTopicStudentT",
+            method: "POST"
+        }).then(function s(result) {
+            if (result.data.status === 0) {
+                $scope.topics = result.data.model;
+            } else {
+                alert(result.data.message);
+            }
+        }, function e(result) {
+            alert("网络错误，获取教师审核列表失败");
+        });
+
+
+        $scope.topicDetail = function (id) {
+            $http({
+                url: "/topic/getTopicById",
+                method: "POST",
+                data: {
+                    id: id
+                }
+            }).then(function s(result) {
+                if (result.data.status === 0) {
+                    $scope.oneTopic = result.data.model;
+                    $http({
+                        url: "/mediumTermRecord/getMediumTermRecordById",
+                        data: {
+                            id: $scope.oneTopic.id
+                        },
+                        method: "POST"
+                    }).then(function s(result) {
+                        if (result.data.status === 0) {
+                            $scope.comment = result.data.model.comment.toString();
+                            summaryEditor.setContent(result.data.model.summary);
+                        }
+                    }, function e() {
+                        alert("网络错误");
+                    });
+                    $('#topicDetail').modal();
+                } else {
+                    alert(result.data.message);
+                }
+            }, function e(result) {
+                alert("网络错误");
+            })
+        };
     });

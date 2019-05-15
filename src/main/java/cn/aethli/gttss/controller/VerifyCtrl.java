@@ -38,6 +38,15 @@ public class VerifyCtrl extends BaseCtrl {
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
         }
     }
+    @RequestMapping(value = "/customizeTopicAdminVerify")
+    public Object customizeTopicAdminVerify(Model model, @RequestBody Map<String, Object> params) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, verifyService.customizeTopicAdminVerify(getSysUser(model), params));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
+        }
+    }
     @RequestMapping(value = "/saveOpeningReportVerify")
     public Object saveOpeningReportVerify(Model model, @RequestBody Map<String, Object> params) {
         try {
@@ -47,10 +56,41 @@ public class VerifyCtrl extends BaseCtrl {
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
         }
     }
+
     @RequestMapping(value = "/getOpeningReportVerifyById")
-    public Object getOpeningReportVerifyById( @RequestBody Map<String, Object> params) {
+    public Object getOpeningReportVerifyById(@RequestBody Map<String, Object> params) {
         try {
-            return new ResponseMessage(ResponseMessage.STATUS_OK, verifyService.getOpeningReportVerifyById( params));
+            return new ResponseMessage(ResponseMessage.STATUS_OK, verifyService.getOpeningReportVerifyById(params));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/getVerifyById")
+    public Object getVerifyById(@RequestBody Map<String, Object> params) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, verifyService.getVerifyById(params));
+        } catch (Exception e) {
+//            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/saveDefenseVerify")
+    public Object saveDefenseVerify(Model model,@RequestBody Map<String, Object> params) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, verifyService.saveDefenseVerify(getSysUser(model),params));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/saveTopicBookVerify")
+    public Object saveTopicBookVerify(Model model,@RequestBody Map<String, Object> params) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, verifyService.saveTopicBookVerify(getSysUser(model),params));
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());

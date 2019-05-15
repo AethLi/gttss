@@ -15,7 +15,7 @@ import java.util.Map;
 @SessionAttributes(value = {"identifyingCode", "currentUser", "verifyT"}, types = {String.class, SysUser.class, String.class})
 
 @RestController
-@RequestMapping("/defense")
+    @RequestMapping("/defense")
 public class DefenseCtrl extends BaseCtrl {
     @Autowired
     DefenseService defenseService;
@@ -25,7 +25,7 @@ public class DefenseCtrl extends BaseCtrl {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, defenseService.saveDefenseApply(getSysUser(model), params));
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
         }
     }
@@ -34,9 +34,18 @@ public class DefenseCtrl extends BaseCtrl {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, defenseService.getMyDefenseApply(getSysUser(model)));
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
         }
     }
 
+    @RequestMapping("/getDefenseApplyById")
+    public Object getDefenseApplyById(Model model, @RequestBody Map<String, Object> params) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, defenseService.getDefenseApplyById(getSysUser(model), params));
+        } catch (Exception e) {
+//            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
+        }
+    }
 }

@@ -3,18 +3,12 @@ package cn.aethli.gttss.service;
 import cn.aethli.gttss.dao.BatchMapper;
 import cn.aethli.gttss.dao.TopicMapper;
 import cn.aethli.gttss.dao.TopicStudentGroupMapper;
-import cn.aethli.gttss.domain.Batch;
-import cn.aethli.gttss.domain.SysUser;
-import cn.aethli.gttss.domain.Topic;
-import cn.aethli.gttss.domain.TopicStudentGroup;
+import cn.aethli.gttss.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class BaseService {
@@ -58,5 +52,27 @@ public class BaseService {
         queryMap.put("date", new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime()));
         Batch batch = batchMapper.selectByDate(queryMap);
         return batch;
+    }
+
+    public List<Map<String, Object>> getMyStudentTopic(SysUser sysUser) {
+        List<Map<String, Object>> results = new ArrayList<>();
+        TopicWithBLOBs topic = new TopicWithBLOBs();
+        topic.setTeacherId(sysUser.getUserId());
+        topic.setValidityBatch(getCurrentBatch().getBatchId());
+        List<TopicWithBLOBs> topics = topicMapper.selectByTeacherId_BatchId(topic);
+        for (Topic t : topics) {
+            if (topic.getSelectStatus() != 0) {
+                Map<String,Object> result=new HashMap<>();
+                result.put("topicId",t.getId());
+                result.put("topicName",t.getName());
+                result.put("topicStatus",t.getStatus());
+
+                Map<String, Object> queryMao = new HashMap<>();
+                queryMao.put("topicId", t.getId());
+                List<TopicStudentGroup> topicStudentGroups = topicStudentGroupMapper.selectByTopicId(queryMao);
+
+            }
+        }
+        return null;
     }
 }

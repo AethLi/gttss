@@ -52,4 +52,15 @@ public class MediumTermRecordService extends BaseService {
         mediumTermRecord = mediumTermRecordMapper.selectById(mediumTermRecord);
         return mediumTermRecord;
     }
+
+    public Object getMediumTermRecordById(SysUser sysUser, Map<String, Object> params) throws Exception {
+        MediumTermRecord mediumTermRecord = new MediumTermRecord();
+        mediumTermRecord.setId((String) params.get("id"));
+        mediumTermRecord = mediumTermRecordMapper.selectById(mediumTermRecord);
+        if (mediumTermRecord==null){
+            throw new Exception("未填写中期检查");
+        }
+        return mediumTermRecord;
+    }
+
 }

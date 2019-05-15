@@ -10,10 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.net.URLEncoder;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.*;
 
 @Service
@@ -180,6 +179,38 @@ public class DefenseService extends BaseService {
             verify.setId(defenseApply.getAdminVerify());
             verify = verifyMapper.selectById(verify);
             result.put("adminVerify", verify);
+        }
+        return result;
+    }
+
+    public Object getDefenseApplyById(SysUser sysUser, Map<String, Object> params) throws Exception {
+        DefenseApply defenseApply = new DefenseApply();
+        defenseApply.setId((String) params.get("id"));
+        defenseApply = defenseApplyMapper.selectById(defenseApply);
+        if (defenseApply == null) {
+            throw new Exception("未填写答辩申请");
+        }
+        return defenseApply;
+    }
+
+    @SuppressWarnings("Duplicates")
+    public Object getDefenseDraftById(SysUser sysUser, Map<String, Object> params) throws Exception {
+        Map<String, Object> result = new HashMap<>();
+        DefenseDraft defenseDraft = new DefenseDraft();
+        defenseDraft.setId((String) params.get("id"));
+        defenseDraft = defenseDraftMapper.selectById(defenseDraft);
+        if (defenseDraft == null) {
+            throw new Exception("未上传答辩稿");
+        } else {
+            SysFile sysFile = new SysFile();
+            sysFile.setId(defenseDraft.getFileId());
+            sysFile = sysFileMapper.selectById(sysFile);
+            result.put("dd", defenseDraft);
+            if (sysFile == null) {
+                throw new Exception("文件错误");
+            } else {
+                result.put("file", sysFile);
+            }
         }
         return result;
     }

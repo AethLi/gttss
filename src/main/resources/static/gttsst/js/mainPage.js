@@ -35,6 +35,7 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
                 $scope.unitName = result.data.model.unitName;
             } else {
                 alert(result.data.message);
+                $scope.logout();
             }
         }, function error(result) {
             alert(result.data.message);

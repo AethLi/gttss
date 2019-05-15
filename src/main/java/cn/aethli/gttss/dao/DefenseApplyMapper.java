@@ -25,4 +25,6 @@ public interface DefenseApplyMapper {
     DefenseApply selectById(DefenseApply defenseApply);
 
     void updateWithReasonById(DefenseApply defenseApply);
+
+    void updateWithTeacherVerifyIdById(DefenseApply defenseApply);
 }

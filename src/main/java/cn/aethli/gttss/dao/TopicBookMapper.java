@@ -25,4 +25,7 @@ public interface TopicBookMapper {
     void deleteById(TopicBook topicBook);
 
     TopicBookWithBLOBs selectById(TopicBookWithBLOBs topicBook);
+
+    void updateWithAdminVerifyIdById(TopicBookWithBLOBs topicBookWithBLOBs);
+
 }

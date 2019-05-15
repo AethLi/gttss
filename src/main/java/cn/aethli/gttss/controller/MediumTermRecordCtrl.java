@@ -39,4 +39,24 @@ public class MediumTermRecordCtrl extends BaseCtrl {
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
         }
     }
+
+    @RequestMapping("/getMediumTermRecordById")
+    public Object getMediumTermRecordById(Model model, @RequestBody Map<String, Object> params) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, mediumTermRecordService.getMediumTermRecordById(getSysUser(model), params));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
+        }
+    }
+
+//    @RequestMapping("/saveMediumTermRecordById")
+//    public Object getMyMediumTermRecordById(Model model, @RequestBody Map<String, Object> params) {
+//        try {
+//            return new ResponseMessage(ResponseMessage.STATUS_OK, mediumTermRecordService.saveMediumTermRecordById(getSysUser(model), params));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
+//        }
+//    }
 }

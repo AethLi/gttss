@@ -1,8 +1,6 @@
 <div class="col-lg-8">
     <section>
-        <div class="well">
-            初稿审核
-        </div>
+        <div class="well">答辩申请批阅</div>
         <div>
             <form class="form-inline">
                 <div class="form-group">
@@ -16,11 +14,9 @@
             <thead>
             <tr>
                 <td style="width: 5%">序号</td>
-                <td style="width: 45%">论文名称</td>
+                <td style="width: 55%">论文名称</td>
                 <td style="width: 10%">选取人</td>
                 <td style="width: 10%">联系电话</td>
-                <td style="width: 10%">提交时间</td>
-                <td style="width: 10%">审核状态</td>
                 <td style="width: 10%">查看详情</td>
             </tr>
             </thead>
@@ -30,25 +26,52 @@
                     {{ $index + 1 }}
                 </td>
                 <td>
-                    {{x.title }}
+                    {{x.name }}
                 </td>
                 <td>
-                    {{ x.studentName }}
+                    {{ x.student.name }}
                 </td>
                 <td>
-                    {{x.connectionNum }}
+                    {{x.user.phoneNum }}
                 </td>
                 <td>
-                    {{x.topicDate }}
-                </td>
-                <td>
-                    {{x.statusName }}
-                </td>
-                <td>
-                    <button class="btn">查看详情</button>
+                    <button class="btn btn-primary" ng-click="topicDetail(x.id)">查看详情</button>
                 </td>
             </tr>
             </tbody>
         </table>
     </section>
+</div>
+<div class="col-lg-4">
+
+</div>
+<div class="modal fade sewDetail" id="topicDetail" tabindex="-1" role="dialog" aria-labelledby="topicDetailLabel">
+    <div style="background-color: rgb(255,255,255);;width: 80%;height: 80%;position: fixed;left: 10%;top: 10%;overflow: auto;padding: 10px">
+        <div class="well">答辩申请批阅</div>
+        <div class="form-group">
+            <label for="title">标题</label>
+            <input class="form-control" id="title" ng-model="oneTopic.name">
+        </div>
+        <div class="form-group">
+            <label for="summaryEditor">申请理由</label>
+            <div style="height: 200px" type="text/plain" id="summaryEditor">
+            </div>
+        </div>
+        <div class="well">
+            审核填写
+        </div>
+        <div class="form-group">
+            <label for="">审核结果</label>
+            <select class="form-control" id="" ng-model="verifyStatus">
+                <option value="0">通过</option>
+                <option value="1">不通过</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="teacherExplanation">审核意见</label>
+            <div style="height: 200px" type="text/plain" id="teacherExplanation">
+            </div>
+        </div>
+        <button class="btn btn-primary" ng-click="saveTeacherExplanation()">提交</button>
+    </div>
 </div>

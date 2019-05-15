@@ -25,7 +25,7 @@ public class OpeningReportCtrl extends BaseCtrl {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, openingReportService.getMyOpeningReport(getSysUser(model)));
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
         }
     }

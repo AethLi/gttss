@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title>毕业设计系统</title>
+    <title>毕业设计系统</title>
+    <meta charset="UTF-8">
+    <link href="/webjars/bootstrap/3.4.1/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/mainPage.css" type="text/css" rel="stylesheet">
+    <link href="/webjars/layui/2.4.5/css/layui.css" type="text/css" rel="stylesheet">
+    <link href="../common/uEditor/themes/default/css/ueditor.css" rel="stylesheet" type="text/css">
+    <link href="../common/uEditor-mini/themes/default/css/umeditor.min.css" rel="stylesheet" type="text/css">
+    <script src="/webjars/jquery/3.3.1-2/jquery.min.js"></script>
+    <script src="../common/uEditor-mini/umeditor.config.js"></script>
+    <script src="../common/uEditor-mini/umeditor.min.js"></script>
+    <script src="../common/uEditor-mini/lang/zh-cn/zh-cn.js"></script>
+    <script src="../common/uEditor/ueditor.config.js"></script>
+    <script src="../common/uEditor/ueditor.all.js"></script>
+    <script src="../common/uEditor/lang/zh-cn/zh-cn.js"></script>
+    <script src="/webjars/layui/2.4.5/layui.js"></script>
+    <script src="/webjars/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/webjars/angular/1.7.5/angular.min.js"></script>
+    <script src="/webjars/ocLazyLoad/1.1.0/dist/ocLazyLoad.min.js"></script>
+    <script src="/webjars/angular-route/1.7.5/angular-route.min.js"></script>
+    <script src="/webjars/angular-ui-router/1.0.20/release/angular-ui-router.min.js"></script>
+    <script src="./js/mainPage.js"></script>
+</head>
+<body ng-app="adminApp" ng-controller="mainPageCtrl">
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" style="cursor:pointer;">数计学院党务管理系统</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav" style="float: right">
+                <li class="nav-item">
+                    <a class="nav-link " ng-click="logout()" style="cursor:pointer;">退出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="col-lg-2">
+    <div class="layui-collapse" lay-accordion="">
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">用户</h2>
+            <div class="layui-colla-content layui-show">
+                <li><a href="#!/securitySetting">安全设置</a></li>
+            </div>
+        </div>
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">选题</h2>
+            <div class="layui-colla-content">
+                <li><a href="#!/allTopic">全部课题查看</a></li>
+                <li><a href="#!/currentBatchTopic">当届课题查看</a></li>
+                <li><a href="#!/customizeTopicVerify">学生与教师自拟题目审核</a></li>
+                <li><a href="#!/topicBookVerify">任务书审核</a></li>
+            </div>
+        </div>
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">开题</h2>
+            <div class="layui-colla-content">
+                <li><a href="#!/openingReportVerify">开题报告审核</a></li>
+                <li><a href="#!/openingReportGroup">开题答辩分组信息查看</a></li>
+            </div>
+        </div>
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">初稿查看</h2>
+            <div class="layui-colla-content">
+                <li><a href="#!/defenseVerify">答辩申请表批阅</a></li>
+                <li><a href="#!/">毕业设计成果查看</a></li>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="col-lg-10">
+    <ui-view></ui-view>
+</div>
+</body>
+</html>

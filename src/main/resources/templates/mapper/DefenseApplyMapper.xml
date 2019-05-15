@@ -96,4 +96,7 @@
     <update id="updateWithReasonById" parameterType="java.util.Map">
         update DefenseApply set `reason`=#{reason} where `id`=#{id};
     </update>
+    <update id="updateWithTeacherVerifyIdById" parameterType="java.util.Map">
+        update DefenseApply set `teacherVerify`=#{teacherVerify} where `id`=#{id};
+    </update>
 </mapper>

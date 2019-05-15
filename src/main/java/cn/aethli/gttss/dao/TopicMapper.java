@@ -1,5 +1,6 @@
 package cn.aethli.gttss.dao;
 
+import cn.aethli.gttss.domain.SysUser;
 import cn.aethli.gttss.domain.Topic;
 import cn.aethli.gttss.domain.TopicWithBLOBs;
 import org.springframework.stereotype.Component;
@@ -25,7 +26,7 @@ public interface TopicMapper {
      */
     int insertSelective(TopicWithBLOBs record);
 
-    List<Topic> selectByBatchId(Map<String, Object> queryMap);
+    List<TopicWithBLOBs> selectByBatchId(Map<String, Object> queryMap);
 
     TopicWithBLOBs selectById(Topic topic);
 
@@ -46,4 +47,10 @@ public interface TopicMapper {
     void updateWithStatusById(Topic topic);
 
     void updateWithStatusTeacherVerifyIdById(TopicWithBLOBs topic);
+
+    List<TopicWithBLOBs> selectWithAll();
+
+    List<TopicWithBLOBs> selectByBatchId_Status(TopicWithBLOBs topic);
+
+    void updateWithStatusAdminVerifyIdById(TopicWithBLOBs topic);
 }

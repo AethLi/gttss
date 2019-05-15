@@ -1,0 +1,109 @@
+<div class="col-lg-8">
+    <section>
+        <div class="well">学生自拟题目审核</div>
+        <div>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="teacher">姓名</label>
+                    <input type="text" class="form-control" id="teacher" placeholder="输入学生姓名查看">
+                </div>
+                <button type="button" class="btn btn-default">搜索</button>
+            </form>
+        </div>
+        <table class="table table-bordered table-hover" style="margin-top: 2%">
+            <thead>
+            <tr>
+                <td style="width: 5%">序号</td>
+                <td style="width: 35%">论文名称</td>
+                <td style="width: 10%">时间</td>
+                <td style="width: 20%">审核状态</td>
+                <td style="width: 10%">查看详情</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="x in topics">
+                <td>
+                    {{ $index + 1 }}
+                </td>
+                <td>
+                    {{x.name }}
+                </td>
+                <td>
+                    {{x.date }}
+                </td>
+                <td>
+                    {{x.verifyStatus }}
+                </td>
+                <td>
+                    <button class="btn" ng-click="topicVerify(x.topicId)">查看详情</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+<div class="col-lg-4">
+
+</div>
+<div class="modal fade sewDetail" id="topicDetail" tabindex="-1" role="dialog" aria-labelledby="topicDetailLabel">
+    <div style="background-color: rgb(255,255,255);;width: 80%;height: 80%;position: fixed;left: 10%;top: 10%;overflow: auto;padding: 10px">
+        <div class="well">选题查看</div>
+        <div class="form-group">
+            <label for="title">标题</label>
+            <input class="form-control" id="title" ng-model="oneTopic.name">
+        </div>
+        <div class="form-group">
+            <label for="type">类型</label>
+            <input class="form-control" id="type" ng-model="oneTopic.type">
+        </div>
+        <div class="form-group">
+            <label for="origin">来源</label>
+            <input class="form-control" id="origin" ng-model="oneTopic.origin">
+        </div>
+        <div class="form-group">
+            <label for="property">性质</label>
+            <input class="form-control" id="property" ng-model="oneTopic.property">
+        </div>
+        <div class="form-group">
+            <label for="content">主要内容和基本要求</label>
+            <div style="height: 200px" type="text/plain" id="content">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="result">成果要求</label>
+            <div style="height: 200px" type="text/plain" id="result">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="reference">参考文献</label>
+            <div style="height: 200px" type="text/plain" id="reference">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="plan">进度计划</label>
+            <div style="height: 200px" type="text/plain" id="plan">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="guide">选题指南</label>
+            <div style="height: 200px" type="text/plain" id="guide">
+            </div>
+        </div>
+        <div class="well">
+            审核填写
+        </div>
+        <div class="form-group">
+            <label for="">审核结果</label>
+            <select class="form-control" id="" ng-model="verifyStatus">
+                <option value="0">通过</option>
+                <option value="1">不通过</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="teacherExplanation">审核意见</label>
+            <div style="height: 200px" type="text/plain" id="teacherExplanation">
+            </div>
+        </div>
+        <button class="btn btn-primary" ng-click="saveTeacherExplanation()">提交</button>
+    </div>
+</div>

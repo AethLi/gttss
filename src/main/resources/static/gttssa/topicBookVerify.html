@@ -1,0 +1,103 @@
+<div class="col-lg-8">
+    <section>
+        <div class="well">任务书填写</div>
+        <div>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="teacher">标题</label>
+                    <input type="text" class="form-control" id="teacher" placeholder="输入论文标题查看">
+                </div>
+                <button type="button" class="btn btn-default">搜索</button>
+            </form>
+        </div>
+        <table class="table table-bordered table-hover" style="margin-top: 2%">
+            <thead>
+            <tr>
+                <td style="width: 5%">序号</td>
+                <td style="width: 45%">论文名称</td>
+                <td style="width: 10%">教师名字</td>
+                <td style="width: 10%">联系电话</td>
+                <td style="width: 10%">查看详情</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="x in topics">
+                <td>
+                    {{ $index + 1 }}
+                </td>
+                <td>
+                    {{x.title }}
+                </td>
+                <td>
+                    {{x.teacherName}}
+                </td>
+                <td>
+                    {{ x.connectionNum }}
+                </td>
+                <td>
+                    <button class="btn btn-primary" ng-click="topicDetail(x.id)">查看详情</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+<div class="col-lg-4">
+
+</div>
+<div class="modal fade sewDetail" id="topicDetail" tabindex="-1" role="dialog" aria-labelledby="topicDetailLabel">
+    <div style="background-color: rgb(255,255,255);;width: 80%;height: 80%;position: fixed;left: 10%;top: 10%;overflow: auto;padding: 10px">
+        <div class="well">选题查看</div>
+        <div class="form-group">
+            <label for="title">标题</label>
+            <input class="form-control" id="title" ng-model="oneTopic.name">
+        </div>
+        <div class="form-group">
+            <label for="connection2Num">联系电话</label>
+            <input class="form-control" id="connection2Num" ng-model="oneTopic.connection2Num">
+        </div>
+        <div class="well">
+            任务书
+        </div>
+        <div class="form-group">
+            <label for="topicBasisEditor">立题依据</label>
+            <div type="text/plain" id="topicBasisEditor"
+                 style="width:100%;height:300px">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="topicGoalEditor">本课题预期目标</label>
+            <div type="text/plain" id="topicGoalEditor"
+                 style="width:100%;height:300px">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="externalConditionEditor">外部条件</label>
+            <div type="text/plain" id="externalConditionEditor"
+                 style="width:100%;height:300px">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="reference2Editor">参考资料</label>
+            <div type="text/plain" id="reference2Editor"
+                 style="width:100%;height:300px">
+            </div>
+        </div>
+        <div class="well">
+            审核填写
+        </div>
+        <div class="form-group">
+            <label for="">审核结果</label>
+            <select class="form-control" id="" ng-model="verifyStatus">
+                <option value="0">通过</option>
+                <option value="1">不通过</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="adminExplanation">审核意见</label>
+            <div style="height: 200px" type="text/plain" id="adminExplanation">
+            </div>
+        </div>
+        <button class="btn btn-primary" ng-click="saveTopicBookVerify()">提交</button>
+    </div>
+</div>

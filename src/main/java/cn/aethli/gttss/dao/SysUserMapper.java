@@ -24,4 +24,6 @@ public interface SysUserMapper {
     SysUser selectByAccount(SysUser sysUser);
 
     SysUser selectById(SysUser sysUser);
+
+    void updateWithPasswordById(SysUser sysUser);
 }

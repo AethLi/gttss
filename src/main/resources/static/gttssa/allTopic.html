@@ -1,0 +1,96 @@
+<div class="col-lg-8">
+    <section>
+        <div class="well">历史课题查看</div>
+        <div>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="teacher">标题</label>
+                    <input type="text" class="form-control" id="teacher" placeholder="输入论文标题查看">
+                </div>
+                <button type="button" class="btn btn-default">搜索</button>
+            </form>
+        </div>
+        <table class="table table-bordered table-hover" style="margin-top: 2%">
+            <thead>
+            <tr>
+                <td style="width: 5%">序号</td>
+                <td style="width: 45%">论文名称</td>
+                <td style="width: 10%">出题时间</td>
+                <td style="width: 10%">届次</td>
+                <td style="width: 10%">查看详情</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="x in topics">
+                <td>
+                    {{ $index + 1 }}
+                </td>
+                <td>
+                    {{x.name }}
+                </td>
+                <td>
+                    {{x.createDt }}
+                </td>
+                <td>
+                    2015届
+                </td>
+                <td>
+                    <button class="btn">查看详情</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+<div class="col-lg-4">
+
+</div>
+<div class="modal fade sewDetail" id="topicDetail" tabindex="-1" role="dialog" aria-labelledby="topicDetailLabel">
+    <div style="background-color: rgb(255,255,255);;width: 80%;height: 80%;position: fixed;left: 10%;top: 10%;overflow: auto;padding: 10px">
+        <div class="well">选题查看</div>
+        <div class="form-group">
+            <label for="title">标题</label>
+            <input class="form-control" id="title" ng-model="oneTopic.name">
+        </div>
+        <div class="form-group">
+            <label for="type">类型</label>
+            <input class="form-control" id="type" ng-model="oneTopic.type">
+        </div>
+        <div class="form-group">
+            <label for="origin">来源</label>
+            <input class="form-control" id="origin" ng-model="oneTopic.origin">
+        </div>
+        <div class="form-group">
+            <label for="property">性质</label>
+            <input class="form-control" id="property" ng-model="oneTopic.property">
+        </div>
+        <div class="form-group">
+            <label for="content">内容</label>
+            <textarea class="form-control" id="content" rows="3" ng-model="oneTopic.content">
+            </textarea>
+        </div>
+        <div class="form-group">
+            <label for="result">结果</label>
+            <textarea class="form-control" id="result" rows="3" ng-model="oneTopic.result">
+            </textarea>
+        </div>
+        <div class="form-group">
+            <label for="plan">计划</label>
+            <textarea class="form-control" id="plan" rows="3" ng-model="oneTopic.plan">
+            </textarea>
+        </div>
+        <button type="button" class="btn btn-default">提交</button>
+        <div class="well">
+            选取状态
+        </div>
+        <div class="form-group">
+            <label for="selectAble">可选人数</label>
+            <input class="form-control" id="selectAble" ng-model="oneTopic.needStudent">
+        </div>
+        <div class="form-group">
+            <label for="selected">已选人数</label>
+            <input class="form-control" id="selected" ng-model="oneTopic.selectedCount">
+        </div>
+        <button type="button" class="btn btn-default" ng-click="giveMeThisTopic()">选题</button>
+    </div>
+</div>

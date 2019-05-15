@@ -7,14 +7,12 @@ import cn.aethli.gttss.service.ResultSubmitService;
 import cn.aethli.gttss.service.SysFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 @SessionAttributes(value = {"identifyingCode", "currentUser", "verifyT"}, types = {String.class, SysUser.class, String.class})
 
@@ -53,6 +51,16 @@ public class FileCtrl extends BaseCtrl {
     public Object getMyDefenseDraft(Model model) {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, defenseService.getMyDefenseDraft(getSysUser(model)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
+        }
+    }
+
+    @RequestMapping("/getDefenseDraftById")
+    public Object getDefenseDraftById(Model model, @RequestBody Map<String,Object> params) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, defenseService.getDefenseDraftById(getSysUser(model),params));
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());

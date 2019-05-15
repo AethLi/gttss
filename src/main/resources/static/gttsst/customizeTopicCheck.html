@@ -1,6 +1,6 @@
 <div class="col-lg-8">
     <section>
-        <div class="well">学生自拟题目审核</div>
+        <div class="well">课题自拟审核结果查看</div>
         <div>
             <form class="form-inline">
                 <div class="form-group">
@@ -43,7 +43,7 @@
                     {{x.verifyStatus}}
                 </td>
                 <td>
-                    <button class="btn" ng-click="topicVerify(x.topicId)">查看详情</button>
+                    <button class="btn" ng-click="topicDetail(x.topicId)">查看详情</button>
                 </td>
             </tr>
             </tbody>
@@ -97,8 +97,9 @@
             <div style="height: 200px" type="text/plain" id="guide">
             </div>
         </div>
+        <button class="btn btn-primary" ng-show="teacherCustomize">保存</button>
         <div class="well">
-            审核结果
+            管理员审核结果
         </div>
         <div class="form-group">
             <label for="">审核结果</label>
@@ -108,10 +109,9 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="teacherExplanation">审核意见</label>
-            <div style="height: 200px" type="text/plain" id="teacherExplanation">
+            <label for="adminExplanation">审核意见</label>
+            <div style="height: 200px" type="text/plain" id="adminExplanation">
             </div>
         </div>
-        <button class="btn btn-primary" ng-click="saveTeacherExplanation()">提交</button>
     </div>
 </div>

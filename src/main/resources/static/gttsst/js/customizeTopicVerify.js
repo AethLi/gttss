@@ -69,6 +69,22 @@ angular.module('teacherApp', [])
                     referenceEditor.setContent($scope.oneTopic.reference);
                     planEditor.setContent($scope.oneTopic.plan);
                     guideEditor.setContent($scope.oneTopic.guide);
+                    if (result.data.model.teacherVerify !== "") {
+                        $http({
+                            url: "/verify/getVerifyById",
+                            data: {
+                                id: result.data.model.teacherVerify
+                            },
+                            method:"POST"
+                        }).then(function s(result) {
+                            if (result.data.status === 0) {
+                                $scope.verifyStatus = result.data.model.status.toString();
+                                teacherExplanation.setContent(result.data.model.explanation);
+                            }
+                        }, function e() {
+                            alert("网络错误");
+                        })
+                    }
                     $('#topicDetail').modal();
                 } else {
                     alert(result.data.message);

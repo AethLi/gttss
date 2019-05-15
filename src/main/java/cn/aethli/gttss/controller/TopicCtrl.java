@@ -5,10 +5,7 @@ import cn.aethli.gttss.domain.SysUser;
 import cn.aethli.gttss.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -84,9 +81,9 @@ public class TopicCtrl extends BaseCtrl {
     }
 
     @RequestMapping(value = "/saveCustomizeTopic")
-    public Object saveCustomizeTopic(@RequestBody Map<String, Object> params, Model model) {
+    public Object saveCustomizeTopic(@RequestBody Map<String, Object> params, Model model, @ModelAttribute("verifyT") String verifyT) {
         try {
-            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.saveCustomizeTopic(getSysUser(model), params));
+            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.saveCustomizeTopic(getSysUser(model), params, verifyT));
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
@@ -147,6 +144,45 @@ public class TopicCtrl extends BaseCtrl {
     public Object getMyTopicStudentT(Model model) {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getMyTopicStudentT(getSysUser(model)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/getMyStudentTopic")
+    public Object getMyStudentTopic(Model model) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getMyStudentTopic(getSysUser(model)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/getAllTopic")
+    public Object getAllTopic(Model model) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getAllTopic(getSysUser(model)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/getBatchAllTopic")
+    public Object getBatchAllTopic(Model model) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getBatchAllTopic(getSysUser(model)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
+        }
+    }
+    @RequestMapping(value = "/getAdminVerifyTopic")
+    public Object getAdminVerifyTopic(Model model) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getAdminVerifyTopic(getSysUser(model)));
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());

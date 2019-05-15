@@ -229,13 +229,22 @@
     <select id="selectByTeacherId_BatchId_Status" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
         select * from Topic where `validityBatch`=#{validityBatch} and `teacherId`=#{teacherId} and `status`=#{status};
     </select>
+    <select id="selectByBatchId_Status" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+        select * from Topic where `validityBatch`=#{validityBatch} and `status`=#{status};
+    </select>
     <select id="selectByTeacherId" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
         select * from Topic where `validityBatch`=#{validityBatch};
     </select>
     <update id="updateWithStatusById" parameterType="java.util.Map">
         update Topic set `status`=#{status} where `id`=#{id};
     </update>
+    <update id="updateWithStatusAdminVerifyIdById" parameterType="java.util.Map">
+        update Topic set `status`=#{status},`adminVerifyId`=#{adminVerifyId} where `id`=#{id};
+    </update>
     <update id="updateWithStatusTeacherVerifyIdById" parameterType="java.util.Map">
         update Topic set `status`=#{status},`teacherVerifyId`=#{teacherVerifyId} where `id`=#{id};
     </update>
+    <select id="selectWithAll" resultMap="ResultMapWithBLOBs">
+        select * from topic;
+    </select>
 </mapper>

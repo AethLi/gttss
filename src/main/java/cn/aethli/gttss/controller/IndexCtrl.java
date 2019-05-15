@@ -38,8 +38,9 @@ public class IndexCtrl {
 
     @ResponseBody
     @RequestMapping(value = "/a")
-    public Object IndexACtrl(HttpServletRequest request) {
+    public Object IndexACtrl(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
+        model.addAttribute("verifyT", "sahfohoqhwefqfp");//用作教师登录判断
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("gttssa/index.html");
         return modelAndView;

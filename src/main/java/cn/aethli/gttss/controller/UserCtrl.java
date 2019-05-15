@@ -117,4 +117,24 @@ public class UserCtrl extends BaseCtrl {
             return new ResponseMessage(ResponseMessage.STATUS_ERROR);
         }
     }
+
+    @RequestMapping(value = "/loginA")
+    public Object loginA(Model model, @RequestBody Map<String, Object> params) {
+        try {
+            model.addAttribute("currentUser", userService.loginA(params));
+            return new ResponseMessage(ResponseMessage.STATUS_OK, "");
+        } catch (Exception e) {
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/changePassword")
+    public Object changePassword(Model model, @RequestBody Map<String, Object> params) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, userService.changePassword(getSysUser(model), params));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
+        }
+    }
 }
