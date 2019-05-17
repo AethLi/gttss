@@ -1,4 +1,4 @@
-angular.module('teacherApp', [])
+angular.module('adminApp', [])
     .controller("openingReportVerifyCtrl", function ($scope, $http) {
         $scope.topics = [];
         $scope.oneTopic;
@@ -12,7 +12,7 @@ angular.module('teacherApp', [])
         let explanationEditor = UM.getEditor("explanationEditor");
 
         $http({
-            url: "/topic/getMyTopicStudentT",
+            url: "/topic/getAllTopicHasSelect",
             method: "POST"
         }).then(function s(result) {
             if (result.data.status === 0) {
@@ -52,9 +52,9 @@ angular.module('teacherApp', [])
                             ideasAndSolutionsEditor.setContent(result.data.model.ideasAndSolutions);
                             planEditor.setContent(result.data.model.plan);
                             $http({
-                                url: "/verify/getOpeningReportVerifyById",
+                                url: "/verify/getVerifyById",
                                 data: {
-                                    id: id
+                                    id: result.data.model.defenseVerifyId
                                 },
                                 method: "POST"
                             }).then(function s(result) {
@@ -81,7 +81,7 @@ angular.module('teacherApp', [])
 
             $scope.saveOpeningReportVerify = function () {
                 $http({
-                    url: '/verify/saveOpeningReportVerify',
+                    url: '/verify/saveOpeningReportVerifyA',
                     data: {
                         id: $scope.oneTopic.id,
                         status: $scope.verifyStatus,

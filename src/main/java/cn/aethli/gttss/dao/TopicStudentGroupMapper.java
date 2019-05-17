@@ -35,4 +35,6 @@ public interface TopicStudentGroupMapper {
     List<TopicStudentGroup> selectByStudentId(TopicStudentGroup topicStudentGroup);
 
     TopicStudentGroup selectByStudentId_BatchId(TopicStudentGroup topicStudentGroup);
+
+    List<TopicStudentGroup> selectByBatchId(TopicStudentGroup topicStudentGroup);
 }

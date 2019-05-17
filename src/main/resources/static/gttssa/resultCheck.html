@@ -1,0 +1,42 @@
+<div class="col-lg-8">
+    <section>
+        <div class="well">答辩申请批阅</div>
+        <div>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="teacher">标题</label>
+                    <input type="text" class="form-control" id="teacher" placeholder="输入论文标题查看">
+                </div>
+                <button type="button" class="btn btn-default">搜索</button>
+            </form>
+        </div>
+        <table class="table table-bordered table-hover" style="margin-top: 2%">
+            <thead>
+            <tr>
+                <td style="width: 5%">序号</td>
+                <td style="width: 55%">论文名称</td>
+                <td style="width: 10%">选取人</td>
+                <td style="width: 10%">下载</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="x in topics">
+                <td>
+                    {{ $index + 1 }}
+                </td>
+                <td>
+                    {{x.topicName }}
+                </td>
+                <td>
+                    {{ x.studentName}}
+                </td>
+                <td>
+                    <a class="btn" href="/file/downloadById?id={{x.fileId}}">
+                        下载</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+<div class="col-lg-4">

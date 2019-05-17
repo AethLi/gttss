@@ -56,6 +56,15 @@ public class VerifyCtrl extends BaseCtrl {
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
         }
     }
+    @RequestMapping(value = "/saveOpeningReportVerifyA")
+    public Object saveOpeningReportVerifyA(Model model, @RequestBody Map<String, Object> params) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, verifyService.saveOpeningReportVerifyA(getSysUser(model), params));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
+        }
+    }
 
     @RequestMapping(value = "/getOpeningReportVerifyById")
     public Object getOpeningReportVerifyById(@RequestBody Map<String, Object> params) {

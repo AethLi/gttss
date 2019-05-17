@@ -39,6 +39,7 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
             }
         }, function error(result) {
             alert(result.data.message);
+            $scope.logout();
         });
     })
     .config(function ($stateProvider, $urlRouterProvider) {
@@ -200,16 +201,16 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
                     }]
                 }
             })
-        // .state("guideRecord", {
-        //     controller: "guideRecordCtrl",
-        //     url: "/guideRecord",
-        //     templateUrl: '/gttsst/guideRecord.html',
-        //     resolve: {
-        //         loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-        //             return $ocLazyLoad.load({
-        //                 files: ['/gttsst/js/guideRecord.js', '/gttsst/css/guideRecord.css']
-        //             })
-        //         }]
-        //     }
-        // })
+            .state("resultCheck", {
+                controller: "resultCheckCtrl",
+                url: "/resultCheck",
+                templateUrl: '/gttsst/resultCheck.html',
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            files: ['/gttsst/js/resultCheck.js', '/gttsst/css/resultCheck.css']
+                        })
+                    }]
+                }
+            })
     });

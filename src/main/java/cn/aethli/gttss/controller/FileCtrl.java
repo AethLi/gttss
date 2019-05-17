@@ -58,9 +58,9 @@ public class FileCtrl extends BaseCtrl {
     }
 
     @RequestMapping("/getDefenseDraftById")
-    public Object getDefenseDraftById(Model model, @RequestBody Map<String,Object> params) {
+    public Object getDefenseDraftById(Model model, @RequestBody Map<String, Object> params) {
         try {
-            return new ResponseMessage(ResponseMessage.STATUS_OK, defenseService.getDefenseDraftById(getSysUser(model),params));
+            return new ResponseMessage(ResponseMessage.STATUS_OK, defenseService.getDefenseDraftById(getSysUser(model), params));
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
@@ -83,6 +83,16 @@ public class FileCtrl extends BaseCtrl {
         try {
             sysFileService.downloadById(request, response);
             return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
+        }
+    }
+
+    @RequestMapping("/getHasSubmitResultStudents")
+    public Object getHasSubmitResultStudents(Model model) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, resultSubmitService.getHasSubmitResultStudents(getSysUser(model)));
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());

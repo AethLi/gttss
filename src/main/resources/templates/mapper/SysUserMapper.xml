@@ -84,4 +84,7 @@
     <update id="updateWithPasswordById" parameterType="java.util.Map">
         update sysuser set password=#{password} where `userId`= #{userId};
     </update>
+    <update id="updateWithPhoneNumById" parameterType="java.util.Map">
+        update sysuser set phoneNum=#{phoneNum} where `userId`= #{userId};
+    </update>
 </mapper>

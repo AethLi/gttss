@@ -139,4 +139,7 @@
     <update id="updateWithTeacherVerifyIdByTopicId" parameterType="java.util.Map">
         update OpeningReport set `teacherVerifyId`=#{teacherVerifyId} where `topicId`=#{topicId};
     </update>
+    <update id="updateWithDefenseVerifyIdByTopicId" parameterType="java.util.Map">
+        update OpeningReport set `defenseVerifyId`=#{defenseVerifyId} where `topicId`=#{topicId};
+    </update>
 </mapper>

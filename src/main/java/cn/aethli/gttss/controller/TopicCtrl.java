@@ -179,10 +179,21 @@ public class TopicCtrl extends BaseCtrl {
             return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
         }
     }
+
     @RequestMapping(value = "/getAdminVerifyTopic")
     public Object getAdminVerifyTopic(Model model) {
         try {
             return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getAdminVerifyTopic(getSysUser(model)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/getAllTopicHasSelect")
+    public Object getAllTopicHasSelect() {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getAllTopicHasSelect());
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());

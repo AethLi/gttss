@@ -1,8 +1,6 @@
 package cn.aethli.gttss.service;
 
-import cn.aethli.gttss.dao.BatchMapper;
-import cn.aethli.gttss.dao.TopicMapper;
-import cn.aethli.gttss.dao.TopicStudentGroupMapper;
+import cn.aethli.gttss.dao.*;
 import cn.aethli.gttss.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +17,10 @@ public class BaseService {
     TopicMapper topicMapper;
     @Autowired
     TopicStudentGroupMapper topicStudentGroupMapper;
+    @Autowired
+    StudentMapper studentMapper;
+    @Autowired
+    SysUserMapper sysUserMapper;
 
     public Topic getMyCurrentTopic(SysUser user) throws Exception {
         if (user.getPermission() == 0) {
@@ -61,18 +63,63 @@ public class BaseService {
         topic.setValidityBatch(getCurrentBatch().getBatchId());
         List<TopicWithBLOBs> topics = topicMapper.selectByTeacherId_BatchId(topic);
         for (Topic t : topics) {
-            if (topic.getSelectStatus() != 0) {
-                Map<String,Object> result=new HashMap<>();
-                result.put("topicId",t.getId());
-                result.put("topicName",t.getName());
-                result.put("topicStatus",t.getStatus());
+            if (t.getSelectStatus() != 0) {
 
                 Map<String, Object> queryMao = new HashMap<>();
                 queryMao.put("topicId", t.getId());
                 List<TopicStudentGroup> topicStudentGroups = topicStudentGroupMapper.selectByTopicId(queryMao);
+                for (TopicStudentGroup tsg : topicStudentGroups) {
+                    Map<String, Object> result = new HashMap<>();
+                    result.put("topicId", t.getId());
+                    result.put("topicName", t.getName());
+                    result.put("topicStatus", t.getStatus());
+                    Student student = new Student();
+                    student.setUserId(tsg.getStudentId());
+                    student = studentMapper.selectById(student);
+                    try {
+                        result.put("studentName", student.getName());
+                    } catch (Exception e) {
 
+                    }
+                    results.add(result);
+                }
             }
         }
-        return null;
+        return results;
+    }
+
+    public Object getAllTopicHasSelect() {
+        List<Map<String, Object>> results = new ArrayList<>();
+        TopicStudentGroup topicStudentGroup = new TopicStudentGroup();
+        topicStudentGroup.setBatchId(getCurrentBatch().getBatchId());
+        List<TopicStudentGroup> topicStudentGroups = topicStudentGroupMapper.selectByBatchId(topicStudentGroup);
+        for (TopicStudentGroup tsg : topicStudentGroups) {
+            Map<String, Object> result = new HashMap<>();
+            Student student = new Student();
+            student.setUserId(tsg.getStudentId());
+            student = studentMapper.selectById(student);
+            if (student == null) {
+                continue;
+            }
+            Topic topic = new Topic();
+            topic.setId(tsg.getTopicId());
+            topic = topicMapper.selectById(topic);
+            if (topic == null) {
+                continue;
+            }
+            SysUser sysUser = new SysUser();
+            sysUser.setUserId(tsg.getStudentId());
+            sysUser = sysUserMapper.selectById(sysUser);
+            if (sysUser == null) {
+                continue;
+            }
+            result.put("topicId", tsg.getTopicId());
+            result.put("topicName", topic.getName());
+            result.put("studentName", student.getName());
+            result.put("connectionNum", sysUser.getPhoneNum());
+            result.put("studentId", student.getUserId());
+            results.add(result);
+        }
+        return results;
     }
 }

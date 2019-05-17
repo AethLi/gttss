@@ -2,7 +2,10 @@ package cn.aethli.gttss.service;
 
 import cn.aethli.gttss.dao.ResultSubmitMapper;
 import cn.aethli.gttss.dao.SysFileMapper;
-import cn.aethli.gttss.domain.*;
+import cn.aethli.gttss.domain.ResultSubmit;
+import cn.aethli.gttss.domain.SysFile;
+import cn.aethli.gttss.domain.SysUser;
+import cn.aethli.gttss.domain.Topic;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,7 +60,7 @@ public class ResultSubmitService extends BaseService {
                 sysFile.setFileName(desFileName);
                 sysFile.setRealName(file.getOriginalFilename());
                 sysFile.setCreateDt(new Date());
-                sysFile.setType(0);
+                sysFile.setType(1);
                 sysFile.setStatus(0);
                 sysFileMapper.insertSelective(sysFile);
                 resultSubmit.setFileId(sysFile.getId());
@@ -74,7 +77,7 @@ public class ResultSubmitService extends BaseService {
             sysFile.setFileName(desFileName);
             sysFile.setRealName(file.getOriginalFilename());
             sysFile.setCreateDt(new Date());
-            sysFile.setType(0);
+            sysFile.setType(1);
             sysFile.setStatus(0);
             sysFileMapper.insertSelective(sysFile);
             resultSubmit.setFileId(sysFile.getId());
@@ -93,7 +96,7 @@ public class ResultSubmitService extends BaseService {
         resultSubmit.setId(myTopic.getId());
         resultSubmit = resultSubmitMapper.selectById(resultSubmit);
         if (resultSubmit == null) {
-            throw new Exception("未上传答辩稿");
+            throw new Exception("未上传终稿");
         } else {
             SysFile sysFile = new SysFile();
             sysFile.setId(resultSubmit.getFileId());
@@ -106,5 +109,22 @@ public class ResultSubmitService extends BaseService {
             }
         }
         return result;
+    }
+
+    public Object getHasSubmitResultStudents(SysUser sysUser) throws Exception {
+        List<Map<String, Object>> results = new ArrayList<>();
+        List<Map<String, Object>> myStudentTopic = getMyStudentTopic(sysUser);
+        for (Map<String, Object> m : myStudentTopic) {
+            ResultSubmit resultSubmit = new ResultSubmit();
+            resultSubmit.setId((String) m.get("topicId"));
+            resultSubmit = resultSubmitMapper.selectById(resultSubmit);
+            if (resultSubmit == null) {
+                continue;
+            } else {
+                m.put("fileId", resultSubmit.getFileId());
+                results.add(m);
+            }
+        }
+        return results;
     }
 }

@@ -33,6 +33,8 @@ public class SysFileService extends BaseService {
         properties.load(in);
         if (sysFile.getType() == 0) {
             path = properties.getProperty("Defense_Draft_Upload_Path");
+        } else if (sysFile.getType() == 1) {
+            path = properties.getProperty("Result_Submit_Upload_Path");
         }
         path += sysFile.getFileName();
         if (path != null) {

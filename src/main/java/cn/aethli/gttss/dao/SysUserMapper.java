@@ -26,4 +26,6 @@ public interface SysUserMapper {
     SysUser selectById(SysUser sysUser);
 
     void updateWithPasswordById(SysUser sysUser);
+
+    void updateWithPhoneNumById(SysUser sysUser);
 }

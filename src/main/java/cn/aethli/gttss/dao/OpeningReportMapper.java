@@ -31,4 +31,6 @@ public interface OpeningReportMapper {
     void deleteByTopicId(OpeningReportWithBLOBs openingReport);
 
     void updateWithTeacherVerifyIdByTopicId(OpeningReportWithBLOBs openingReport);
+
+    void updateWithDefenseVerifyIdByTopicId(OpeningReportWithBLOBs openingReport);
 }

@@ -137,4 +137,13 @@ public class UserCtrl extends BaseCtrl {
             return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
         }
     }
+    @RequestMapping(value = "/changeConnectionNum")
+    public Object changeConnectionNum(Model model, @RequestBody Map<String, Object> params) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, userService.changeConnectionNum(getSysUser(model), params));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
+        }
+    }
 }

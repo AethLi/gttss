@@ -211,4 +211,26 @@ public class VerifyService extends BaseService {
         topicBookMapper.updateWithAdminVerifyIdById(topicBookWithBLOBs);
         return "保存成功";
     }
+
+    public String saveOpeningReportVerifyA(SysUser sysUser, Map<String, Object> params) {
+        OpeningReportWithBLOBs openingReport = new OpeningReportWithBLOBs();
+        openingReport.setTopicId((String) params.get("id"));
+        openingReport = openingReportMapper.selectByTopicId(openingReport);
+        if (openingReport.getTeacherVerifyId() != null) {
+            Verify verify = new Verify();
+            verify.setId(openingReport.getTeacherVerifyId());
+            verifyMapper.deleteById(verify);
+        }
+        Verify verify = new Verify();
+        verify.setId(UUID.randomUUID().toString());
+        verify.setCreateBy(sysUser.getUserId());
+        verify.setCreateDt(new Date());
+        verify.setStatus(Integer.valueOf((String) params.get("status")));
+        verify.setType(0);
+        verify.setExplanation((String) params.get("explanation"));
+        verifyMapper.insertSelective(verify);
+        openingReport.setDefenseVerifyId(verify.getId());
+        openingReportMapper.updateWithDefenseVerifyIdByTopicId(openingReport);
+        return "保存成功";
+    }
 }

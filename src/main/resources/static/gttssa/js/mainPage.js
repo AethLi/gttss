@@ -23,14 +23,14 @@ angular.module('adminApp', ['ui.router', 'oc.lazyLoad'])
                 method: "GET"
             }).then(function success(result) {
                 if (result.data.status === 0) {
-                    window.location.href = "/";
+                    window.location.href = "/a";
                 } else {
                     alert(result.data.message);
-                    window.location.href = "/";
+                    window.location.href = "/a";
                 }
             }, function error(result) {
                 alert(result.data.message);
-                window.location.href = "/";
+                window.location.href = "/a";
             });
         }
     })
@@ -98,7 +98,7 @@ angular.module('adminApp', ['ui.router', 'oc.lazyLoad'])
                 }
             })
             .state("openingReportVerify", {
-                controller: "topicBookVerifyCtrl",
+                controller: "openingReportVerifyCtrl",
                 url: "/openingReportVerify",
                 templateUrl: '/gttssa/openingReportVerify.html',
                 resolve: {

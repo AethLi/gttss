@@ -93,4 +93,7 @@
     <select id="selectByStudentId_BatchId" parameterType="java.util.Map" resultMap="BaseResultMap">
       select * from TopicStudentGroup where `studentId`=#{studentId} and `batchId`=#{batchId};
   </select>
+    <select id="selectByBatchId" parameterType="java.util.Map" resultMap="BaseResultMap">
+      select * from TopicStudentGroup where `batchId`=#{batchId};
+    </select>
 </mapper>

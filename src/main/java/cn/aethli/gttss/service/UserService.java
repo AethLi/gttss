@@ -159,4 +159,15 @@ public class UserService {
         }
         return "原密码输入错误";
     }
+
+    public String changeConnectionNum(SysUser sysUser, Map<String, Object> params) throws Exception {
+        sysUser = sysUserMapper.selectById(sysUser);
+        try {
+            sysUser.setPhoneNum((String) params.get("connectionNum"));
+        } catch (Exception e) {
+            throw e;
+        }
+        sysUserMapper.updateWithPhoneNumById(sysUser);
+        return "操作成功";
+    }
 }
