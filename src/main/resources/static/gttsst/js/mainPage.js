@@ -48,11 +48,11 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
             .state("securitySetting", {
                 controller: "securitySettingCtrl",
                 url: "/securitySetting",
-                templateUrl: '/gttsst/securitySetting.html',
+                templateUrl: './securitySetting.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttsst/js/securitySetting.js', '/gttsst/css/securitySetting.css']
+                            files: ['./js/securitySetting.js', './css/securitySetting.css']
                         })
                     }]
                 }
@@ -60,11 +60,11 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
             .state("userOverview", {
                 controller: "userOverviewCtrl",
                 url: "/userOverview",
-                templateUrl: '/gttsst/userOverview.html',
+                templateUrl: './userOverview.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttsst/js/userOverview.js', '/gttsst/css/historyTopic.css']
+                            files: ['./js/userOverview.js', './css/historyTopic.css']
                         })
                     }]
                 }
@@ -72,11 +72,11 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
             .state("historyTopic", {
                 controller: "historyTopicCtrl",
                 url: "/historyTopic",
-                templateUrl: '/gttsst/historyTopic.html',
+                templateUrl: './historyTopic.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttsst/js/historyTopic.js', '/gttsst/css/historyTopic.css']
+                            files: ['./js/historyTopic.js', './css/historyTopic.css']
                         })
                     }]
                 }
@@ -84,11 +84,11 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
             .state("customizeTopic", {
                 controller: "customizeTopicCtrl",
                 url: "/customizeTopic",
-                templateUrl: '/gttsst/customizeTopic.html',
+                templateUrl: './customizeTopic.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttsst/js/customizeTopic.js', '/gttsst/css/customizeTopic.css']
+                            files: ['./js/customizeTopic.js', './css/customizeTopic.css']
                         })
                     }]
                 }
@@ -96,11 +96,11 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
             .state("customizeTopicVerify", {
                 controller: "customizeTopicVerifyCtrl",
                 url: "/customizeTopicVerify",
-                templateUrl: '/gttsst/customizeTopicVerify.html',
+                templateUrl: './customizeTopicVerify.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttsst/js/customizeTopicVerify.js', '/gttsst/css/customizeTopicVerify.css']
+                            files: ['./js/customizeTopicVerify.js', './css/customizeTopicVerify.css']
                         })
                     }]
                 }
@@ -108,11 +108,11 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
             .state("customizeTopicCheck", {
                 controller: "customizeTopicCheckCtrl",
                 url: "/customizeTopicCheck",
-                templateUrl: '/gttsst/customizeTopicCheck.html',
+                templateUrl: './customizeTopicCheck.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttsst/js/customizeTopicCheck.js', '/gttsst/css/customizeTopicCheck.css']
+                            files: ['./js/customizeTopicCheck.js', './css/customizeTopicCheck.css']
                         })
                     }]
                 }
@@ -120,11 +120,11 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
             .state("topicBook", {
                 controller: "topicBookCtrl",
                 url: "/topicBook",
-                templateUrl: '/gttsst/topicBook.html',
+                templateUrl: './topicBook.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttsst/js/topicBook.js', '/gttsst/css/topicBook.css']
+                            files: ['./js/topicBook.js', './css/topicBook.css']
                         })
                     }]
                 }
@@ -132,11 +132,11 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
             .state("openingReportVerify", {
                 controller: "openingReportVerifyCtrl",
                 url: "/openingReportVerify",
-                templateUrl: '/gttsst/openingReportVerify.html',
+                templateUrl: './openingReportVerify.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttsst/js/openingReportVerify.js', '/gttsst/css/openingReportVerify.css']
+                            files: ['./js/openingReportVerify.js', './css/openingReportVerify.css']
                         })
                     }]
                 }
@@ -144,11 +144,11 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
             .state("openingReportGroup", {
                 controller: "openingReportGroupCtrl",
                 url: "/openingReportGroup",
-                templateUrl: '/gttsst/openingReportGroup.html',
+                templateUrl: './openingReportGroup.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttsst/js/openingReportGroup.js', '/gttsst/css/openingReportGroup.css']
+                            files: ['./js/openingReportGroup.js', './css/openingReportGroup.css']
                         })
                     }]
                 }
@@ -156,11 +156,11 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
             .state("guideRecord", {
                 controller: "guideRecordCtrl",
                 url: "/guideRecord",
-                templateUrl: '/gttsst/guideRecord.html',
+                templateUrl: './guideRecord.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttsst/js/guideRecord.js', '/gttsst/css/guideRecord.css']
+                            files: ['./js/guideRecord.js', './css/guideRecord.css']
                         })
                     }]
                 }
@@ -168,11 +168,11 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
             .state("midTermCheck", {
                 controller: "midTermCheckCtrl",
                 url: "/midTermCheck",
-                templateUrl: '/gttsst/midTermCheck.html',
+                templateUrl: './midTermCheck.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttsst/js/midTermCheck.js', '/gttsst/css/midTermCheck.css']
+                            files: ['./js/midTermCheck.js', './css/midTermCheck.css']
                         })
                     }]
                 }
@@ -180,11 +180,11 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
             .state("defenseDraftVerify", {
                 controller: "defenseDraftVerifyCtrl",
                 url: "/defenseDraftVerify",
-                templateUrl: '/gttsst/defenseDraftVerify.html',
+                templateUrl: './defenseDraftVerify.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttsst/js/defenseDraftVerify.js', '/gttsst/css/defenseDraftVerify.css']
+                            files: ['./js/defenseDraftVerify.js', './css/defenseDraftVerify.css']
                         })
                     }]
                 }
@@ -192,11 +192,11 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
             .state("defenseVerify", {
                 controller: "defenseVerifyCtrl",
                 url: "/defenseVerify",
-                templateUrl: '/gttsst/defenseVerify.html',
+                templateUrl: './defenseVerify.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttsst/js/defenseVerify.js', '/gttsst/css/defenseVerify.css']
+                            files: ['./js/defenseVerify.js', './css/defenseVerify.css']
                         })
                     }]
                 }
@@ -204,11 +204,11 @@ angular.module('teacherApp', ['ui.router', 'oc.lazyLoad'])
             .state("resultCheck", {
                 controller: "resultCheckCtrl",
                 url: "/resultCheck",
-                templateUrl: '/gttsst/resultCheck.html',
+                templateUrl: './resultCheck.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttsst/js/resultCheck.js', '/gttsst/css/resultCheck.css']
+                            files: ['./js/resultCheck.js', './css/resultCheck.css']
                         })
                     }]
                 }

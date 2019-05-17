@@ -79,19 +79,20 @@ angular.module('adminApp', [])
                         url: "/verify/getVerifyById",
                         method: "POST",
                         data: {
-                            id: result.data.id
-                        }.then(function s(result) {
-                            if (result.data.status === 0) {
-                                $scope.verifyStatus = result.data.model.status;
-                                adminExplanation.setContent(result.data.model.explanation);
-                            }
-                        })
-                    })
+                            id: result.data.model.adminVerifyId
+                        }
+                    }).then(function s(result) {
+                        if (result.data.status === 0) {
+                            $scope.verifyStatus = result.data.model.status.toString();
+                            adminExplanation.setContent(result.data.model.explanation);
+                        }
+                    });
                 }
             }, function e() {
                 alert("获取任务书填写情况失败");
             })
-        };
+        }
+        ;
         $scope.saveTopicBook = function () {
             $http({
                 url: "/topicBook/saveTopicBook",
@@ -109,4 +110,5 @@ angular.module('adminApp', [])
                 alert("保存失败，网络不通");
             })
         }
-    });
+    })
+;

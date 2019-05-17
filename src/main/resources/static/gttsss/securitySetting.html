@@ -3,19 +3,20 @@
         <div class="well">安全设置</div>
         <div class="form-group">
             <label for="oldPassword">旧密码</label>
-            <input type="password" class="form-control" id="oldPassword" placeholder="Password">
+            <input type="password" class="form-control" ng-model="oldPassword" id="oldPassword" placeholder="Password">
         </div>
         <div class="form-group">
             <label for="newPassword">新密码</label>
-            <input type="password" class="form-control" id="newPassword" placeholder="Password">
+            <input type="password" class="form-control" ng-model="newPassword" id="newPassword" placeholder="Password">
             <input type="password" class="form-control" id="password" placeholder="Password" style="display: none">
             <!--防止自动填充-->
         </div>
         <div class="form-group">
             <label for="newPasswordRepeat">重复输入</label>
-            <input type="password" class="form-control" id="newPasswordRepeat" placeholder="Password">
+            <input type="password" class="form-control" ng-model="newPasswordRepeat" id="newPasswordRepeat"
+                   placeholder="Password">
         </div>
-        <button type="button" class="btn btn-default">提交</button>
+        <button type="button" class="btn btn-default" ng-click="saveChangePassword()">提交</button>
         <div class="well">
             联系方式
         </div>

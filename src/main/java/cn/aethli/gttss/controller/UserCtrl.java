@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @SessionAttributes(value = {"identifyingCode", "currentUser", "verifyT"}, types = {String.class, SysUser.class, String.class})
-//@SessionAttributes(value = {"currentUser"}, types = {SysUser.class})
 @RestController
 @RequestMapping(value = "/user")
 public class UserCtrl extends BaseCtrl {
@@ -77,23 +76,23 @@ public class UserCtrl extends BaseCtrl {
     }
 
     @RequestMapping(value = "getMyself")
-    public Object getMyself(HttpServletRequest request, Model model, @ModelAttribute("verifyT") String verifyT) {
+    public Object getMyself(Model model) {
         try {
-            if (verifyT.equals("sdiofyhasdiofyhqweohf9o")) {
+            if (getSysUser(model).getPermission() == 1) {
                 return new ResponseMessage(ResponseMessage.STATUS_OK, userService.getMyselfT(getSysUser(model)));
             } else {
                 return new ResponseMessage(ResponseMessage.STATUS_OK, userService.getMyself(getSysUser(model)));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_ERROR);
         }
     }
 
     @RequestMapping(value = "getMyOverview")
-    public Object getMyOverview(Model model, @ModelAttribute("verifyT") String verifyT) {
+    public Object getMyOverview(Model model) {
         try {
-            if (verifyT.equals("sdiofyhasdiofyhqweohf9o")) {
+            if (getSysUser(model).getPermission() == 2) {
                 return new ResponseMessage(ResponseMessage.STATUS_OK, userService.getMyOverviewT(getSysUser(model)));
             } else {
                 return new ResponseMessage(ResponseMessage.STATUS_OK, userService.getMyOverview(getSysUser(model)));
@@ -105,9 +104,9 @@ public class UserCtrl extends BaseCtrl {
     }
 
     @RequestMapping(value = "saveMyOverview")
-    public Object saveMyOverview(Model model, @RequestBody Map<String, Object> params, @ModelAttribute("verifyT") String verifyT) {
+    public Object saveMyOverview(Model model, @RequestBody Map<String, Object> params) {
         try {
-            if (verifyT.equals("sdiofyhasdiofyhqweohf9o")) {
+            if (getSysUser(model).getPermission() == 2) {
                 return new ResponseMessage(ResponseMessage.STATUS_OK, userService.saveMyOverviewT(getSysUser(model), params));
             } else {
                 return new ResponseMessage(ResponseMessage.STATUS_OK, userService.saveMyOverview(getSysUser(model), params));
@@ -137,6 +136,7 @@ public class UserCtrl extends BaseCtrl {
             return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
         }
     }
+
     @RequestMapping(value = "/changeConnectionNum")
     public Object changeConnectionNum(Model model, @RequestBody Map<String, Object> params) {
         try {

@@ -80,6 +80,7 @@ public class UserService {
         className.setId(s.getClassId());
         ClassName c = classNameMapper.selectById(className);
         result.put("classGrade", s.getGradeName() + c.getName() + c.getRepeatIndex() + "班");
+        result.put("phoneNum", sysUser.getPhoneNum());
         return result;
     }
 
@@ -163,7 +164,7 @@ public class UserService {
     public String changeConnectionNum(SysUser sysUser, Map<String, Object> params) throws Exception {
         sysUser = sysUserMapper.selectById(sysUser);
         try {
-            sysUser.setPhoneNum((String) params.get("connectionNum"));
+            sysUser.setPhoneNum((String) params.get("phoneNum"));
         } catch (Exception e) {
             throw e;
         }

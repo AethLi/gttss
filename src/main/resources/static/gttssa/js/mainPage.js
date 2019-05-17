@@ -40,11 +40,11 @@ angular.module('adminApp', ['ui.router', 'oc.lazyLoad'])
             .state("securitySetting", {
                 controller: "securitySettingCtrl",
                 url: "/securitySetting",
-                templateUrl: '/gttssa/securitySetting.html',
+                templateUrl: './securitySetting.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttssa/js/securitySetting.js', '/gttssa/css/securitySetting.css']
+                            files: ['./js/securitySetting.js', './css/securitySetting.css']
                         })
                     }]
                 }
@@ -52,11 +52,11 @@ angular.module('adminApp', ['ui.router', 'oc.lazyLoad'])
             .state("allTopic", {
                 controller: "allTopicCtrl",
                 url: "/allTopic",
-                templateUrl: '/gttssa/allTopic.html',
+                templateUrl: './allTopic.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttssa/js/allTopic.js', '/gttssa/css/allTopic.css']
+                            files: ['./js/allTopic.js', './css/allTopic.css']
                         })
                     }]
                 }
@@ -64,11 +64,11 @@ angular.module('adminApp', ['ui.router', 'oc.lazyLoad'])
             .state("currentBatchTopic", {
                 controller: "currentBatchTopicCtrl",
                 url: "/currentBatchTopic",
-                templateUrl: '/gttssa/currentBatchTopic.html',
+                templateUrl: './currentBatchTopic.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttssa/js/currentBatchTopic.js', '/gttssa/css/currentBatchTopic.css']
+                            files: ['./js/currentBatchTopic.js', './css/currentBatchTopic.css']
                         })
                     }]
                 }
@@ -76,11 +76,11 @@ angular.module('adminApp', ['ui.router', 'oc.lazyLoad'])
             .state("customizeTopicVerify", {
                 controller: "customizeTopicVerifyCtrl",
                 url: "/customizeTopicVerify",
-                templateUrl: '/gttssa/customizeTopicVerify.html',
+                templateUrl: './customizeTopicVerify.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttssa/js/customizeTopicVerify.js', '/gttssa/css/customizeTopicVerify.css']
+                            files: ['./js/customizeTopicVerify.js', './css/customizeTopicVerify.css']
                         })
                     }]
                 }
@@ -88,11 +88,11 @@ angular.module('adminApp', ['ui.router', 'oc.lazyLoad'])
             .state("topicBookVerify", {
                 controller: "topicBookVerifyCtrl",
                 url: "/topicBookVerify",
-                templateUrl: '/gttssa/topicBookVerify.html',
+                templateUrl: './topicBookVerify.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttssa/js/topicBookVerify.js', '/gttssa/css/topicBookVerify.css']
+                            files: ['./js/topicBookVerify.js', './css/topicBookVerify.css']
                         })
                     }]
                 }
@@ -100,11 +100,35 @@ angular.module('adminApp', ['ui.router', 'oc.lazyLoad'])
             .state("openingReportVerify", {
                 controller: "openingReportVerifyCtrl",
                 url: "/openingReportVerify",
-                templateUrl: '/gttssa/openingReportVerify.html',
+                templateUrl: './openingReportVerify.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            files: ['/gttssa/js/openingReportVerify.js', '/gttssa/css/openingReportVerify.css']
+                            files: ['./js/openingReportVerify.js', './css/openingReportVerify.css']
+                        })
+                    }]
+                }
+            })
+            .state("defenseVerify", {
+                controller: "defenseVerifyCtrl",
+                url: "/defenseVerify",
+                templateUrl: './defenseVerify.html',
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            files: ['./js/defenseVerify.js', './css/defenseVerify.css']
+                        })
+                    }]
+                }
+            })
+            .state("resultCheck", {
+                controller: "resultCheckCtrl",
+                url: "/resultCheck",
+                templateUrl: './resultCheck.html',
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            files: ['./js/resultCheck.js', './css/resultCheck.css']
                         })
                     }]
                 }

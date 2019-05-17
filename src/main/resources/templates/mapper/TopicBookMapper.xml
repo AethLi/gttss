@@ -111,6 +111,6 @@
         delete from TopicBook where `id`=#{id};
     </delete>
     <update id="updateWithAdminVerifyIdById" parameterType="java.util.Map">
-    update TopicBook set `adminVerify`=#{adminVerify} where  `id`=#{id};
+    update TopicBook set `adminVerifyId`=#{adminVerifyId} where  `id`=#{id};
   </update>
 </mapper>
