@@ -9,7 +9,7 @@ angular.module('teacherApp', [])
         $scope.files = [];
 
         $http({
-            url: "/topic/getMyTopicStudentT",
+            url: "/topic/getTopicStudent",
             method: "POST"
         }).then(function s(result) {
             if (result.data.status === 0) {
@@ -45,7 +45,7 @@ angular.module('teacherApp', [])
                             $http({
                                 url: "/verify/getVerifyById",
                                 data: {
-                                    id: result.data.model.teacherVerify
+                                    id: result.data.model.adminVerify
                                 },
                                 method: "POST"
                             }).then(function s(result) {

@@ -3,9 +3,6 @@ angular.module('studentApp', [])
         let customizeTopicEditor = UM.getEditor('customizeTopicEditor');
         let adminExplanation = UM.getEditor('adminExplanation');
         let explanation = UM.getEditor('explanation');
-        // let customizeTopicEditor = UE.getEditor('customizeTopicEditor');
-        // let adminExplanation = UE.getEditor('adminExplanation');
-        // let explanation = UE.getEditor('explanation');
         $scope.topicTypes;
         $scope.topicOrigins;
         $scope.topicPropertis;

@@ -150,6 +150,16 @@ public class TopicCtrl extends BaseCtrl {
         }
     }
 
+    @RequestMapping(value = "/getTopicStudent")
+    public Object getTopicStudent(Model model) {
+        try {
+            return new ResponseMessage(ResponseMessage.STATUS_OK, topicService.getTopicStudent(getSysUser(model)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseMessage(ResponseMessage.STATUS_FAIL, e.getMessage());
+        }
+    }
+
     @RequestMapping(value = "/getMyStudentTopic")
     public Object getMyStudentTopic(Model model) {
         try {

@@ -23,7 +23,7 @@ public class VerifyCtrl extends BaseCtrl {
     @RequestMapping(value = "/getOpeningReportVerify")
     public Object getOpeningReportVerify(Model model) {
         try {
-            return verifyService.getOpeningReportVerify(getSysUser(model));
+            return new ResponseMessage(ResponseMessage.STATUS_OK, verifyService.getOpeningReportVerify(getSysUser(model)));
         } catch (Exception e) {
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
         }
@@ -38,6 +38,7 @@ public class VerifyCtrl extends BaseCtrl {
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
         }
     }
+
     @RequestMapping(value = "/customizeTopicAdminVerify")
     public Object customizeTopicAdminVerify(Model model, @RequestBody Map<String, Object> params) {
         try {
@@ -47,6 +48,7 @@ public class VerifyCtrl extends BaseCtrl {
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
         }
     }
+
     @RequestMapping(value = "/saveOpeningReportVerify")
     public Object saveOpeningReportVerify(Model model, @RequestBody Map<String, Object> params) {
         try {
@@ -56,6 +58,7 @@ public class VerifyCtrl extends BaseCtrl {
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
         }
     }
+
     @RequestMapping(value = "/saveOpeningReportVerifyA")
     public Object saveOpeningReportVerifyA(Model model, @RequestBody Map<String, Object> params) {
         try {
@@ -87,9 +90,12 @@ public class VerifyCtrl extends BaseCtrl {
     }
 
     @RequestMapping(value = "/saveDefenseVerify")
-    public Object saveDefenseVerify(Model model,@RequestBody Map<String, Object> params) {
+    public Object saveDefenseVerify(Model model, @RequestBody Map<String, Object> params) {
         try {
-            return new ResponseMessage(ResponseMessage.STATUS_OK, verifyService.saveDefenseVerify(getSysUser(model),params));
+            if (getSysUser(model).getPermission() == 1)
+                return new ResponseMessage(ResponseMessage.STATUS_OK, verifyService.saveDefenseVerify(getSysUser(model), params));
+            else
+                return new ResponseMessage(ResponseMessage.STATUS_OK, verifyService.saveDefenseVerifyA(getSysUser(model), params));
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());
@@ -97,9 +103,9 @@ public class VerifyCtrl extends BaseCtrl {
     }
 
     @RequestMapping(value = "/saveTopicBookVerify")
-    public Object saveTopicBookVerify(Model model,@RequestBody Map<String, Object> params) {
+    public Object saveTopicBookVerify(Model model, @RequestBody Map<String, Object> params) {
         try {
-            return new ResponseMessage(ResponseMessage.STATUS_OK, verifyService.saveTopicBookVerify(getSysUser(model),params));
+            return new ResponseMessage(ResponseMessage.STATUS_OK, verifyService.saveTopicBookVerify(getSysUser(model), params));
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());

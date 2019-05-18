@@ -92,7 +92,7 @@ public class UserCtrl extends BaseCtrl {
     @RequestMapping(value = "getMyOverview")
     public Object getMyOverview(Model model) {
         try {
-            if (getSysUser(model).getPermission() == 2) {
+            if (getSysUser(model).getPermission() == 1) {
                 return new ResponseMessage(ResponseMessage.STATUS_OK, userService.getMyOverviewT(getSysUser(model)));
             } else {
                 return new ResponseMessage(ResponseMessage.STATUS_OK, userService.getMyOverview(getSysUser(model)));
@@ -106,7 +106,7 @@ public class UserCtrl extends BaseCtrl {
     @RequestMapping(value = "saveMyOverview")
     public Object saveMyOverview(Model model, @RequestBody Map<String, Object> params) {
         try {
-            if (getSysUser(model).getPermission() == 2) {
+            if (getSysUser(model).getPermission() == 1) {
                 return new ResponseMessage(ResponseMessage.STATUS_OK, userService.saveMyOverviewT(getSysUser(model), params));
             } else {
                 return new ResponseMessage(ResponseMessage.STATUS_OK, userService.saveMyOverview(getSysUser(model), params));

@@ -1,6 +1,9 @@
 angular.module('studentApp', [])
     .controller("selectTopicCtrl", function ($scope, $http) {
-        let content = UM.getEditor("content");
+        let contentEditor = UM.getEditor("contentEditor");
+        let resultEditor = UM.getEditor('resultEditor');
+        let referenceEditor = UM.getEditor('referenceEditor');
+        let planEditor = UM.getEditor('planEditor');
         $scope.allTopic;
         $scope.topics;
         $scope.oneTopic;
@@ -30,6 +33,10 @@ angular.module('studentApp', [])
             }).then(function s(result) {
                 if (result.data.status == 0) {
                     $scope.oneTopic = result.data.model;
+                    contentEditor.setContent(result.data.model.content);
+                    resultEditor.setContent(result.data.model.result);
+                    referenceEditor.setContent(result.data.model.reference);
+                    planEditor.setContent(result.data.model.plan);
                 } else {
                     alert(result.data.message);
                     return

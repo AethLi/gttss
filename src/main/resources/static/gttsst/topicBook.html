@@ -22,7 +22,7 @@
                     <label for="teacher">标题</label>
                     <input type="text" class="form-control" id="teacher" placeholder="输入论文标题查看">
                 </div>
-                <button type="button" class="btn btn-default">搜索</button>
+                <button type="button" class="btn btn-primary">搜索</button>
             </form>
         </div>
         <table class="table table-bordered table-hover" style="margin-top: 2%">
@@ -67,14 +67,14 @@
             <label for="title">标题</label>
             <input class="form-control" id="title" ng-model="oneTopic.name">
         </div>
-        <div class="form-group">
+      <!--  <div class="form-group">
             <label for="teacher2Name">指导助教</label>
             <input class="form-control" id="teacher2Name" ng-model="oneTopic.teacher2Name">
         </div>
         <div class="form-group">
             <label for="connection2Num">联系电话</label>
             <input class="form-control" id="connection2Num" ng-model="oneTopic.connection2Num">
-        </div>
+        </div>-->
         <div>
             <label for="contentEditor">主要内容和基本要求</label>
             <div type="text/plain" id="contentEditor"
@@ -132,6 +132,6 @@
                  style="width:100%;height:300px">
             </div>
         </div>
-        <button type="button" class="btn btn-default" ng-click="saveTopicBook()">提交任务书</button>
+        <button type="button" class="btn btn-primary" ng-click="saveTopicBook()">提交任务书</button>
     </div>
 </div>

@@ -111,9 +111,28 @@ public class ResultSubmitService extends BaseService {
         return result;
     }
 
+    @SuppressWarnings("Duplicates")
     public Object getHasSubmitResultStudents(SysUser sysUser) throws Exception {
         List<Map<String, Object>> results = new ArrayList<>();
         List<Map<String, Object>> myStudentTopic = getMyStudentTopic(sysUser);
+        for (Map<String, Object> m : myStudentTopic) {
+            ResultSubmit resultSubmit = new ResultSubmit();
+            resultSubmit.setId((String) m.get("topicId"));
+            resultSubmit = resultSubmitMapper.selectById(resultSubmit);
+            if (resultSubmit == null) {
+                continue;
+            } else {
+                m.put("fileId", resultSubmit.getFileId());
+                results.add(m);
+            }
+        }
+        return results;
+    }
+
+    @SuppressWarnings("Duplicates")
+    public Object getHasSubmitResultStudentsA() {
+        List<Map<String, Object>> results = new ArrayList<>();
+        List<Map<String, Object>> myStudentTopic = getAllTopicHasSelect();
         for (Map<String, Object> m : myStudentTopic) {
             ResultSubmit resultSubmit = new ResultSubmit();
             resultSubmit.setId((String) m.get("topicId"));

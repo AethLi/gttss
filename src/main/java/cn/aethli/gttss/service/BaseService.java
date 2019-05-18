@@ -88,7 +88,7 @@ public class BaseService {
         return results;
     }
 
-    public Object getAllTopicHasSelect() {
+    public List<Map<String, Object>> getAllTopicHasSelect() {
         List<Map<String, Object>> results = new ArrayList<>();
         TopicStudentGroup topicStudentGroup = new TopicStudentGroup();
         topicStudentGroup.setBatchId(getCurrentBatch().getBatchId());

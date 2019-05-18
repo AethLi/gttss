@@ -150,9 +150,15 @@ public class TopicService extends BaseService {
     }
 
     public String selectTopic(String id, SysUser sysUser) throws Exception {
-        Map<String, Object> myTopic = (Map<String, Object>) getMyTopic(sysUser);
-        if ((boolean) myTopic.get("hasSelect")) {
-            throw new Exception("有未退选的课题");
+        Map<String, Object> myTopic = null;
+        try {
+            myTopic = (Map<String, Object>) getMyTopic(sysUser);
+        } catch (Exception e) {
+        }
+        if (myTopic != null) {
+            if ((boolean) myTopic.get("hasSelect")) {
+                throw new Exception("有未退选的课题");
+            }
         }
         Topic desTopic = new Topic();
         desTopic.setId(id);
@@ -226,7 +232,7 @@ public class TopicService extends BaseService {
         }
         topicStudentGroup = topicStudentGroupMapper.selectByStudentId_BatchId(topicStudentGroup);
         if (topicStudentGroup == null) {
-            return result;
+            throw new Exception("未选题");
         }
         Topic topic = new Topic();
         topic.setId(topicStudentGroup.getTopicId());
@@ -300,7 +306,7 @@ public class TopicService extends BaseService {
 
         TopicWithBLOBs topic = new TopicWithBLOBs();
         topic.setId(UUID.randomUUID().toString());
-        topic.setSelectStatus(2);
+        topic.setSelectStatus(0);
         topic.setNeedStudent(1);
         topic.setStatus(sysUser.getPermission() == 0 ? 3 : 4);
         if (topic.getStatus() == 4) {
@@ -319,6 +325,7 @@ public class TopicService extends BaseService {
         topic.setResult((String) params.get("result"));
         topic.setPlan((String) params.get("plan"));
         topic.setReference((String) params.get("reference"));
+        topic.setTeacherId("6953c915-790a-11e9-9f7b-80fa5b585ee4");
         if (verifyT == "sdiofyhasdiofyhqweohf9o") {
             topic.setTeacherId(sysUser.getUserId());
         }
@@ -657,4 +664,52 @@ public class TopicService extends BaseService {
     }
 
 
+    @SuppressWarnings("Duplicates")
+    public Object getTopicStudent(SysUser sysUser) {
+        List<Map<String, Object>> results = new ArrayList<>();
+        Map<String, Object> result;
+        TopicWithBLOBs topic = new TopicWithBLOBs();
+        topic.setValidityBatch(getCurrentBatch().getBatchId());
+        topic.setStatus(0);
+        List<TopicWithBLOBs> topics = topicMapper.selectByBatchId_Status(topic);
+        topic.setStatus(6);
+        topics.addAll(topicMapper.selectByTeacherId_BatchId_Status(topic));
+        topic.setStatus(7);
+        topics.addAll(topicMapper.selectByTeacherId_BatchId_Status(topic));
+        for (TopicWithBLOBs t : topics) {
+            try {
+                result = ObjectUtils.convertBean(t);
+                result.put("topicId", t.getId());
+                List<TopicStudentGroup> topicStudentGroups = topicStudentGroupMapper.selectByTopicId(result);
+                for (TopicStudentGroup topicStudentGroup : topicStudentGroups) {
+                    Student student = new Student();
+                    try {
+                        result = ObjectUtils.convertBean(t);
+                        student.setUserId(topicStudentGroup.getStudentId());
+                        student = studentMapper.selectById(student);
+                        HashMap<String, Object> studentResult = new HashMap<>();
+                        studentResult.putAll(ObjectUtils.convertBean(student));
+                        result.put("student", studentResult);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        SysUser user = new SysUser();
+                        user.setUserId(student.getUserId());
+                        user = sysUserMapper.selectById(user);
+                        user.setPassword("已去除密码");
+                        Map<String, Object> userResult = new HashMap<>();
+                        userResult.putAll(ObjectUtils.convertBean(user));
+                        result.put("user", userResult);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    results.add(result);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return results;
+    }
 }

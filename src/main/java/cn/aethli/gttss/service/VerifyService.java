@@ -40,15 +40,13 @@ public class VerifyService extends BaseService {
             verify = verifyMapper.selectById(verify);
             result.put("teacherVerify", verify);
         } catch (NullPointerException e) {
-            throw new Exception("还未填写开题报告");
         }
         try {
             Verify verify = new Verify();
-            verify.setId(openingReport.getTeacherVerifyId());
+            verify.setId(openingReport.getDefenseVerifyId());
             verify = verifyMapper.selectById(verify);
             result.put("defenseVerify", verify);
         } catch (NullPointerException e) {
-            throw e;
         }
         return result;
     }
@@ -88,9 +86,9 @@ public class VerifyService extends BaseService {
         topic = topicMapper.selectById(topic);
         if (topic.getStatus() == 4 || topic.getStatus() == 5) {
             topic.setStatus(Integer.valueOf((String) params.get("status")) == 0 ? 6 : topic.getStatus());
-            if (topic.getTeacherVerifyId() != null) {
+            if (topic.getAdminVerifyId() != null) {
                 Verify v = new Verify();
-                v.setId(topic.getTeacherVerifyId());
+                v.setId(topic.getAdminVerifyId());
                 verifyMapper.deleteById(v);
             }
             Verify verify = new Verify();
@@ -216,9 +214,9 @@ public class VerifyService extends BaseService {
         OpeningReportWithBLOBs openingReport = new OpeningReportWithBLOBs();
         openingReport.setTopicId((String) params.get("id"));
         openingReport = openingReportMapper.selectByTopicId(openingReport);
-        if (openingReport.getTeacherVerifyId() != null) {
+        if (openingReport.getDefenseVerifyId() != null) {
             Verify verify = new Verify();
-            verify.setId(openingReport.getTeacherVerifyId());
+            verify.setId(openingReport.getDefenseVerifyId());
             verifyMapper.deleteById(verify);
         }
         Verify verify = new Verify();
@@ -231,6 +229,31 @@ public class VerifyService extends BaseService {
         verifyMapper.insertSelective(verify);
         openingReport.setDefenseVerifyId(verify.getId());
         openingReportMapper.updateWithDefenseVerifyIdByTopicId(openingReport);
+        return "保存成功";
+    }
+
+    @SuppressWarnings("Duplicates")
+    public String saveDefenseVerifyA(SysUser sysUser, Map<String, Object> params) throws Exception {
+        DefenseApply defenseApply = new DefenseApply();
+        defenseApply.setId((String) params.get("id"));
+        defenseApply = defenseApplyMapper.selectById(defenseApply);
+        if (defenseApply == null) {
+            throw new Exception("未填写申请");
+        }
+        Verify verify = new Verify();
+        if (defenseApply.getAdminVerify() != null) {
+            verify.setId(defenseApply.getAdminVerify());
+            verifyMapper.deleteById(verify);
+        }
+        verify.setExplanation((String) params.get("explanation"));
+        verify.setType(1);
+        verify.setStatus(Integer.valueOf((String) params.get("status")));
+        verify.setId(UUID.randomUUID().toString());
+        verify.setCreateDt(new Date());
+        verify.setCreateBy(sysUser.getUserId());
+        verifyMapper.insertSelective(verify);
+        defenseApply.setAdminVerify(verify.getId());
+        defenseApplyMapper.updateWithAdminVerifyIdById(defenseApply);
         return "保存成功";
     }
 }

@@ -10,7 +10,7 @@
         <div type="text/plain" id="openingReportEditor"
              style="width:100%;height:300px">
         </div>
-        <button type="button" class="btn btn-default" ng-click="saveMyOpeningReport()">提交</button>
+        <button type="button" class="btn btn-primary" ng-click="saveMyOpeningReport()">提交</button>
     </section>
 </div>
 <div class="col-lg-4">
@@ -41,7 +41,11 @@
             </div>
         </div>
         <div class="well">
-            答辩意见
+            管理员审核意见
+        </div>
+        <div class="form-group">
+            <label for="statusNameA">审核结果</label>
+            <input class="form-control" id="statusNameA" ng-model="statusNameA">
         </div>
         <div class="form-group">
             <label for="opinion2">答辩意见</label>
@@ -49,12 +53,12 @@
                  style="width:100%;height:300px">
             </div>
         </div>
-        <div class="well">
+        <!--<div class="well">
             分组信息
         </div>
         <div class="form-group">
             <label for="groupingInfo">分组信息</label>
             <textarea class="form-control" rows="5" id="groupingInfo"></textarea>
-        </div>
+        </div>-->
     </form>
 </div>

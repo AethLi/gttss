@@ -2,7 +2,7 @@ angular.module('teacherApp', [])
     .controller("resultCheckCtrl", function ($scope, $http) {
         $scope.topics = [];
         $http({
-            url: "/file/getHasSubmitResultStudents",
+            url: "/file/getHasSubmitResultStudentsA",
             method: "GET"
         }).then(function s(result) {
             if (result.data.status === 0) {

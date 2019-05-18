@@ -22,6 +22,10 @@ public class UserService {
     ClassNameMapper classNameMapper;
     @Autowired
     UnitMapper unitMapper;
+    @Autowired
+    MajorMapper majorMapper;
+    @Autowired
+    FacultyMapper facultyMapper;
 
     public SysUser login(SysUser sysUser, String acaptcha) throws Exception {
         SysUser user = sysUserMapper.selectByAccount(sysUser);
@@ -93,6 +97,7 @@ public class UserService {
         }
         Map<String, Object> result = new HashMap<>();
         result.put("userName", t.getName());
+        result.put("phoneNum", sysUser.getPhoneNum());
         Unit unit = new Unit();
         unit.setId(t.getUnitId());
         Unit u = unitMapper.selectById(unit);
@@ -116,8 +121,22 @@ public class UserService {
         ClassName c = classNameMapper.selectById(className);
         result.put("className", c.getName());
         result.put("grade", s.getGradeName());
-        result.put("major", null);//todo 完成专业信息
-        result.put("faculty", null);//todo 完成学院信息
+        Faculty faculty = new Faculty();
+        faculty.setId(s.getFacultyId());
+        faculty = facultyMapper.selectById(faculty);
+        if (faculty != null) {
+            result.put("faculty", faculty.getName());
+        } else {
+            result.put("faculty", "");
+        }
+        Major major = new Major();
+        major.setId(s.getMajorId());
+        major = majorMapper.selectById(major);
+        if (major != null) {
+            result.put("major", major.getName());
+        } else {
+            result.put("major", "");
+        }
         return result;
     }
 
@@ -130,7 +149,7 @@ public class UserService {
         student.setUserId(sysUser.getUserId());
         student.setName((String) params.get("name"));
         studentMapper.updateWithNameById(student);
-        return null;
+        return "修改成功";
     }
 
     public Object loginA(Map<String, Object> params) throws Exception {

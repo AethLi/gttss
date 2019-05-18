@@ -4,6 +4,7 @@ angular.module('studentApp', [])
         $scope.mainDestination = "";
         $scope.ideasAndSolutions = "";
         $scope.plan = "";
+        $scope.statusNameA = "";
 
         $scope.whoIsActive = 0;
 
@@ -82,6 +83,7 @@ angular.module('studentApp', [])
                 opinion.setContent(result.data.model.teacherVerify.explanation);
                 $scope.statusName = result.data.model.teacherVerify.status === 0 ? "已通过审核" : "未通过审核";
                 opinion2.setContent(result.data.model.defenseVerify.explanation);
+                $scope.statusNameA = result.data.model.defenseVerify.status === 0 ? "已通过审核" : "未通过审核";
             }
         }, function e(result) {
 

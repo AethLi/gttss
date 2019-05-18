@@ -35,7 +35,7 @@ angular.module('adminApp', ['ui.router', 'oc.lazyLoad'])
         }
     })
     .config(function ($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.when("", "userOverview");//用作默认跳转
+        $urlRouterProvider.when("", "securitySetting");//用作默认跳转
         $stateProvider
             .state("securitySetting", {
                 controller: "securitySettingCtrl",

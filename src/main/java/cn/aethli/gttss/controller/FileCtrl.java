@@ -92,7 +92,10 @@ public class FileCtrl extends BaseCtrl {
     @RequestMapping("/getHasSubmitResultStudents")
     public Object getHasSubmitResultStudents(Model model) {
         try {
-            return new ResponseMessage(ResponseMessage.STATUS_OK, resultSubmitService.getHasSubmitResultStudents(getSysUser(model)));
+            if (getSysUser(model).getPermission() == 1) {
+                return new ResponseMessage(ResponseMessage.STATUS_OK, resultSubmitService.getHasSubmitResultStudents(getSysUser(model)));
+            } else
+                return new ResponseMessage(ResponseMessage.STATUS_OK, resultSubmitService.getHasSubmitResultStudentsA());
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseMessage(ResponseMessage.STATUS_ERROR, e.getMessage());

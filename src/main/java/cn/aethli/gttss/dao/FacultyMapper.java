@@ -1,6 +1,7 @@
 package cn.aethli.gttss.dao;
 
 import cn.aethli.gttss.domain.Faculty;
+import cn.aethli.gttss.domain.Student;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,4 +21,6 @@ public interface FacultyMapper {
      * @mbg.generated Sat Apr 20 09:20:33 CST 2019
      */
     int insertSelective(Faculty record);
+
+    Faculty selectById(Faculty faculty);
 }
