@@ -673,9 +673,9 @@ public class TopicService extends BaseService {
         topic.setStatus(0);
         List<TopicWithBLOBs> topics = topicMapper.selectByBatchId_Status(topic);
         topic.setStatus(6);
-        topics.addAll(topicMapper.selectByTeacherId_BatchId_Status(topic));
+        topics.addAll(topicMapper.selectByBatchId_Status(topic));
         topic.setStatus(7);
-        topics.addAll(topicMapper.selectByTeacherId_BatchId_Status(topic));
+        topics.addAll(topicMapper.selectByBatchId_Status(topic));
         for (TopicWithBLOBs t : topics) {
             try {
                 result = ObjectUtils.convertBean(t);

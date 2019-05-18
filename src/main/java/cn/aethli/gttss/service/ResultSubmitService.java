@@ -25,7 +25,7 @@ public class ResultSubmitService extends BaseService {
     SysFileMapper sysFileMapper;
 
     @SuppressWarnings("Duplicates")
-    public Object resultSubmitUpload(MultipartFile file, SysUser sysUser) throws Exception {
+    public String resultSubmitUpload(MultipartFile file, SysUser sysUser) throws Exception {
         Topic myTopic = getMyCurrentTopic(sysUser);
 
         if (file == null) {
