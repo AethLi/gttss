@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
-public class UserService {
+public class UserService extends BaseService {
 
     @Autowired
     StudentMapper studentMapper;
@@ -26,6 +28,8 @@ public class UserService {
     MajorMapper majorMapper;
     @Autowired
     FacultyMapper facultyMapper;
+    @Autowired
+    StudentBatchGroupMapper studentBatchGroupMapper;
 
     public SysUser login(SysUser sysUser, String acaptcha) throws Exception {
         SysUser user = sysUserMapper.selectByAccount(sysUser);
@@ -60,6 +64,17 @@ public class UserService {
         student.setUserId(sysUser.getUserId());
         if (studentMapper.selectById(student) == null) {
             throw new Exception("用户身份信息错误");
+        }
+        StudentBatchGroup studentBatchGroup = new StudentBatchGroup();
+        studentBatchGroup.setStudentId(student.getUserId());
+        List<StudentBatchGroup> studentBatchGroups = studentBatchGroupMapper.selectByStudentId(studentBatchGroup);
+        if (studentBatchGroups.size() == 0) {
+            throw new Exception("用户不属于任何批次");
+        } else {
+            List<StudentBatchGroup> collect = studentBatchGroups.stream().filter(x -> x.getBatchId().equals(getCurrentBatch().getBatchId())).collect(Collectors.toList());
+            if (collect.size() == 0) {
+                throw new Exception("用户不在此批次");
+            }
         }
     }
 

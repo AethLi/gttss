@@ -3,6 +3,8 @@ package cn.aethli.gttss.dao;
 import cn.aethli.gttss.domain.StudentBatchGroup;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public interface StudentBatchGroupMapper {
     /**
@@ -20,4 +22,6 @@ public interface StudentBatchGroupMapper {
      * @mbg.generated Sat Apr 20 09:20:33 CST 2019
      */
     int insertSelective(StudentBatchGroup record);
+
+    List<StudentBatchGroup> selectByStudentId(StudentBatchGroup studentBatchGroup);
 }
